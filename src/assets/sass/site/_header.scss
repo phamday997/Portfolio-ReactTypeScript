@@ -1,0 +1,61 @@
+.site-header {
+  background-color: transparent;
+  padding: 30px 0;
+  &--wraper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .site-logo {
+    color: $title-color-dark;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    img {
+      width: 48px;
+      height: 48px;
+    }
+    span {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03rem;
+    }
+  }
+  .site-navigation {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  .navigation-desktop {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      li {
+        cursor: pointer;
+        color: $title-color-dark;
+        a {
+          color: $title-color-dark;
+          text-decoration: none;
+        }
+      }
+    }
+    @include desktop {
+      display: none;
+    }
+  }
+  &.scroll-active {
+    background-color: $background-color-light;
+    .site-logo {
+      color: $title-color-light;
+    }
+  }
+}
+.site-navigation-mb {
+  visibility: hidden;
+  opacity: 0;
+  @include transition(all 0.3s ease-in-out);
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}

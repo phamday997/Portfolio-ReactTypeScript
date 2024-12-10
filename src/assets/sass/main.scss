@@ -1,0 +1,31 @@
+/* Base */
+@import "./base/variables";
+@import "./base/mixins";
+@import "./base/global";
+
+/* Site */
+@import "./site/header";
+@import "./site/footer";
+
+/* Pages */
+@import "./pages/home";
+
+/* Dark Mode  */
+[data-theme="dark"] {
+  $background-color: $background-color-dark;
+  $text-color: $text-color-dark;
+  $title-color: $title-color-dark;
+
+  body {
+    background-color: $background-color;
+    color: $text-color;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $title-color;
+  }
+}

@@ -1,0 +1,82 @@
+@import "../../assets/sass/base/variables";
+@import "../../assets/sass/base/mixins";
+
+.dp-btn {
+  display: inline-block;
+  line-height: 1.6;
+  font-family: $font-family-extra;
+  font-size: 18px;
+  color: $title-color-dark;
+  padding: 14px 40px 17px;
+  border-radius: 300px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  @include transition(all 0.3s ease-in-out);
+  &[type="submit"] {
+    border-radius: 5px;
+    padding: 20px 40px;
+  }
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
+  @media screen and (max-width: 1600px) {
+    font-size: 16px;
+  }
+  @include desktop {
+    font-size: 15px;
+    &[type="submit"] {
+      padding: 15px 30px;
+    }
+  }
+  @include mobile {
+    padding: 9px 30px 10px;
+  }
+  &--large {
+    padding: 15px 45px 18px;
+    font-size: 20px;
+    &[type="submit"] {
+      padding: 20px 50px;
+    }
+    @media screen and (max-width: 1600px) {
+      font-size: 18px;
+    }
+    @include large_screen {
+      font-size: 17px;
+      &[type="submit"] {
+        padding: 20px 40px;
+      }
+    }
+    @include desktop {
+      font-size: 16px;
+      &[type="submit"] {
+        padding: 15px 30px;
+      }
+    }
+  }
+  &--small {
+    padding: 9px 30px 10px;
+    &[type="submit"] {
+      padding: 15px 30px;
+    }
+    @include mobile {
+      padding: 7px 20px 8px;
+    }
+  }
+  &.primary {
+    background-color: $color__secondary;
+    &:hover {
+      background-color: $color__main;
+    }
+  }
+  &.secondary {
+    background-color: $color__main;
+    &:hover {
+      background-color: $color__secondary;
+    }
+  }
+}

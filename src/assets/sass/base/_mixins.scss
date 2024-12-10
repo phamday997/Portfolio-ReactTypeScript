@@ -1,0 +1,159 @@
+/* Mixin */
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transition-delay($seconds) {
+  -webkit-transition-delay: $seconds;
+  -moz-transition-delay: $seconds;
+  -o-transition-delay: $seconds;
+  transition-delay: $seconds;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin rotateY($deg) {
+  @include transform(rotateY(#{$deg}deg));
+}
+
+@mixin rotateX($deg) {
+  @include transform(rotateX(#{$deg}deg));
+}
+
+@mixin rotate-important($deg) {
+  @include transform(rotate(#{$deg}deg !important));
+}
+
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+@mixin scale2d($x, $y) {
+  @include transform(scale($x, $y));
+}
+
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+@mixin skew($x, $y) {
+  @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+@mixin transform-origin($origin) {
+  -webkit-transform-origin: $origin;
+  -moz-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+@mixin limit-line($limit) {
+  -webkit-line-clamp: $limit;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}
+
+@mixin limit-line-unset {
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: unset;
+  text-overflow: unset;
+  display: inline-block;
+}
+
+/* Animation Show Element */
+@keyframes show_block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes show_block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes show_block {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Screen breakpoint width*/
+$large-width: 1200px;
+$desktop-width: 992px;
+$tablet-width: 768px;
+$mobile-width: 576px;
+$small-width: 376px;
+
+@mixin large_screen {
+  @media screen and (max-width: #{$large-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin small_screen {
+  @media screen and (max-width: #{$small-width}) {
+    @content;
+  }
+}

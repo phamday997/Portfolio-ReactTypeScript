@@ -1,0 +1,24 @@
+/* Light mode variables */
+$background-color-light: #ffffff;
+$title-color-light: #000000;
+$text-color-light: #54545f;
+
+/* Dark mode variables */
+$background-color-dark: #252439;
+$title-color-dark: #ffffff;
+$text-color-dark: #aaaaaa;
+
+/* Default variables (use light mode by default) */
+$background-color: $background-color-light;
+$text-color: $text-color-light;
+$title-color: $title-color-light;
+
+/* color */
+$color__main: #fb503b;
+$color__primary: #142eb5;
+$color__secondary: #0b1c77;
+$color__third: #6e7fd1;
+
+/* font */
+$font-family-main: "Open Sans", sans-serif;
+$font-family-extra: "Barlow", sans-serif;
