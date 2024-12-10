@@ -1,6 +1,15 @@
 .site-header {
-  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: rgba($color: $background-color, $alpha: 0);
   padding: 30px 0;
+  @include transition(all 0.3s ease);
+  @media screen and (max-width: 1600px) {
+    padding: 25px 0;
+  }
   &--wraper {
     display: flex;
     justify-content: space-between;
@@ -9,7 +18,9 @@
     color: $title-color-dark;
     display: flex;
     align-items: center;
+    font-family: $font-family-logo;
     gap: 8px;
+    @include transition(all 0.3s ease);
     img {
       width: 48px;
       height: 48px;
@@ -17,12 +28,12 @@
     span {
       font-size: 32px;
       font-weight: 700;
-      letter-spacing: -0.03rem;
+      letter-spacing: 0.05rem;
     }
   }
   .site-navigation {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
   }
   .navigation-desktop {
@@ -30,10 +41,16 @@
       display: flex;
       align-items: center;
       gap: 35px;
+      @include large_screen {
+        gap: 25px;
+      }
       li {
         cursor: pointer;
         color: $title-color-dark;
+        font-weight: 600;
+        @include transition(all 0.3s ease);
         a {
+          font-weight: 600;
           color: $title-color-dark;
           text-decoration: none;
         }
@@ -43,10 +60,46 @@
       display: none;
     }
   }
+  .theme-toggle {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    svg {
+      fill: $title-color-dark;
+      @include transition(all 0.3s ease);
+      width: 24px;
+    }
+  }
   &.scroll-active {
     background-color: $background-color-light;
     .site-logo {
       color: $title-color-light;
+    }
+  }
+  &.shrink {
+    padding: 20px 0 !important;
+    background-color: rgba($color: $background-color, $alpha: 1);
+    box-shadow: 0 0 10px hsla(0, 0, 0, 0.1);
+    .site-logo {
+      color: $title-color-light;
+    }
+    .theme-toggle {
+      svg {
+        fill: $title-color-light;
+      }
+    }
+    .navigation-desktop {
+      ul {
+        li {
+          color: $title-color;
+        }
+      }
     }
   }
 }

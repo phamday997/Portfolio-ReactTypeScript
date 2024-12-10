@@ -12,6 +12,7 @@
   font-weight: 600;
   border: none;
   outline: none;
+  text-decoration: none;
   @include transition(all 0.3s ease-in-out);
   &[type="submit"] {
     border-radius: 5px;
@@ -23,6 +24,7 @@
     outline: none;
     box-shadow: none;
     border: none;
+    text-decoration: none;
   }
   @media screen and (max-width: 1600px) {
     font-size: 16px;

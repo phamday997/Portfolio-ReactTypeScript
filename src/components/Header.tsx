@@ -5,6 +5,7 @@ import Button from "./Button/Button";
 
 const Header: React.FC = () => {
   const [show, setShow] = useState<string>("");
+  const headerRef = useRef<HTMLDivElement | null>(null);
   const navMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const themeModeRef = useRef<HTMLButtonElement | null>(null);
@@ -26,16 +27,39 @@ const Header: React.FC = () => {
     }
   };
 
+  const handleScreenResize = (): void => {
+    if (window.innerWidth > 991) {
+      setShow("");
+    }
+  };
+
+  const handleScreenScroll = (): void => {
+    const header = headerRef.current;
+    const headerHeight = header?.scrollHeight || 0;
+
+    if (header) {
+      if (window.scrollY > headerHeight) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
+    window.addEventListener("resize", handleScreenResize);
+    window.addEventListener("scroll", handleScreenScroll);
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("resize", handleScreenResize);
+      window.removeEventListener("scroll", handleScreenScroll);
     };
   }, []);
 
   return (
     <div className="header-all-wraper">
-      <header id="masthead" className="site-header">
+      <header id="masthead" className="site-header" ref={headerRef}>
         <div className="container">
           <div className="site-header--wraper">
             <div className="site-logo">
@@ -78,21 +102,28 @@ const Header: React.FC = () => {
         </div>
       </header>
       <div className={`site-navigation-mb ${show}`} ref={navMbRef}>
-        <nav id="navigation-mb" className="navigation navigation-mb">
-          <ul className="navigation-list">
-            <li className="navigation-list--item">home</li>
-            <li className="navigation-list--item">About</li>
-            <li className="navigation-list--item">Portfolio</li>
-            <li className="navigation-list--item">Service</li>
-            <li className="navigation-list--item">Contact</li>
-            <li className="navigation-list--item">Blog</li>
-            <li className="navigation-list--item">
-              <a href="/" className="daypham-btn">
-                Download CV
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div className="container">
+          <nav id="navigation-mb" className="navigation navigation-mb">
+            <ul className="navigation-list">
+              <li className="navigation-list--item">home</li>
+              <li className="navigation-list--item">About</li>
+              <li className="navigation-list--item">Portfolio</li>
+              <li className="navigation-list--item">Service</li>
+              <li className="navigation-list--item">Contact</li>
+              <li className="navigation-list--item">Blog</li>
+              <li className="navigation-list--item">
+                <Button
+                  typeEle="link"
+                  sizeEle="small"
+                  className="secondary"
+                  href="#"
+                >
+                  Download CV
+                </Button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   );

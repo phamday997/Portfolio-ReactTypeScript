@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="dp-portfolio-all-wrap">
       <Header></Header>
-      <main id="main" className="site-main"></main>
+      <main id="main" className="site-main" style={{ height: "200vh" }}></main>
       <Footer></Footer>
     </div>
   );

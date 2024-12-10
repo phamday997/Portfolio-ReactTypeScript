@@ -28,4 +28,25 @@
   h6 {
     color: $title-color;
   }
+  .site-header {
+    &.shrink {
+      background-color: rgba($color: $background-color, $alpha: 1);
+      box-shadow: 0 0 10px hsla(0, 0%, 100%, 0.1);
+      .site-logo {
+        color: $title-color;
+      }
+      .theme-toggle {
+        svg {
+          fill: $title-color;
+        }
+      }
+      .navigation-desktop {
+        ul {
+          li {
+            color: $title-color;
+          }
+        }
+      }
+    }
+  }
 }
