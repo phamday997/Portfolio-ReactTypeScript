@@ -1,20 +1,18 @@
-/* Base */
-@import "./base/variables";
-@import "./base/mixins";
-@import "./base/global";
+/* Variable & Mixins */
+@use "./base/variables" as vars;
+@use "./base/mixins" as mixins;
 
-/* Site */
-@import "./site/header";
-@import "./site/footer";
+/* Source File */
+@use "./base/global" as *;
+@use "./site/header" as *;
+@use "./site/footer" as *;
+@use "./pages/home" as *;
 
-/* Pages */
-@import "./pages/home";
-
-/* Dark Mode  */
+/* Dark Mode */
 [data-theme="dark"] {
-  $background-color: $background-color-dark;
-  $text-color: $text-color-dark;
-  $title-color: $title-color-dark;
+  $background-color: vars.$background-color-dark;
+  $text-color: vars.$text-color-dark;
+  $title-color: vars.$title-color-dark;
 
   body {
     background-color: $background-color;
@@ -31,7 +29,7 @@
   .site-header {
     &.shrink {
       background-color: rgba($color: $background-color, $alpha: 1);
-      box-shadow: 0 0 10px hsla(0, 0%, 100%, 0.1);
+      @include mixins.box-shadow(0, 0, 10px, rgba(255, 255, 255, 0.1));
       .site-logo {
         color: $title-color;
       }
@@ -40,11 +38,43 @@
           fill: $title-color;
         }
       }
+      .hamburger-toggle {
+        span {
+          background-color: $title-color;
+        }
+      }
       .navigation-desktop {
         ul {
           li {
             color: $title-color;
           }
+        }
+      }
+    }
+    &.active {
+      background-color: rgba($color: $background-color, $alpha: 1);
+      .site-logo {
+        color: $title-color;
+      }
+      .theme-toggle {
+        svg {
+          fill: $title-color;
+        }
+      }
+      .hamburger-toggle {
+        span {
+          background-color: $title-color;
+        }
+      }
+    }
+  }
+  .site-navigation-mobile {
+    background-color: $background-color;
+    .navigation-list {
+      li {
+        color: $title-color;
+        a {
+          color: $title-color;
         }
       }
     }

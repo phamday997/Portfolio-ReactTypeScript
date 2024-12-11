@@ -1,34 +1,48 @@
+/* Variable & Mixins */
+@use "../base/variables" as vars;
+@use "../base/mixins" as mixins;
+
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   width: 100%;
-  background-color: rgba($color: $background-color, $alpha: 0);
+  background-color: rgba($color: vars.$background-color, $alpha: 0);
   padding: 30px 0;
-  @include transition(all 0.3s ease);
+  @include mixins.transition(all 0.3s ease);
   @media screen and (max-width: 1600px) {
     padding: 25px 0;
+  }
+  @include mixins.desktop {
+    padding: 20px 0;
   }
   &--wraper {
     display: flex;
     justify-content: space-between;
   }
   .site-logo {
-    color: $title-color-dark;
+    color: vars.$title-color-dark;
     display: flex;
     align-items: center;
-    font-family: $font-family-logo;
     gap: 8px;
-    @include transition(all 0.3s ease);
+    @include mixins.transition(all 0.3s ease);
     img {
       width: 48px;
       height: 48px;
+      @include mixins.desktop {
+        width: 36px;
+        height: 36px;
+      }
     }
     span {
-      font-size: 32px;
+      font-family: vars.$font-family-logo;
+      font-size: 30px;
       font-weight: 700;
       letter-spacing: 0.05rem;
+      @include mixins.desktop {
+        font-size: 22px;
+      }
     }
   }
   .site-navigation {
@@ -41,22 +55,24 @@
       display: flex;
       align-items: center;
       gap: 35px;
-      @include large_screen {
+      @include mixins.large_screen {
         gap: 25px;
       }
       li {
         cursor: pointer;
-        color: $title-color-dark;
+        font-family: vars.$font-family-extra;
+        color: vars.$title-color-dark;
         font-weight: 600;
-        @include transition(all 0.3s ease);
+        @include mixins.transition(all 0.3s ease);
         a {
+          font-family: vars.$font-family-extra;
           font-weight: 600;
-          color: $title-color-dark;
+          color: vars.$title-color-dark;
           text-decoration: none;
         }
       }
     }
-    @include desktop {
+    @include mixins.desktop {
       display: none;
     }
   }
@@ -71,44 +87,97 @@
     justify-content: center;
     border-radius: 50%;
     svg {
-      fill: $title-color-dark;
-      @include transition(all 0.3s ease);
+      fill: vars.$title-color-dark;
+      @include mixins.transition(all 0.3s ease);
       width: 24px;
     }
   }
   &.scroll-active {
-    background-color: $background-color-light;
+    background-color: vars.$background-color-light;
     .site-logo {
-      color: $title-color-light;
+      color: vars.$title-color-light;
     }
   }
   &.shrink {
-    padding: 20px 0 !important;
-    background-color: rgba($color: $background-color, $alpha: 1);
-    box-shadow: 0 0 10px hsla(0, 0, 0, 0.1);
+    padding: 20px 0;
+    background-color: rgba($color: vars.$background-color, $alpha: 1);
+    @include mixins.box-shadow(0, 0, 10px, rgba(0, 0, 0, 0.1));
+    @include mixins.desktop {
+      padding: 15px 0;
+    }
     .site-logo {
-      color: $title-color-light;
+      color: vars.$title-color-light;
     }
     .theme-toggle {
       svg {
-        fill: $title-color-light;
+        fill: vars.$title-color-light;
+      }
+    }
+    .hamburger-toggle {
+      span {
+        background-color: vars.$title-color-light;
       }
     }
     .navigation-desktop {
       ul {
         li {
-          color: $title-color;
+          color: vars.$title-color;
         }
       }
     }
   }
+  &.active {
+    background-color: rgba($color: vars.$background-color, $alpha: 1);
+    .site-logo {
+      color: vars.$title-color-light;
+    }
+    .theme-toggle {
+      svg {
+        fill: vars.$title-color-light;
+      }
+    }
+    .hamburger-toggle {
+      span {
+        background-color: vars.$title-color-light;
+      }
+    }
+  }
 }
-.site-navigation-mb {
+.site-navigation-mobile {
   visibility: hidden;
+  position: fixed;
   opacity: 0;
-  @include transition(all 0.3s ease-in-out);
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -998;
+  padding: 25px 0;
+  background-color: vars.$background-color;
+  @include mixins.transition(all 0.3s ease-in-out);
+  .navigation-mobile {
+    height: auto;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  .navigation-list {
+    li {
+      margin-bottom: 5px;
+      cursor: pointer;
+      font-family: vars.$font-family-extra;
+      color: vars.$title-color-light;
+      font-weight: 500;
+      @include mixins.transition(all 0.3s ease);
+      a {
+        font-family: vars.$font-family-extra;
+        font-weight: 500;
+        color: vars.$title-color-light;
+        text-decoration: none;
+      }
+    }
+  }
   &.active {
     visibility: visible;
     opacity: 1;
+    z-index: 998;
   }
 }

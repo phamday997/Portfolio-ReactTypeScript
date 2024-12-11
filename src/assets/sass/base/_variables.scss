@@ -20,12 +20,6 @@ $color__secondary: #0b1c77;
 $color__third: #6e7fd1;
 
 /* font */
-@font-face {
-  font-family: "gilroy-bd";
-  src: url("../../fonts/gilroy/Gilroy-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-$font-family-logo: "gilroy-bd", sans-serif;
+$font-family-logo: "Roboto", sans-serif;
 $font-family-main: "Open Sans", sans-serif;
 $font-family-extra: "Barlow", sans-serif;

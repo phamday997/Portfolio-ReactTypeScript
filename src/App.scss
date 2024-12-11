@@ -1,16 +1,21 @@
-/* Reset DOM */
+/* === Main style === */
+@use "./assets/sass/main.scss" as *;
+/* === End main style === */
+
+/* === Reset DOM === */
 html {
   box-sizing: border-box;
 }
 * {
   margin: 0;
   padding: 0;
-}
-*,
-*::before,
-*::after {
   box-sizing: border-box;
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
 }
+
 input,
 textarea,
 select,
@@ -26,6 +31,4 @@ ul {
   margin: 0;
   list-style: none;
 }
-
-/* main styles */
-@import "./assets/sass/main.scss";
+/* === End reset DOM === */

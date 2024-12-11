@@ -1,19 +1,20 @@
-@import "../../assets/sass/base/variables";
-@import "../../assets/sass/base/mixins";
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
 
 .dp-btn {
   display: inline-block;
   line-height: 1.6;
-  font-family: $font-family-extra;
+  font-family: vars.$font-family-extra;
   font-size: 18px;
-  color: $title-color-dark;
+  color: vars.$title-color-dark !important;
   padding: 14px 40px 17px;
   border-radius: 300px;
   font-weight: 600;
   border: none;
   outline: none;
   text-decoration: none;
-  @include transition(all 0.3s ease-in-out);
+  @include mixins.transition(all 0.3s ease-in-out);
   &[type="submit"] {
     border-radius: 5px;
     padding: 20px 40px;
@@ -29,13 +30,13 @@
   @media screen and (max-width: 1600px) {
     font-size: 16px;
   }
-  @include desktop {
+  @include mixins.desktop {
     font-size: 15px;
     &[type="submit"] {
       padding: 15px 30px;
     }
   }
-  @include mobile {
+  @include mixins.mobile {
     padding: 9px 30px 10px;
   }
   &--large {
@@ -47,13 +48,13 @@
     @media screen and (max-width: 1600px) {
       font-size: 18px;
     }
-    @include large_screen {
+    @include mixins.large_screen {
       font-size: 17px;
       &[type="submit"] {
         padding: 20px 40px;
       }
     }
-    @include desktop {
+    @include mixins.desktop {
       font-size: 16px;
       &[type="submit"] {
         padding: 15px 30px;
@@ -65,20 +66,20 @@
     &[type="submit"] {
       padding: 15px 30px;
     }
-    @include mobile {
+    @include mixins.mobile {
       padding: 7px 20px 8px;
     }
   }
   &.primary {
-    background-color: $color__secondary;
+    background-color: vars.$color__secondary;
     &:hover {
-      background-color: $color__main;
+      background-color: vars.$color__main;
     }
   }
   &.secondary {
-    background-color: $color__main;
+    background-color: vars.$color__main;
     &:hover {
-      background-color: $color__secondary;
+      background-color: vars.$color__secondary;
     }
   }
 }

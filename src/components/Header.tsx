@@ -1,12 +1,63 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, ForwardedRef } from "react";
 import logo from "../assets/images/logo/logo.png";
 import ThemeMode from "./ThemeMode";
 import Button from "./Button/Button";
+
+interface NavigationProps {
+  device: "desktop" | "mobile";
+}
+
+const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
+  ({ device = "desktop" }, ref: ForwardedRef<HTMLElement>) => {
+    return (
+      <nav
+        id={`navigation-${device}`}
+        className={`navigation navigation-${device}`}
+        ref={ref}
+      >
+        <ul className="navigation-list">
+          <li className="navigation-list--item">home</li>
+          <li className="navigation-list--item">About</li>
+          <li className="navigation-list--item">Portfolio</li>
+          <li className="navigation-list--item">Service</li>
+          <li className="navigation-list--item">Contact</li>
+          <li className="navigation-list--item">Blog</li>
+          <li className="navigation-list--item">
+            {device === "mobile" ? (
+              <Button
+                typeEle="link"
+                sizeEle="small"
+                className="secondary"
+                href="#"
+                style={{
+                  marginTop: "15px",
+                  padding: "7px 40px 8px",
+                }}
+              >
+                Download CV
+              </Button>
+            ) : (
+              <Button
+                typeEle="link"
+                sizeEle="small"
+                className="secondary"
+                href="#"
+              >
+                Download CV
+              </Button>
+            )}
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+);
 
 const Header: React.FC = () => {
   const [show, setShow] = useState<string>("");
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navMbRef = useRef<HTMLDivElement | null>(null);
+  const navChildMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const themeModeRef = useRef<HTMLButtonElement | null>(null);
 
@@ -28,6 +79,16 @@ const Header: React.FC = () => {
   };
 
   const handleScreenResize = (): void => {
+    const header = headerRef.current;
+    const navMobile = navMbRef.current;
+    const navChildMobile = navChildMbRef.current!;
+    const headerHeight = header?.scrollHeight || 0;
+
+    if (header && navMobile) {
+      navMobile.style.paddingTop = `${headerHeight + 15}px`;
+      navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
+    }
+
     if (window.innerWidth > 991) {
       setShow("");
     }
@@ -35,18 +96,27 @@ const Header: React.FC = () => {
 
   const handleScreenScroll = (): void => {
     const header = headerRef.current;
+    const navMobile = navMbRef.current;
+    const navChildMobile = navChildMbRef.current!;
     const headerHeight = header?.scrollHeight || 0;
 
-    if (header) {
+    if (header && navMobile && navChildMbRef) {
+      navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
+      navMobile.style.paddingTop = `${headerHeight + 15}px`;
+
       if (window.scrollY > headerHeight) {
         header.classList.add("shrink");
+        navMobile.classList.add("shrink");
       } else {
         header.classList.remove("shrink");
+        navMobile.classList.remove("shrink");
       }
     }
   };
 
   useEffect(() => {
+    handleScreenResize();
+    handleScreenScroll();
     document.addEventListener("click", handleClickOutside);
     window.addEventListener("resize", handleScreenResize);
     window.addEventListener("scroll", handleScreenScroll);
@@ -59,7 +129,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="header-all-wraper">
-      <header id="masthead" className="site-header" ref={headerRef}>
+      <header id="masthead" className={`site-header ${show}`} ref={headerRef}>
         <div className="container">
           <div className="site-header--wraper">
             <div className="site-logo">
@@ -67,26 +137,7 @@ const Header: React.FC = () => {
               <span>DevMan</span>
             </div>
             <div className="site-navigation">
-              <nav id="navigation" className="navigation navigation-desktop">
-                <ul className="navigation-list">
-                  <li className="navigation-list--item">home</li>
-                  <li className="navigation-list--item">About</li>
-                  <li className="navigation-list--item">Portfolio</li>
-                  <li className="navigation-list--item">Service</li>
-                  <li className="navigation-list--item">Contact</li>
-                  <li className="navigation-list--item">Blog</li>
-                  <li className="navigation-list--item">
-                    <Button
-                      typeEle="link"
-                      sizeEle="small"
-                      className="secondary"
-                      href="#"
-                    >
-                      Download CV
-                    </Button>
-                  </li>
-                </ul>
-              </nav>
+              <Navigation device="desktop" />
               <ThemeMode ref={themeModeRef} />
               <div
                 className={`hamburger-toggle ${show}`}
@@ -101,28 +152,9 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      <div className={`site-navigation-mb ${show}`} ref={navMbRef}>
+      <div className={`site-navigation-mobile ${show}`} ref={navMbRef}>
         <div className="container">
-          <nav id="navigation-mb" className="navigation navigation-mb">
-            <ul className="navigation-list">
-              <li className="navigation-list--item">home</li>
-              <li className="navigation-list--item">About</li>
-              <li className="navigation-list--item">Portfolio</li>
-              <li className="navigation-list--item">Service</li>
-              <li className="navigation-list--item">Contact</li>
-              <li className="navigation-list--item">Blog</li>
-              <li className="navigation-list--item">
-                <Button
-                  typeEle="link"
-                  sizeEle="small"
-                  className="secondary"
-                  href="#"
-                >
-                  Download CV
-                </Button>
-              </li>
-            </ul>
-          </nav>
+          <Navigation device="mobile" ref={navChildMbRef} />
         </div>
       </div>
     </div>

@@ -1,13 +1,17 @@
+/* Variable & Mixins */
+@use "./variables" as vars;
+@use "./mixins" as mixins;
+
 /* Global style */
 body {
   line-height: 1.6;
   font-weight: 400;
   font-size: 18px;
-  background-color: $background-color;
-  color: $text-color;
+  background-color: vars.$background-color;
+  color: vars.$text-color;
   margin: 0;
   padding: 0;
-  font-family: $font-family-main;
+  font-family: vars.$font-family-main;
   transition: background-color 0.3s;
   @media screen and (max-width: 1600px) {
     font-size: 16px;
@@ -20,8 +24,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-family-extra;
-  color: $title-color;
+  font-family: vars.$font-family-extra;
+  color: vars.$title-color;
 }
 
 /* Button Hamburger */
@@ -32,21 +36,21 @@ h6 {
   cursor: pointer;
   display: none;
   position: relative;
-  @include desktop {
+  @include mixins.desktop {
     display: flex;
   }
   span {
     height: 2px;
     width: 100%;
     position: absolute;
-    background-color: $color__main;
-    @include transition(all 0.2s ease-in-out);
+    background-color: vars.$title-color-dark;
+    @include mixins.transition(all 0.2s ease-in-out);
     &:first-child {
       top: 0;
     }
     &:nth-child(2) {
       top: 50%;
-      transform: translate(0, -50%);
+      @include mixins.translate(0, -50%);
     }
     &:last-child {
       bottom: 0;
@@ -57,13 +61,13 @@ h6 {
       &:first-child {
         top: 6px;
         transition-delay: 0.1s;
-        transform: rotate(45deg);
+        @include mixins.rotate(45);
       }
       &:nth-child(2) {
         opacity: 0;
       }
       &:last-child {
-        transform: rotate(-45deg);
+        @include mixins.rotate(-45);
         bottom: 6px;
         transition-delay: 0.1s;
       }
@@ -71,6 +75,7 @@ h6 {
   }
 }
 
+/* Set default maxwidth for container */
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1344px;
