@@ -1,0 +1,44 @@
+/* Variable & Mixins */
+@use "../base/variables" as vars;
+@use "../base/mixins" as mixins;
+
+.footer-all-wraper {
+  padding: 57px 0 61px;
+  background-color: vars.$color__background;
+  .site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    color: vars.$color__gray;
+    @include mixins.desktop {
+      flex-direction: column;
+      gap: 8px;
+    }
+    @include mixins.mobile {
+      font-size: 15px;
+    }
+    @include mixins.small_screen {
+      font-size: 14px;
+    }
+    .copyright {
+      a {
+        color: vars.$color__light;
+      }
+    }
+    .footer-list-links {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      &--item {
+        a {
+          color: vars.$color__gray;
+          &:hover {
+            color: vars.$color__light;
+          }
+        }
+      }
+    }
+  }
+}

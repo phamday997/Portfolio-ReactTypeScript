@@ -26,6 +26,12 @@
   h6 {
     color: $title-color;
   }
+  a {
+    color: $title-color;
+    &:hover {
+      color: vars.$color__main;
+    }
+  }
   .site-header {
     &.shrink {
       background-color: rgba($color: $background-color, $alpha: 1);

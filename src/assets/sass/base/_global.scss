@@ -28,6 +28,15 @@ h6 {
   color: vars.$title-color;
 }
 
+a {
+  color: vars.$text-color;
+  text-decoration: none;
+  @include mixins.transition(all 0.3s ease-in-out);
+  &:hover {
+    color: vars.$color__main;
+  }
+}
+
 /* Button Hamburger */
 .hamburger-toggle {
   width: 20px;
