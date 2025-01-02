@@ -27,11 +27,10 @@
     border: none;
     text-decoration: none;
   }
-  @media screen and (max-width: 1600px) {
-    font-size: 16px;
+  @include mixins.large_screen {
+    padding: 11px 35px 14px;
   }
   @include mixins.desktop {
-    font-size: 15px;
     &[type="submit"] {
       padding: 15px 30px;
     }
@@ -39,6 +38,7 @@
   @include mixins.mobile {
     padding: 9px 30px 10px;
   }
+
   &--large {
     padding: 15px 45px 18px;
     font-size: 20px;
@@ -49,13 +49,11 @@
       font-size: 18px;
     }
     @include mixins.large_screen {
-      font-size: 17px;
       &[type="submit"] {
         padding: 20px 40px;
       }
     }
     @include mixins.desktop {
-      font-size: 16px;
       &[type="submit"] {
         padding: 15px 30px;
       }
@@ -66,12 +64,18 @@
     &[type="submit"] {
       padding: 15px 30px;
     }
+    @media screen and (max-width: 1600px) {
+      font-size: 16px;
+    }
+    @include mixins.large_screen {
+      padding: 7px 30px 10px;
+    }
     @include mixins.mobile {
-      padding: 7px 20px 8px;
+      padding: 7px 20px 10px;
     }
   }
   &.primary {
-    background-color: vars.$color__secondary;
+    background-color: vars.$color__primary;
     &:hover {
       background-color: vars.$color__main;
     }
@@ -79,7 +83,7 @@
   &.secondary {
     background-color: vars.$color__main;
     &:hover {
-      background-color: vars.$color__secondary;
+      background-color: vars.$color__primary;
     }
   }
 }

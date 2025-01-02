@@ -31,7 +31,7 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
                 href="#"
                 style={{
                   marginTop: "15px",
-                  padding: "7px 40px 8px",
+                  padding: "7px 40px 10px",
                 }}
               >
                 Download CV

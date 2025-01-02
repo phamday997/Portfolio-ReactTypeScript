@@ -24,6 +24,8 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: 600;
+  line-height: 1.3;
   font-family: vars.$font-family-extra;
   color: vars.$title-color;
 }
@@ -84,9 +86,22 @@ a {
   }
 }
 
+/* Animation */
+.animate-rotate {
+  animation: anm_rotate 15s infinite linear;
+}
+
 /* Set default maxwidth for container */
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1601px) {
   .container {
-    max-width: 1344px;
+    max-width: 1400px;
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .container {
+    max-width: 1070px;
+    padding: 0 20px;
   }
 }

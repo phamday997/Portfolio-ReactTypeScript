@@ -1,0 +1,347 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+/* Hero Header */
+.section-hero-header {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  .background-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    @include mixins.desktop {
+      justify-content: center;
+      gap: 30px;
+    }
+    a {
+      font-family: vars.$font-family-extra;
+      font-size: 18px;
+      font-weight: 600;
+      color: vars.$color__light;
+    }
+  }
+  .group-contents {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+    @include mixins.translate(0, -50%);
+    .content {
+      display: flex;
+      align-items: center;
+      @include mixins.desktop {
+        gap: 30px;
+        flex-direction: column-reverse;
+      }
+      &--left {
+        position: relative;
+        width: 45%;
+        color: vars.$color__light;
+        h1,
+        h2 {
+          color: vars.$color__light;
+        }
+        .stroke_1,
+        .stroke_2 {
+          position: absolute;
+          color: transparent;
+          -webkit-text-stroke: 1px vars.$color__light;
+          opacity: 0.1;
+          font-size: 230px;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          @media screen and (max-width: 1600px) {
+            font-size: 140px;
+          }
+          @include mixins.desktop {
+            display: none;
+          }
+        }
+        .stroke_1 {
+          bottom: 100%;
+          margin-bottom: -105px;
+          left: -340px;
+          @media screen and (max-width: 1600px) {
+            margin-bottom: -74px;
+            left: -185px;
+          }
+        }
+        .stroke_2 {
+          transform: rotate(90deg);
+          transform-origin: 0 0;
+          top: 100px;
+        }
+        .hello {
+          font-size: 35px;
+          margin-bottom: 3px;
+        }
+        .name {
+          font-size: 77px;
+          line-height: 1.1;
+          margin-bottom: 24px;
+        }
+        .job {
+          font-size: 26px;
+          margin-bottom: 33px;
+        }
+        .text {
+          font-size: 21px;
+          margin-bottom: 40px;
+        }
+        @media screen and (max-width: 1600px) {
+          .hello {
+            font-size: 30px;
+            margin-bottom: 0px;
+          }
+          .name {
+            font-size: 65px;
+            margin-bottom: 20px;
+          }
+          .job {
+            font-size: 22px;
+            margin-bottom: 25px;
+          }
+          .text {
+            font-size: 18px;
+            margin-bottom: 30px;
+          }
+        }
+        @include mixins.desktop {
+          width: 100%;
+          text-align: center;
+          .hello {
+            font-size: 18px;
+          }
+          .name {
+            font-size: 35px;
+            margin-bottom: 14px;
+          }
+          .job {
+            font-size: 18px;
+            margin-bottom: 15px;
+          }
+          .text {
+            font-size: 16px;
+            margin-bottom: 30px;
+          }
+        }
+      }
+      &--right {
+        width: 55%;
+        padding-left: 250px;
+        @media screen and (max-width: 1600px) {
+          padding-left: 225px;
+        }
+        @include mixins.large_screen {
+          padding-left: 155px;
+        }
+        @include mixins.desktop {
+          padding-left: 0;
+          width: 300px;
+        }
+        @include mixins.mobile {
+          width: 250px;
+        }
+        @include mixins.small_screen {
+          width: 200px;
+        }
+      }
+    }
+    .main-avatar {
+      position: relative;
+    }
+    .main-img {
+      position: relative;
+      z-index: 1;
+      img {
+        height: auto;
+        width: 100%;
+        border-radius: 12px;
+        display: inline-block;
+      }
+    }
+    .win {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 125px;
+      width: 125px;
+      border-radius: 12px;
+      background-color: vars.$color__light;
+      z-index: 2;
+      @include mixins.large_screen {
+        top: -15px;
+        right: -15px;
+      }
+      img {
+        display: inline-block;
+        width: 65px;
+        height: auto;
+      }
+      @media screen and (max-width: 1600px) {
+        width: 100px;
+        height: 100px;
+        img {
+          border-radius: 8px;
+          width: 45px;
+        }
+      }
+      @include mixins.desktop {
+        width: 70px;
+        height: 70px;
+        img {
+          width: 30px;
+        }
+      }
+      @include mixins.mobile {
+        display: none;
+      }
+    }
+    .circle-creative {
+      position: absolute;
+      left: -70px;
+      bottom: -70px;
+      z-index: 2;
+      img {
+        width: 160px;
+      }
+      @media screen and (max-width: 1600px) {
+        left: -55px;
+        bottom: -55px;
+        img {
+          width: 120px;
+        }
+      }
+      @include mixins.desktop {
+        left: -30px;
+        bottom: -30px;
+        img {
+          width: 70px;
+        }
+      }
+    }
+    .numbers {
+      display: flex;
+      align-items: center;
+      padding: 20px 25px 24px;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.3;
+      border-radius: 12px;
+      width: fit-content;
+      font-family: vars.$font-family-extra;
+      color: vars.$color__dark;
+      background-color: vars.$color__light;
+      position: absolute;
+      z-index: 2;
+      @media screen and (max-width: 1670px) {
+        padding: 13px 18px 17px;
+      }
+      @media screen and (max-width: 1600px) {
+        font-size: 17px;
+        border-radius: 8px;
+      }
+      @include mixins.desktop {
+        font-size: 14px;
+        line-height: 1.2;
+        padding: 12px 15px 12px;
+      }
+      @include mixins.mobile {
+        display: none;
+      }
+      .dp-counter-nummber {
+        font-size: 54px;
+        line-height: 1;
+        position: relative;
+        display: inline-block;
+        @media screen and (max-width: 1600px) {
+          font-size: 45px;
+        }
+        @include mixins.desktop {
+          font-size: 35px;
+        }
+      }
+      .extra {
+        position: absolute;
+        font-size: 28px;
+        top: -1px;
+        line-height: 1;
+        @include mixins.desktop {
+          font-size: 20px;
+        }
+      }
+      .text {
+        padding-left: 14px;
+        @media screen and (max-width: 1600px) {
+          padding-left: 12px;
+        }
+        @include mixins.desktop {
+          padding-left: 10px;
+        }
+      }
+      &.year-of-success {
+        top: 100px;
+        left: -85px;
+        @media screen and (max-width: 1600px) {
+          top: 50px;
+          left: -90px;
+        }
+        @include mixins.desktop {
+          left: -50px;
+          top: 30px;
+        }
+        .dp-counter-nummber {
+          color: vars.$color__blue;
+        }
+      }
+      &.project-completed {
+        left: 100%;
+        bottom: 60px;
+        margin-left: -75px;
+        .text {
+          padding-left: 27px;
+          @include mixins.desktop {
+            padding-left: 20px;
+          }
+        }
+        @media screen and (max-width: 1670px) {
+          margin-left: -150px;
+        }
+        @media screen and (max-width: 1600px) {
+          margin-left: -100px;
+          bottom: 30px;
+        }
+        @include mixins.large_screen {
+          margin-left: -205px;
+        }
+        @include mixins.desktop {
+          margin-left: -90px;
+        }
+        .dp-counter-nummber {
+          color: vars.$color__pink;
+        }
+      }
+    }
+  }
+}
