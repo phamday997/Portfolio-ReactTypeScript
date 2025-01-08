@@ -1,0 +1,36 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.mouse-cursor-wrapper {
+  .mouse-cursor {
+    z-index: 999 !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    transform: translateZ(0);
+    visibility: hidden;
+  }
+  .mouse-outer {
+    margin-left: -15px;
+    margin-top: -15px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid vars.$color__main;
+    box-sizing: border-box;
+    z-index: 100;
+    opacity: 0.5;
+    @include mixins.transition(all 0.08s ease-out);
+  }
+  .mouse-inner {
+    margin-left: -3px;
+    margin-top: -3px;
+    width: 6px;
+    height: 6px;
+    background-color: vars.$color__main;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+      margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+}

@@ -1,0 +1,49 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.progressbar-scroll {
+  position: fixed;
+  height: 100px;
+  width: 1px;
+  bottom: 25px;
+  right: -25px;
+  background-color: rgba($color: vars.$color__dark, $alpha: 0.08);
+  z-index: 10;
+  @include mixins.transition(all 0.3s ease);
+  a {
+    text-decoration: none;
+    color: vars.$color__dark;
+  }
+  .text {
+    position: absolute;
+    bottom: 151px;
+    left: 0;
+    font-size: 13px;
+    transform: rotate(90deg);
+    text-transform: uppercase;
+    transform-origin: left;
+    white-space: nowrap;
+  }
+  .line {
+    position: absolute;
+    width: 1px;
+    height: auto;
+    background-color: rgba($color: vars.$color__dark, $alpha: 0.4);
+  }
+  &.active {
+    right: 25px;
+  }
+}
+
+[data-theme="dark"] {
+  .progressbar-scroll {
+    background-color: rgba($color: vars.$color__light, $alpha: 0.08);
+    a {
+      color: vars.$color__light;
+    }
+    .line {
+      background-color: rgba($color: vars.$color__light, $alpha: 0.4);
+    }
+  }
+}

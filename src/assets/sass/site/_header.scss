@@ -69,6 +69,9 @@
           font-weight: 600;
           color: vars.$title-color-dark;
           text-decoration: none;
+          &.current {
+            color: vars.$color__main !important;
+          }
         }
       }
     }
@@ -122,6 +125,9 @@
       ul {
         li {
           color: vars.$title-color;
+          a {
+            color: vars.$title-color;
+          }
         }
       }
     }

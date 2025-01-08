@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, ForwardedRef } from "react";
 import logo from "../assets/images/logo/logo.png";
 import ThemeMode from "./ThemeMode";
 import Button from "./Button/Button";
+import cvPdf from "../assets/files/cv.pdf";
 
 interface NavigationProps {
   device: "desktop" | "mobile";
@@ -16,19 +17,34 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         ref={ref}
       >
         <ul className="navigation-list">
-          <li className="navigation-list--item">home</li>
-          <li className="navigation-list--item">About</li>
-          <li className="navigation-list--item">Portfolio</li>
-          <li className="navigation-list--item">Service</li>
-          <li className="navigation-list--item">Contact</li>
-          <li className="navigation-list--item">Blog</li>
+          <li className="navigation-list--item">
+            <a href="/#" className="current">
+              Home
+            </a>
+          </li>
+          <li className="navigation-list--item">
+            <a href="/#about">About</a>
+          </li>
+          <li className="navigation-list--item">
+            <a href="/#portfolio">Portfolio</a>
+          </li>
+          <li className="navigation-list--item">
+            <a href="/#service">Service</a>
+          </li>
+          <li className="navigation-list--item">
+            <a href="/#contact">Contact</a>
+          </li>
+          <li className="navigation-list--item">
+            <a href="/#blog">Blog</a>
+          </li>
           <li className="navigation-list--item">
             {device === "mobile" ? (
               <Button
+                download
                 typeEle="link"
                 sizeEle="small"
                 className="secondary"
-                href="#"
+                href={cvPdf}
                 style={{
                   marginTop: "15px",
                   padding: "7px 40px 10px",
@@ -38,10 +54,11 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
               </Button>
             ) : (
               <Button
+                download
                 typeEle="link"
                 sizeEle="small"
                 className="secondary"
-                href="#"
+                href={cvPdf}
               >
                 Download CV
               </Button>

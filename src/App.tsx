@@ -4,6 +4,8 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroHeader from "./components/HeroHeader/HeroHeader";
+import MouseCursor from "./components/MouseCursor/MouseCursor";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <HeroHeader></HeroHeader>
       </main>
       <Footer></Footer>
+      <MouseCursor></MouseCursor>
+      <ScrollTop></ScrollTop>
     </div>
   );
 }
