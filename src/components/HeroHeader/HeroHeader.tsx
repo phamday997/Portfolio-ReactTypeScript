@@ -5,6 +5,7 @@ import heroImg from "./images/hero-header.jpg";
 import avatarImg from "./images/avatart-man.jpg";
 import iconWin from "./images/icon-win.png";
 import circleCreative from "./images/circle-createtive.png";
+import ScrollCounter from "../ScrollCounter/ScrollCounter";
 
 const HeroHeader: React.FC = () => {
   return (
@@ -47,17 +48,21 @@ const HeroHeader: React.FC = () => {
                   <img src={iconWin} alt="icon win" />
                 </div>
                 <div className="numbers year-of-success">
-                  <span className="dp-counter-nummber" data-character="">
-                    12
-                  </span>
+                  <ScrollCounter
+                    className="dp-counter-nummber"
+                    targetNumber={12}
+                    duration={200}
+                  />
                   <span className="text">
                     Years of <br /> Success
                   </span>
                 </div>
                 <div className="numbers project-completed">
-                  <span className="dp-counter-nummber">
-                    800<span className="extra">+</span>
-                  </span>
+                  <ScrollCounter
+                    className="dp-counter-nummber has-plus"
+                    targetNumber={800}
+                    duration={1500}
+                  />
                   <span className="text">
                     Projects <br /> completed
                   </span>

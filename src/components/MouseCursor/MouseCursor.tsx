@@ -48,7 +48,7 @@ const MouseCursor: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const interactiveElements = document.querySelectorAll("a, button");
+    const interactiveElements = document.querySelectorAll("a,a[href],button");
 
     interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", handleMouseEnter);

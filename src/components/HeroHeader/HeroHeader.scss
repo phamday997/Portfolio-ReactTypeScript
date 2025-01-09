@@ -281,14 +281,17 @@
         @include mixins.desktop {
           font-size: 35px;
         }
-      }
-      .extra {
-        position: absolute;
-        font-size: 28px;
-        top: -1px;
-        line-height: 1;
-        @include mixins.desktop {
-          font-size: 20px;
+        &.has-plus {
+          &::after {
+            content: "+";
+            position: absolute;
+            font-size: 28px;
+            top: -1px;
+            line-height: 1;
+            @include mixins.desktop {
+              font-size: 20px;
+            }
+          }
         }
       }
       .text {
