@@ -178,6 +178,9 @@
         font-weight: 500;
         color: vars.$title-color-light;
         text-decoration: none;
+        &.current {
+          color: vars.$color__main !important;
+        }
       }
     }
   }
