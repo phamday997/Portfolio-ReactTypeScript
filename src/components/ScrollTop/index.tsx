@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ScrollTop.scss";
 
-const ScrollTop: React.FC = () => {
+export const ScrollTop: React.FC = () => {
   const scrollTopRef = useRef<HTMLDivElement | null>(null);
   const [scrollPercent, setScrollPercent] = useState<number>(0);
 
@@ -38,5 +38,3 @@ const ScrollTop: React.FC = () => {
     </div>
   );
 };
-
-export default ScrollTop;

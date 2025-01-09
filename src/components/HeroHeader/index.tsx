@@ -1,13 +1,12 @@
 import React from "react";
-import Button from "../Button/Button";
+import { Button, ScrollCounter } from "../../components";
 import "./HeroHeader.scss";
 import heroImg from "./images/hero-header.jpg";
 import avatarImg from "./images/avatart-man.jpg";
 import iconWin from "./images/icon-win.png";
 import circleCreative from "./images/circle-createtive.png";
-import ScrollCounter from "../ScrollCounter/ScrollCounter";
 
-const HeroHeader: React.FC = () => {
+export const HeroHeader: React.FC = () => {
   return (
     <section className="section-hero-header">
       <div className="background-image">
@@ -78,5 +77,3 @@ const HeroHeader: React.FC = () => {
     </section>
   );
 };
-
-export default HeroHeader;

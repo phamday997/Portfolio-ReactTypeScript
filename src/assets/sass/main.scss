@@ -9,7 +9,7 @@
 @use "./pages/home" as *;
 
 /* Dark Mode */
-[data-theme="dark"] {
+@include mixins.ThemeMode {
   $background-color: vars.$background-color-dark;
   $text-color: vars.$text-color-dark;
   $title-color: vars.$title-color-dark;

@@ -11,7 +11,7 @@
   background-color: rgba($color: vars.$background-color, $alpha: 0);
   padding: 30px 0;
   @include mixins.transition(all 0.3s ease);
-  @media screen and (max-width: 1600px) {
+  @include mixins.big_screen {
     padding: 25px 0;
   }
   @include mixins.desktop {

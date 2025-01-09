@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import "./MouseCursor.scss";
 
-const MouseCursor: React.FC = () => {
+export const MouseCursor: React.FC = () => {
   const mouseOuter = useRef<HTMLDivElement | null>(null);
   const mouseInner = useRef<HTMLDivElement | null>(null);
 
@@ -73,5 +73,3 @@ const MouseCursor: React.FC = () => {
     </div>
   );
 };
-
-export default MouseCursor;

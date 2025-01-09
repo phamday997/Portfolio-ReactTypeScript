@@ -148,11 +148,18 @@
   }
 }
 /* Screen breakpoint width*/
+$big-width: 1600px;
 $large-width: 1200px;
 $desktop-width: 992px;
 $tablet-width: 768px;
 $mobile-width: 576px;
 $small-width: 376px;
+
+@mixin big_screen {
+  @media screen and (max-width: #{$big-width}) {
+    @content;
+  }
+}
 
 @mixin large_screen {
   @media screen and (max-width: #{$large-width}) {
@@ -180,6 +187,13 @@ $small-width: 376px;
 
 @mixin small_screen {
   @media screen and (max-width: #{$small-width}) {
+    @content;
+  }
+}
+
+/* Theme Mode */
+@mixin ThemeMode {
+  [data-theme="dark"] {
     @content;
   }
 }

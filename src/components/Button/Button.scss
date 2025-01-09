@@ -45,7 +45,7 @@
     &[type="submit"] {
       padding: 20px 50px;
     }
-    @media screen and (max-width: 1600px) {
+    @include mixins.big_screen {
       font-size: 18px;
     }
     @include mixins.large_screen {
@@ -64,7 +64,7 @@
     &[type="submit"] {
       padding: 15px 30px;
     }
-    @media screen and (max-width: 1600px) {
+    @include mixins.big_screen {
       font-size: 16px;
     }
     @include mixins.large_screen {

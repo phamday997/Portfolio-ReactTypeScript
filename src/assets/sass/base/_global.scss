@@ -13,7 +13,7 @@ body {
   padding: 0;
   font-family: vars.$font-family-main;
   transition: background-color 0.3s;
-  @media screen and (max-width: 1600px) {
+  @include mixins.big_screen {
     font-size: 16px;
   }
 }
@@ -99,7 +99,7 @@ a {
   }
 }
 
-@media screen and (max-width: 1600px) {
+@include mixins.big_screen {
   .container {
     max-width: 1070px;
     padding: 0 20px;

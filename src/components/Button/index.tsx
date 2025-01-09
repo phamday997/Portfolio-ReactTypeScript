@@ -18,7 +18,7 @@ type CombinedProps = ButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> &
   InputHTMLAttributes<HTMLInputElement>;
 
-const Button: React.FC<CombinedProps> = ({
+export const Button: React.FC<CombinedProps> = ({
   typeEle = "button", // Default value
   sizeEle = "normal",
   className = "primary",
@@ -52,4 +52,3 @@ const Button: React.FC<CombinedProps> = ({
   }
 };
 
-export default Button;

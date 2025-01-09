@@ -68,7 +68,7 @@
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
-          @media screen and (max-width: 1600px) {
+          @include mixins.big_screen {
             font-size: 140px;
           }
           @include mixins.desktop {
@@ -79,7 +79,7 @@
           bottom: 100%;
           margin-bottom: -105px;
           left: -340px;
-          @media screen and (max-width: 1600px) {
+          @include mixins.big_screen {
             margin-bottom: -74px;
             left: -185px;
           }
@@ -106,7 +106,7 @@
           font-size: 21px;
           margin-bottom: 40px;
         }
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           .hello {
             font-size: 30px;
             margin-bottom: 0px;
@@ -147,7 +147,7 @@
       &--right {
         width: 55%;
         padding-left: 250px;
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           padding-left: 225px;
         }
         @include mixins.large_screen {
@@ -199,7 +199,7 @@
         width: 65px;
         height: auto;
       }
-      @media screen and (max-width: 1600px) {
+      @include mixins.big_screen {
         width: 100px;
         height: 100px;
         img {
@@ -226,7 +226,7 @@
       img {
         width: 160px;
       }
-      @media screen and (max-width: 1600px) {
+      @include mixins.big_screen {
         left: -55px;
         bottom: -55px;
         img {
@@ -258,7 +258,7 @@
       @media screen and (max-width: 1670px) {
         padding: 13px 18px 17px;
       }
-      @media screen and (max-width: 1600px) {
+      @include mixins.big_screen {
         font-size: 17px;
         border-radius: 8px;
       }
@@ -275,7 +275,7 @@
         line-height: 1;
         position: relative;
         display: inline-block;
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           font-size: 45px;
         }
         @include mixins.desktop {
@@ -296,7 +296,7 @@
       }
       .text {
         padding-left: 14px;
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           padding-left: 12px;
         }
         @include mixins.desktop {
@@ -306,7 +306,7 @@
       &.year-of-success {
         top: 100px;
         left: -85px;
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           top: 50px;
           left: -90px;
         }
@@ -331,7 +331,7 @@
         @media screen and (max-width: 1670px) {
           margin-left: -150px;
         }
-        @media screen and (max-width: 1600px) {
+        @include mixins.big_screen {
           margin-left: -100px;
           bottom: 30px;
         }

@@ -6,7 +6,7 @@ interface CounterProps {
   duration?: number; // Optional duration in milliseconds
 }
 
-const ScrollCounter: React.FC<CounterProps> = ({
+export const ScrollCounter: React.FC<CounterProps> = ({
   className,
   targetNumber,
   duration = 2000,
@@ -81,5 +81,3 @@ const ScrollCounter: React.FC<CounterProps> = ({
     </span>
   );
 };
-
-export default ScrollCounter;

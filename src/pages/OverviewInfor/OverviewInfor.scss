@@ -1,0 +1,101 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.section-overviewinfor {
+  padding: 190px 0 157px 0;
+  @include mixins.big_screen {
+    padding: 142px 0 157px 0;
+  }
+  @include mixins.mobile {
+    padding: 100px 0;
+  }
+  .stt {
+    font-size: 16px;
+    font-family: vars.$font-family-extra;
+    font-weight: 600;
+    color: vars.$color__main;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .text {
+    font-size: 24px;
+    @include mixins.big_screen {
+      font-size: 22px;
+    }
+  }
+  .titles {
+    padding-bottom: 35px;
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mixins.mobile {
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .title {
+      padding-right: 20px;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 1px;
+      background-color: vars.$color__gray-second;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      @include mixins.transition(all 0.3s ease);
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: vars.$color__gray-third;
+      left: 0;
+      bottom: 0;
+    }
+  }
+  .features-list {
+    display: flex;
+    gap: 70px;
+    @include mixins.desktop {
+      flex-wrap: wrap;
+    }
+    @include mixins.mobile {
+      gap: 40px;
+    }
+    &--item {
+      width: calc(100% / 3);
+      @include mixins.desktop {
+        width: calc(100% / 2 - 35px);
+      }
+      @include mixins.tablet {
+        width: 100%;
+      }
+      &:hover {
+        .titles {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mixins.ThemeMode {
+  .section-overviewinfor {
+    .titles {
+      &::after {
+        background-color: vars.$color__gray-third;
+      }
+      &::before {
+        background-color: vars.$color__gray-second;
+      }
+    }
+  }
+}

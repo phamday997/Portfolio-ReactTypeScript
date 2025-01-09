@@ -1,15 +1,31 @@
 import React, { useRef, useState, useEffect, ForwardedRef } from "react";
-import logo from "../assets/images/logo/logo.png";
 import ThemeMode from "./ThemeMode";
-import Button from "./Button/Button";
+import { Button } from "../components";
+import logo from "../assets/images/logo/logo.png";
 import cvPdf from "../assets/files/cv.pdf";
 
 interface NavigationProps {
   device: "desktop" | "mobile";
 }
+interface MenuItem {
+  label: string;
+  url: string;
+}
 
 const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   ({ device = "desktop" }, ref: ForwardedRef<HTMLElement>) => {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const menuItems: MenuItem[] = [
+      { label: "Home", url: "/#" },
+      { label: "About", url: "/#about" },
+      { label: "Portfolio", url: "/#portfolio" },
+      { label: "Service", url: "/#service" },
+      { label: "Contact", url: "/#contact" },
+      { label: "Blog", url: "/#blog" },
+    ];
+    const handleClick = (index: number): void => {
+      setActiveIndex(index);
+    };
     return (
       <nav
         id={`navigation-${device}`}
@@ -17,26 +33,20 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         ref={ref}
       >
         <ul className="navigation-list">
-          <li className="navigation-list--item">
-            <a href="/#" className="current">
-              Home
-            </a>
-          </li>
-          <li className="navigation-list--item">
-            <a href="/#about">About</a>
-          </li>
-          <li className="navigation-list--item">
-            <a href="/#portfolio">Portfolio</a>
-          </li>
-          <li className="navigation-list--item">
-            <a href="/#service">Service</a>
-          </li>
-          <li className="navigation-list--item">
-            <a href="/#contact">Contact</a>
-          </li>
-          <li className="navigation-list--item">
-            <a href="/#blog">Blog</a>
-          </li>
+          {menuItems.map((item, index) => (
+            <li
+              key={index}
+              className="navigation-list--item"
+              onClick={() => handleClick(index)}
+            >
+              <a
+                href={item.url}
+                className={activeIndex === index ? "current" : ""}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
           <li className="navigation-list--item">
             {device === "mobile" ? (
               <Button
