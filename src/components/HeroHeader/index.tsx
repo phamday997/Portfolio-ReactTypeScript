@@ -8,7 +8,7 @@ import circleCreative from "./images/circle-createtive.png";
 
 export const HeroHeader: React.FC = () => {
   return (
-    <section className="section-hero-header">
+    <section className="section-hero-header" id="home">
       <div className="background-image">
         <img src={heroImg} alt="heroHeader" />
       </div>

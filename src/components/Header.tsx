@@ -1,4 +1,11 @@
-import React, { useRef, useState, useEffect, ForwardedRef } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  ForwardedRef,
+  useCallback,
+  useMemo,
+} from "react";
 import ThemeMode from "./ThemeMode";
 import { Button } from "../components";
 import logo from "../assets/images/logo/logo.png";
@@ -11,21 +18,59 @@ interface MenuItem {
   label: string;
   url: string;
 }
-
 const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   ({ device = "desktop" }, ref: ForwardedRef<HTMLElement>) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    const menuItems: MenuItem[] = [
-      { label: "Home", url: "/#" },
-      { label: "About", url: "/#about" },
-      { label: "Portfolio", url: "/#portfolio" },
-      { label: "Service", url: "/#service" },
-      { label: "Contact", url: "/#contact" },
-      { label: "Blog", url: "/#blog" },
-    ];
-    const handleClick = (index: number): void => {
+
+    const menuItems: MenuItem[] = useMemo(
+      () => [
+        { label: "Home", url: "/#home" },
+        { label: "About", url: "/#about" },
+        { label: "Portfolio", url: "/#portfolio" },
+        { label: "Service", url: "/#service" },
+        { label: "Contact", url: "/#contact" },
+        { label: "Blog", url: "/#blog" },
+      ],
+      []
+    );
+
+    const handleClick = (index: number, label: string): void => {
       setActiveIndex(index);
+
+      const sectionId = label.toLowerCase();
+      const element = document.getElementById(sectionId);
+
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 70,
+          behavior: "smooth",
+        });
+      }
     };
+
+    const handleScroll = useCallback(() => {
+      menuItems.forEach((item, index) => {
+        const sectionId = item.label.toLowerCase();
+        const element = document.getElementById(sectionId);
+
+        if (element) {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementBottom = element.getBoundingClientRect().bottom;
+
+          if (elementBottom > 0 && elementTop < window.innerHeight / 2) {
+            setActiveIndex(index);
+          }
+        }
+      });
+    }, [menuItems]);
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, [handleScroll]);
+
     return (
       <nav
         id={`navigation-${device}`}
@@ -37,7 +82,7 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
             <li
               key={index}
               className="navigation-list--item"
-              onClick={() => handleClick(index)}
+              onClick={() => handleClick(index, item.url)}
             >
               <a
                 href={item.url}

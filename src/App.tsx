@@ -4,7 +4,14 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { HeroHeader, MouseCursor, ScrollTop } from "./components";
-import { OverviewInfor } from "./pages";
+import {
+  OverviewInfor,
+  About,
+  Portfolio,
+  Service,
+  Contact,
+  Blog,
+} from "./pages";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +20,11 @@ const App: React.FC = () => {
       <main id="main" className="site-main">
         <HeroHeader />
         <OverviewInfor />
+        <About />
+        <Portfolio />
+        <Service />
+        <Contact />
+        <Blog />
       </main>
       <Footer />
       <MouseCursor />
