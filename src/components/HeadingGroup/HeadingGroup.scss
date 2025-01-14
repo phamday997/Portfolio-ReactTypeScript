@@ -1,0 +1,39 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+/* Heading Group Style */
+.heading-group {
+  width: 100%;
+  max-width: 750px;
+  &.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  &.right {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+  &--subtitle {
+    font-family: vars.$font-family-extra;
+    font-size: 24px;
+    font-weight: 600;
+    color: vars.$color__main;
+    @include mixins.big_screen {
+      font-size: 20px;
+    }
+  }
+  &--maintitle {
+    font-family: vars.$font-family-extra;
+    line-height: 1.25;
+    font-size: 48px;
+    margin-bottom: 28px;
+    @include mixins.big_screen {
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+    @include mixins.large_screen {
+      font-size: 30px;
+    }
+  }
+}
