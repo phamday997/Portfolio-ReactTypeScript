@@ -4,16 +4,19 @@ interface UseScrollCounterParams {
   targetNumber: number;
   duration: number;
   threshold?: number;
+  repeat?: boolean; // New prop to control animation repetition
 }
 
 const useScrollCounter = ({
   targetNumber,
   duration,
   threshold = 0.5,
+  repeat = false, // Default is false (animation runs once)
 }: UseScrollCounterParams) => {
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const elementRef = useRef<HTMLSpanElement>(null);
   const isAnimating = useRef<boolean>(false);
+  const hasAnimated = useRef<boolean>(false); // Tracks if animation has already run (when repeat is false)
 
   useEffect(() => {
     const getIncrement = (target: number): number => {
@@ -27,9 +30,9 @@ const useScrollCounter = ({
     };
 
     const animateCount = () => {
-      if (isAnimating.current) return;
-      isAnimating.current = true;
+      if (isAnimating.current || (!repeat && hasAnimated.current)) return;
 
+      isAnimating.current = true;
       setCurrentNumber(0); // Reset the counter
       const stepTime = Math.abs(Math.floor(duration / (targetNumber / 10)));
       const increment = getIncrement(targetNumber);
@@ -41,6 +44,7 @@ const useScrollCounter = ({
           current = targetNumber;
           clearInterval(interval);
           isAnimating.current = false;
+          hasAnimated.current = true; // Mark as animated if repeat is false
         }
         setCurrentNumber(current);
       }, stepTime);
@@ -48,13 +52,15 @@ const useScrollCounter = ({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isAnimating.current) {
+        if (entry.isIntersecting) {
           animateCount();
+        } else if (repeat) {
+          hasAnimated.current = false; // Allow re-animation when scrolling up/down
         }
       },
       {
         root: null, // Observes the viewport
-        threshold, //Trigger when 50% of the element is visible
+        threshold, // Trigger when `threshold` % of the element is visible
       }
     );
 
@@ -69,7 +75,7 @@ const useScrollCounter = ({
         observer.unobserve(currentRef);
       }
     };
-  }, [targetNumber, duration, threshold]);
+  }, [targetNumber, duration, threshold, repeat]);
 
   return { currentNumber, elementRef };
 };

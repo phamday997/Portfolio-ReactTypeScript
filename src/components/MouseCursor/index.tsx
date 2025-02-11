@@ -36,7 +36,7 @@ export const MouseCursor: React.FC = () => {
     });
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = useCallback((): void => {
     setStyles(mouseOuter.current, { opacity: "0.5" });
     setStyles(mouseInner.current, {
       opacity: "1",

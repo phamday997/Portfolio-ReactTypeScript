@@ -6,9 +6,42 @@ import icon1 from "./images/icon-wordpress.png";
 import icon2 from "./images/icon-react.png";
 import icon3 from "./images/icon-laravel.png";
 import icon4 from "./images/icon-shopify.png";
-import { Button, HeadinGroup } from "../../components";
+import {
+  Button,
+  HeadinGroup,
+  MovingParallax,
+  ScrollCounter,
+} from "../../components";
 
+interface counterItem {
+  label?: string | TrustedHTML;
+  number?: number;
+  duration?: number;
+  unit?: string;
+  plus?: boolean;
+}
 export const About: React.FC = () => {
+  const counterNumber: counterItem[] = [
+    {
+      label: "Digital <br /> Products",
+      number: 120,
+      duration: 2000,
+      plus: true,
+    },
+    {
+      label: "Open Source <br />Projects",
+      number: 40,
+      duration: 300,
+      plus: true,
+    },
+    {
+      label: "Lines of <br/> Code",
+      number: 10,
+      unit: "M",
+      duration: 300,
+      plus: false,
+    },
+  ];
   return (
     <section className="section-about" id="about">
       <div className="container">
@@ -57,6 +90,40 @@ export const About: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="counter-infor-group">
+        <div className="container">
+          <div className="counter-lists">
+            {counterNumber.length > 0 &&
+              counterNumber.map((item, index) => (
+                <div className="counter-lists--item" key={index}>
+                  <div className="numbers">
+                    <ScrollCounter
+                      className={`dp-counter-nummber ${
+                        item.plus ? "has-plus" : ""
+                      } ${item.unit ? "has-unit" : ""}`}
+                      targetNumber={item.number ? item.number : 0}
+                      duration={item.duration ? item.duration : 0}
+                      unit={item.unit ? item.unit : ""}
+                      repeat={true}
+                    />
+                    {item.label && (
+                      <span
+                        className="text"
+                        dangerouslySetInnerHTML={{ __html: item.label }}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+        <MovingParallax
+          direction="Y"
+          speed={20}
+          align="right"
+          style={{ bottom: -20 }}
+        ></MovingParallax>
       </div>
     </section>
   );

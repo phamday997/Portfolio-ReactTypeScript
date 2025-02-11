@@ -275,6 +275,7 @@
         line-height: 1;
         position: relative;
         display: inline-block;
+        font-weight: 700;
         @include mixins.big_screen {
           font-size: 45px;
         }

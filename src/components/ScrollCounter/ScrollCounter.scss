@@ -1,0 +1,30 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.dp-counter-nummber {
+  font-size: 54px;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  @include mixins.big_screen {
+    font-size: 45px;
+  }
+  @include mixins.desktop {
+    font-size: 35px;
+  }
+  &.has-plus,
+  &.has-unit {
+    &::after {
+      content: "+";
+      position: absolute;
+      font-size: 28px;
+      top: -1px;
+      line-height: 1;
+      @include mixins.desktop {
+        font-size: 20px;
+      }
+    }
+  }
+}

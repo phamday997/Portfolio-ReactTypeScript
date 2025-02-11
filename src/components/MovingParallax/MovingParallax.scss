@@ -1,0 +1,35 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.moving-parallax {
+  display: block;
+  position: absolute;
+  width: 235px;
+  height: 290px;
+  background-color: vars.$color__third;
+  z-index: 1;
+  &.right {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    right: 0;
+    left: unset;
+  }
+  &.left {
+    left: 0;
+    right: unset;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  &.parallax-effect {
+    will-change: transform;
+    transition: transform 5s cubic-bezier(0, 0, 0, 1) 0s;
+  }
+  @include mixins.big_screen {
+    width: 170px;
+    height: 200px;
+  }
+  @include mixins.large_screen {
+    display: none;
+  }
+}

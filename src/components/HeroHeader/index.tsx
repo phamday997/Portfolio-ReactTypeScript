@@ -51,6 +51,7 @@ export const HeroHeader: React.FC = () => {
                     className="dp-counter-nummber"
                     targetNumber={12}
                     duration={200}
+                    repeat={true}
                   />
                   <span className="text">
                     Years of <br /> Success
@@ -61,6 +62,7 @@ export const HeroHeader: React.FC = () => {
                     className="dp-counter-nummber has-plus"
                     targetNumber={800}
                     duration={1500}
+                    repeat={true}
                   />
                   <span className="text">
                     Projects <br /> completed

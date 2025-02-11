@@ -1,0 +1,18 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.section-portfolio {
+  background-color: vars.$color__light;
+  position: relative;
+  .container {
+    position: relative;
+    z-index: 10;
+  }
+  .list-portfolio {
+    margin-top: 85px;
+    .card-porfolio {
+      margin-bottom: 60px;
+    }
+  }
+}
