@@ -6,3 +6,4 @@ export * from "./MouseCursor";
 export * from "./MovingParallax";
 export * from "./ScrollTop";
 export * from "./ScrollCounter";
+export * from "./Popup";

@@ -1,24 +1,18 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import "./Card.scss";
+import { PortfolioItem } from "../types/PortfolioCard";
 
 interface cardPorfolio {
-  srcImg?: string;
-  category?: string;
-  title?: string | TrustedHTML;
-  objectAlign?: "default" | "center" | "right" | string;
+  data: PortfolioItem;
+  onOpen: () => void;
 }
-const Card: React.FC<cardPorfolio> = ({
-  srcImg,
-  category,
-  title,
-  objectAlign = "default",
-  ...props
-}) => {
+const Card: React.FC<cardPorfolio> = ({ data, onOpen }) => {
+  const { objectAlign, srcImg, title, category } = data;
+
   return (
     <div className={`card-porfolio align-${objectAlign}`}>
-      <div className="overlay-action" {...props}></div>
+      <div className="overlay-action" onClick={onOpen}></div>
       <div className="bg-img">
         <img src={srcImg} alt={srcImg} />
       </div>

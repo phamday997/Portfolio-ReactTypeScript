@@ -23,6 +23,13 @@
       font-size: 20px;
     }
   }
+  &--subdes {
+    @include mixins.tablet {
+      br {
+        display: none;
+      }
+    }
+  }
   &--maintitle {
     font-family: vars.$font-family-extra;
     line-height: 1.25;
