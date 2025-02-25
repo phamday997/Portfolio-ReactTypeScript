@@ -2,7 +2,7 @@ import { DetailsPopup } from "./DetailsPopup";
 
 export interface PortfolioItem {
   srcImg?: string;
-  typePopup: "video" | "content";
+  typePopup: "video" | "audio" | "content";
   dataPopup?: string;
   dataPopupObject?: DetailsPopup;
   category?: string;

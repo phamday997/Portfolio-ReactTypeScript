@@ -3,7 +3,6 @@
 @use "../../assets/sass/base/mixins" as mixins;
 
 .section-portfolio {
-  background-color: vars.$color__light;
   position: relative;
   padding-bottom: 120px;
   @include mixins.desktop {

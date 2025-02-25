@@ -10,7 +10,7 @@ import bg4 from "./images/bg-4.jpg";
 
 export const Portfolio: React.FC = () => {
   const [popup, setPopup] = useState<"show" | "hidden">("hidden");
-  const [popupData, setPopupData] = useState<PortfolioItem>({
+  const [popupData, setPopupData] = useState<undefined | PortfolioItem>({
     typePopup: "video",
   });
   const portfolioItem: PortfolioItem[] = [
@@ -25,15 +25,15 @@ export const Portfolio: React.FC = () => {
     {
       srcImg: `${bg2}`,
       typePopup: "video",
-      dataPopup: "https://www.youtube.com/watch?v=R1r9nLYcqBU",
+      dataPopup: "https://vimeo.com/1051909443",
       category: "Vimeo",
       title: "Web Design for <br> Desiverse",
       objectAlign: "right",
     },
     {
       srcImg: `${bg3}`,
-      typePopup: "video",
-      dataPopup: "https://www.youtube.com/watch?v=hlWiI4xVXKY&t=3552s",
+      typePopup: "audio",
+      dataPopup: "https://soundcloud.com/2020hurricane/drugs-callin",
       category: "Soundcloud",
       title: "Web Template for <br> Desiverse",
       objectAlign: "default",
@@ -42,8 +42,9 @@ export const Portfolio: React.FC = () => {
       srcImg: `${bg4}`,
       typePopup: "content",
       dataPopupObject: {
+        subCategory: "Details",
         details:
-          "<p>We live in a world where we need to move quickly and iterate on our ideas as flexibly as possible.</p>",
+          "<p>We live in a world where we need to move quickly and iterate on our ideas as flexibly as possible.</p><p>Mockups are useful both for the creative phase of the project – for instance when you’re trying to figure out your user flows or the proper visual hierarchy – and the production phase when they phase when they will represent the target product. Building mockups strikes the ideal balance ease of modification.</p>",
         client: "Alvaro Morata",
         date: "March 07, 2021",
         srcImgObject: [`${bg1}`, `${bg2}`, `${bg3}`],
@@ -57,6 +58,11 @@ export const Portfolio: React.FC = () => {
   const handleOnclick = (record: PortfolioItem): void => {
     setPopupData(record);
     setPopup("show");
+  };
+
+  const handleClose = (): void => {
+    setPopup("hidden");
+    setPopupData(undefined);
   };
 
   return (
@@ -108,12 +114,8 @@ export const Portfolio: React.FC = () => {
         }}
       ></MovingParallax>
       {/* Popup Component */}
-      {popup === "show" && popupData && (
-        <Popup
-          classAnimation={popup}
-          data={popupData}
-          onClose={() => setPopup("hidden")}
-        />
+      {popupData && (
+        <Popup classAnimation={popup} data={popupData} onClose={handleClose} />
       )}
     </section>
   );
