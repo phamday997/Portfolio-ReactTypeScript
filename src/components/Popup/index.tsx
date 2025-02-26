@@ -1,6 +1,7 @@
-import React from "react";
+import React, { MouseEvent, useEffect, useRef } from "react";
 import { PortfolioItem } from "../../pages/Portfolio/types/PortfolioCard";
 import IconClose from "./icon-close.png";
+import useEmbedUrl from "../../hooks/useEmbedUrl";
 import "./Popup.scss";
 
 interface PopupProps {
@@ -14,52 +15,39 @@ export const Popup: React.FC<PopupProps> = ({
   data,
   onClose,
 }) => {
-  const getEmbedUrl = (url: string): string => {
-    if (typeof url !== "string") {
-      console.error("Invalid URL:", url);
-      return "";
-    }
+  const embedUrl = useEmbedUrl(data?.dataPopup ?? null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
-    // Handle YouTube
-    const youtubeMatch = url.match(
-      /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/s]{11})/
-    );
-    if (youtubeMatch) {
-      return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+  const handleClickOutSide = (
+    event: React.MouseEvent<HTMLDivElement>
+  ): void => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      onClose();
     }
-
-    // Handle Vimeo
-    const vimeoMatch = url.match(/(?:vimeo\.com\/(?:.*\/)?(\d+))/);
-    if (vimeoMatch) {
-      return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
-    }
-
-    // Handle SoundCloud
-    const soundCloudMatch = url.match(/soundcloud\.com\/(.+)/);
-    if (soundCloudMatch) {
-      return `https://w.soundcloud.com/player/?url=${encodeURIComponent(
-        url
-      )}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
-    }
-    // Default return original URL if no match
-    return url;
   };
 
   return (
-    <div className={`modal-popup-pd ${classAnimation} ${data?.typePopup}`}>
-      <div className="group-box-inner">
+    <div
+      className={`modal-popup-pd ${classAnimation} ${data?.typePopup}`}
+      onClick={handleClickOutSide}
+    >
+      <div className="group-box-inner" ref={modalRef}>
         <button className="close" onClick={onClose}>
           <img src={IconClose} alt="icon-close" />
         </button>
 
         {data.typePopup === "video" || data.typePopup === "audio" ? (
           <div className="video-audio-wrap">
-            <iframe
-              src={getEmbedUrl(data?.dataPopup ?? "")}
-              title="Video Popup"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            {embedUrl ? (
+              <iframe
+                src={embedUrl}
+                title="Video Popup"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className="no-data">No {data.typePopup} to display </div>
+            )}
           </div>
         ) : (
           <div className="description-wrap">

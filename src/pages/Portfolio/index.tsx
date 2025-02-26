@@ -10,7 +10,7 @@ import bg4 from "./images/bg-4.jpg";
 
 export const Portfolio: React.FC = () => {
   const [popup, setPopup] = useState<"show" | "hidden">("hidden");
-  const [popupData, setPopupData] = useState<undefined | PortfolioItem>({
+  const [popupData, setPopupData] = useState<null | PortfolioItem>({
     typePopup: "video",
   });
   const portfolioItem: PortfolioItem[] = [
@@ -62,7 +62,7 @@ export const Portfolio: React.FC = () => {
 
   const handleClose = (): void => {
     setPopup("hidden");
-    setPopupData(undefined);
+    setPopupData(null);
   };
 
   return (
@@ -113,7 +113,6 @@ export const Portfolio: React.FC = () => {
           height: "45vh",
         }}
       ></MovingParallax>
-      {/* Popup Component */}
       {popupData && (
         <Popup classAnimation={popup} data={popupData} onClose={handleClose} />
       )}

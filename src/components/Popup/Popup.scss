@@ -27,6 +27,7 @@
     img {
       width: 18px;
       height: auto;
+      @include mixins.transition(all 0.3s ease-in-out);
     }
     &:hover {
       border-radius: 50%;
@@ -64,6 +65,12 @@
     }
     @include mixins.mobile {
       width: calc(100% - 40px);
+      height: calc(100vh - 100px);
+      padding: 30px 0;
+    }
+    @media screen and (max-width: 736px) and (orientation: landscape) {
+      width: calc(100% - 40px);
+      height: calc(100vh - 100px);
       padding: 30px 0;
     }
   }
@@ -83,6 +90,9 @@
     @include mixins.mobile {
       padding: 0 20px;
     }
+    @include mixins.small_screen {
+      padding: 0 15px;
+    }
     &::-webkit-scrollbar {
       width: 7px;
     }
@@ -99,6 +109,9 @@
     }
     @include mixins.mobile {
       margin-bottom: 25px;
+    }
+    @include mixins.small_screen {
+      margin-bottom: 12px;
     }
     img {
       border-radius: 12px;
@@ -117,6 +130,9 @@
       @include mixins.desktop {
         font-size: 22px;
       }
+      @include mixins.small_screen {
+        font-size: 20px;
+      }
       br {
         display: none;
       }
@@ -125,6 +141,10 @@
       font-size: 16px;
       display: inline-block;
       margin-bottom: 20px;
+      @include mixins.small_screen {
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
     }
     .main-details {
       display: flex;
@@ -157,16 +177,28 @@
       &--item {
         margin-bottom: 10px;
         font-size: 16px;
+        @include mixins.small_screen {
+          font-size: 15px;
+        }
         .label {
           font-size: 18px;
           font-weight: 600;
           color: vars.$color__dark;
+          @include mixins.small_screen {
+            font-size: 16px;
+          }
         }
       }
     }
     .text-box {
       p {
         margin-bottom: 15px;
+      }
+      @include mixins.small_screen {
+        font-size: 15px;
+        p {
+          font-size: 15px;
+        }
       }
     }
     .additional-images {
@@ -203,6 +235,9 @@
             }
           }
         }
+        @include mixins.small_screen {
+          gap: 15px;
+        }
       }
     }
   }
@@ -215,6 +250,11 @@
       width: fit-content;
       @include mixins.mobile {
         top: -35px;
+      }
+      &:hover {
+        img {
+          @include mixins.rotate(90);
+        }
       }
     }
     .group-box-inner {
@@ -236,6 +276,17 @@
       height: 0;
       padding-top: 56.25%;
       background-color: vars.$color__dark;
+      @media screen and (max-width: 736px) and (orientation: landscape) {
+        padding-top: 46%;
+      }
+      .no-data {
+        position: absolute;
+        color: vars.$color__light;
+        font-weight: 400;
+        top: 50%;
+        left: 50%;
+        @include mixins.translate(-50%, -50%);
+      }
     }
     iframe {
       position: absolute;
