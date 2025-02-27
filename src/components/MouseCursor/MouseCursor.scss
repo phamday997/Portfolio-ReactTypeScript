@@ -3,6 +3,9 @@
 @use "../../assets/sass/base/mixins" as mixins;
 
 .mouse-cursor-wrapper {
+  @include mixins.desktop {
+    display: none !important;
+  }
   .mouse-cursor {
     z-index: 999 !important;
     position: fixed;

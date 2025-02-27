@@ -10,6 +10,7 @@ import ThemeMode from "./ThemeMode";
 import { Button } from "../components";
 import logo from "../assets/images/logo/logo.png";
 import cvPdf from "../assets/files/cv.pdf";
+import { Link as ScrollLink } from "react-scroll";
 
 interface NavigationProps {
   device: "desktop" | "mobile";
@@ -20,16 +21,17 @@ interface MenuItem {
 }
 const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   ({ device = "desktop" }, ref: ForwardedRef<HTMLElement>) => {
+    const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     const menuItems: MenuItem[] = useMemo(
       () => [
-        { label: "Home", url: "/#home" },
-        { label: "About", url: "/#about" },
-        { label: "Portfolio", url: "/#portfolio" },
-        { label: "Service", url: "/#service" },
-        { label: "Contact", url: "/#contact" },
-        { label: "Blog", url: "/#blog" },
+        { label: "Home", url: "home" },
+        { label: "About", url: "about" },
+        { label: "Portfolio", url: "portfolio" },
+        { label: "Service", url: "service" },
+        { label: "Contact", url: "contact" },
+        { label: "Blog", url: "blog" },
       ],
       []
     );
@@ -84,12 +86,15 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
               className="navigation-list--item"
               onClick={() => handleClick(index, item.url)}
             >
-              <a
-                href={item.url}
+              <ScrollLinkComponent
+                to={item.url}
+                smooth={true}
+                duration={500}
+                offset={-70} // Adjust for fixed headers
                 className={activeIndex === index ? "current" : ""}
               >
                 {item.label}
-              </a>
+              </ScrollLinkComponent>
             </li>
           ))}
           <li className="navigation-list--item">
