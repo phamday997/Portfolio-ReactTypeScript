@@ -32,3 +32,71 @@ $color__gray-four: #999999;
 $font-family-logo: "Roboto", sans-serif;
 $font-family-main: "Open Sans", sans-serif;
 $font-family-extra: "Barlow", sans-serif;
+
+/* Animation delay and duration custom */
+.animate__duration-1s {
+  animation-duration: 1s;
+}
+.animate__duration-1_2s {
+  animation-duration: 1.2s;
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-0_#{$i}s {
+    animation-delay: #{"0.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-1_#{$i}s {
+    animation-delay: #{"1.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-2_#{$i}s {
+    animation-delay: #{"2.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-3_#{$i}s {
+    animation-delay: #{"3.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-4_#{$i}s {
+    animation-delay: #{"4.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-5_#{$i}s {
+    animation-delay: #{"5.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-6_#{$i}s {
+    animation-delay: #{"6.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-7_#{$i}s {
+    animation-delay: #{"7.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-8_#{$i}s {
+    animation-delay: #{"8.#{$i}s"} !important;
+  }
+}
+
+@for $i from 1 through 9 {
+  .animate__delay-9_#{$i}s {
+    animation-delay: #{"9.#{$i}s"} !important;
+  }
+}

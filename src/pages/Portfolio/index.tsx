@@ -113,9 +113,7 @@ export const Portfolio: React.FC = () => {
           height: "45vh",
         }}
       ></MovingParallax>
-      {popupData && (
-        <Popup classAnimation={popup} data={popupData} onClose={handleClose} />
-      )}
+      <Popup classAnimation={popup} data={popupData} onClose={handleClose} />
     </section>
   );
 };

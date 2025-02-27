@@ -15,7 +15,7 @@ export const HeroHeader: React.FC = () => {
       <div className="group-contents">
         <div className="container">
           <div className="content">
-            <div className="content--left">
+            <div className="content--left animate__animated animate__fadeIn animate__slow">
               <div className="inner">
                 <h2 className="hello">Hello I'm</h2>
                 <h1 className="name">James Smith</h1>
@@ -40,13 +40,13 @@ export const HeroHeader: React.FC = () => {
             </div>
             <div className="content--right">
               <div className="main-avatar">
-                <div className="main-img">
+                <div className="main-img animate__animated animate__fadeIn animate__slow">
                   <img src={avatarImg} alt="avatar man" />
                 </div>
-                <div className="win">
+                <div className="win animate__animated animate__fadeInDown animate__faster">
                   <img src={iconWin} alt="icon win" />
                 </div>
-                <div className="numbers year-of-success">
+                <div className="numbers year-of-success animate__animated animate__fadeInLeft animate__delay-0_2s animate__faster">
                   <ScrollCounter
                     className="dp-counter-nummber"
                     targetNumber={12}
@@ -57,7 +57,7 @@ export const HeroHeader: React.FC = () => {
                     Years of <br /> Success
                   </span>
                 </div>
-                <div className="numbers project-completed">
+                <div className="numbers project-completed animate__animated animate__fadeInRight animate__delay-0_3s animate__faster">
                   <ScrollCounter
                     className="dp-counter-nummber has-plus"
                     targetNumber={800}
@@ -69,7 +69,11 @@ export const HeroHeader: React.FC = () => {
                   </span>
                 </div>
                 <div className="circle-creative animate-rotate">
-                  <img src={circleCreative} alt="circle creative" />
+                  <img
+                    className="animate__animated animate__fadeIn animate__slow animate__delay-1s"
+                    src={circleCreative}
+                    alt="circle creative"
+                  />
                 </div>
               </div>
             </div>
