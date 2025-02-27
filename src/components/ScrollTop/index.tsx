@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import "./ScrollTop.scss";
 
 export const ScrollTop: React.FC = () => {
   const scrollTopRef = useRef<HTMLDivElement | null>(null);
+  const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
   const [scrollPercent, setScrollPercent] = useState<number>(0);
 
   const handleScroll = (): void => {
@@ -31,9 +33,14 @@ export const ScrollTop: React.FC = () => {
   }, []);
   return (
     <div className="progressbar-scroll" ref={scrollTopRef}>
-      <a href="/#">
+      <ScrollLinkComponent
+        to="home"
+        smooth={true}
+        duration={500}
+        offset={-70} // Adjust for fixed headers
+      >
         <span className="text">To Top</span>
-      </a>
+      </ScrollLinkComponent>
       <span className="line" style={{ height: `${scrollPercent}px` }}></span>
     </div>
   );

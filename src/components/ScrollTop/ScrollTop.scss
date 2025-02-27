@@ -12,6 +12,7 @@
   z-index: 10;
   @include mixins.transition(all 0.3s ease);
   a {
+    cursor: pointer;
     text-decoration: none;
     color: vars.$color__dark;
   }
