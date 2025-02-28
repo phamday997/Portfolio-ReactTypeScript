@@ -11,19 +11,20 @@ import { Button } from "../components";
 import logo from "../assets/images/logo/logo.png";
 import cvPdf from "../assets/files/cv.pdf";
 import { Link as ScrollLink } from "react-scroll";
+import { useDebouncedCallback } from "use-debounce";
 
 interface NavigationProps {
   device: "desktop" | "mobile";
+  setShow?: (value: string) => void;
 }
 interface MenuItem {
   label: string;
   url: string;
 }
 const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
-  ({ device = "desktop" }, ref: ForwardedRef<HTMLElement>) => {
+  ({ device = "desktop", setShow }, ref: ForwardedRef<HTMLElement>) => {
     const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
     const [activeIndex, setActiveIndex] = useState<number>(0);
-
     const menuItems: MenuItem[] = useMemo(
       () => [
         { label: "Home", url: "home" },
@@ -36,19 +37,11 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       []
     );
 
-    const handleClick = (index: number, label: string): void => {
-      setActiveIndex(index);
-
-      const sectionId = label.toLowerCase();
-      const element = document.getElementById(sectionId);
-
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop - 70,
-          behavior: "smooth",
-        });
+    const handleClick = useDebouncedCallback((): void => {
+      if (device === "mobile" && setShow) {
+        setShow("");
       }
-    };
+    }, 1000);
 
     const handleScroll = useCallback(() => {
       menuItems.forEach((item, index) => {
@@ -81,17 +74,14 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       >
         <ul className="navigation-list">
           {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className="navigation-list--item"
-              onClick={() => handleClick(index, item.url)}
-            >
+            <li key={index} className="navigation-list--item">
               <ScrollLinkComponent
                 to={item.url}
                 smooth={true}
                 duration={500}
                 offset={-70} // Adjust for fixed headers
                 className={activeIndex === index ? "current" : ""}
+                onClick={handleClick}
               >
                 {item.label}
               </ScrollLinkComponent>
@@ -132,17 +122,27 @@ const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
 
 const Header: React.FC = () => {
   const [show, setShow] = useState<string>("");
+  const [shrink, setShrink] = useState<string>("");
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navMbRef = useRef<HTMLDivElement | null>(null);
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const themeModeRef = useRef<HTMLButtonElement | null>(null);
 
-  const handleNavMobile = () => {
+  const handleNavMobile = (): void => {
+    const header = headerRef.current;
+    const headerHeight = header?.scrollHeight || 0;
+
     setShow((prev) => (prev === "active" ? "" : "active"));
+
+    if (window.scrollY > headerHeight) {
+      setShrink("shrink");
+    } else {
+      setShrink("");
+    }
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
     if (
       navMbRef.current &&
       !navMbRef.current.contains(event.target as Node) &&
@@ -153,9 +153,9 @@ const Header: React.FC = () => {
     ) {
       setShow("");
     }
-  };
+  }, []);
 
-  const handleScreenResize = (): void => {
+  const handleScreenResize = useCallback((): void => {
     const header = headerRef.current;
     const navMobile = navMbRef.current;
     const navChildMobile = navChildMbRef.current!;
@@ -169,9 +169,9 @@ const Header: React.FC = () => {
     if (window.innerWidth > 991) {
       setShow("");
     }
-  };
+  }, []);
 
-  const handleScreenScroll = (): void => {
+  const handleScreenScroll = useCallback((): void => {
     const header = headerRef.current;
     const navMobile = navMbRef.current;
     const navChildMobile = navChildMbRef.current!;
@@ -182,14 +182,12 @@ const Header: React.FC = () => {
       navMobile.style.paddingTop = `${headerHeight + 15}px`;
 
       if (window.scrollY > headerHeight) {
-        header.classList.add("shrink");
-        navMobile.classList.add("shrink");
+        setShrink("shrink");
       } else {
-        header.classList.remove("shrink");
-        navMobile.classList.remove("shrink");
+        setShrink("");
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     handleScreenResize();
@@ -202,11 +200,15 @@ const Header: React.FC = () => {
       window.removeEventListener("resize", handleScreenResize);
       window.removeEventListener("scroll", handleScreenScroll);
     };
-  }, []);
+  }, [handleClickOutside, handleScreenResize, handleScreenScroll]);
 
   return (
     <div className="header-all-wraper">
-      <header id="masthead" className={`site-header ${show}`} ref={headerRef}>
+      <header
+        id="masthead"
+        className={`site-header ${show} ${shrink}`}
+        ref={headerRef}
+      >
         <div className="container">
           <div className="site-header--wraper">
             <div className="site-logo">
@@ -229,9 +231,12 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      <div className={`site-navigation-mobile ${show}`} ref={navMbRef}>
+      <div
+        className={`site-navigation-mobile ${show} ${shrink}`}
+        ref={navMbRef}
+      >
         <div className="container">
-          <Navigation device="mobile" ref={navChildMbRef} />
+          <Navigation device="mobile" ref={navChildMbRef} setShow={setShow} />
         </div>
       </div>
     </div>

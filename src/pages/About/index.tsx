@@ -84,7 +84,12 @@ export const About: React.FC = () => {
                   id est laborum. Sed ut perspiciatis unde omnis
                 </p>
               </div>
-              <Button typeEle="link" sizeEle="normal" href="/#portfolio">
+              <Button
+                typeEle="link"
+                sizeEle="normal"
+                linkScroll={true}
+                linkSrollToId="portfolio"
+              >
                 View Portfolio
               </Button>
             </div>

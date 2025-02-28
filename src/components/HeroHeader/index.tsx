@@ -5,8 +5,10 @@ import heroImg from "./images/hero-header.jpg";
 import avatarImg from "./images/avatart-man.jpg";
 import iconWin from "./images/icon-win.png";
 import circleCreative from "./images/circle-createtive.png";
+import { Link as ScrollLink } from "react-scroll";
 
 export const HeroHeader: React.FC = () => {
+  const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
   return (
     <section className="section-hero-header" id="home">
       <div className="background-image">
@@ -25,13 +27,23 @@ export const HeroHeader: React.FC = () => {
                   cillum dolore
                 </p>
                 <div className="buttons">
-                  <Button typeEle="link" href="#contact">
+                  <Button
+                    typeEle="link"
+                    linkScroll={true}
+                    linkSrollToId="contact"
+                  >
                     Get a Quote
                   </Button>
                   <div className="simple_button">
-                    <a className="anchor" href="#about">
+                    <ScrollLinkComponent
+                      to="about"
+                      smooth={true}
+                      duration={500}
+                      offset={-70} // Adjust for fixed headers
+                      className="anchor dp-btn-link-scroll"
+                    >
                       About Me
-                    </a>
+                    </ScrollLinkComponent>
                   </div>
                 </div>
               </div>

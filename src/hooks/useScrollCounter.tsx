@@ -7,12 +7,12 @@ interface UseScrollCounterParams {
   repeat?: boolean; // New prop to control animation repetition
 }
 
-const useScrollCounter = ({
+export default function useScrollCounter({
   targetNumber,
   duration,
   threshold = 0.5,
   repeat = false, // Default is false (animation runs once)
-}: UseScrollCounterParams) => {
+}: UseScrollCounterParams) {
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const elementRef = useRef<HTMLSpanElement>(null);
   const isAnimating = useRef<boolean>(false);
@@ -78,6 +78,4 @@ const useScrollCounter = ({
   }, [targetNumber, duration, threshold, repeat]);
 
   return { currentNumber, elementRef };
-};
-
-export default useScrollCounter;
+}

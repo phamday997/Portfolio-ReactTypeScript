@@ -49,7 +49,7 @@ export const MouseCursor: React.FC = () => {
 
   useEffect(() => {
     const interactiveElements = document.querySelectorAll(
-      "a,a[href],button,.overlay-action"
+      "a,a[href],button,.overlay-action,.dp-btn-link-scroll"
     );
 
     interactiveElements.forEach((el) => {
