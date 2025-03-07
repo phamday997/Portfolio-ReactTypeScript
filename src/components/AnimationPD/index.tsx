@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimationElementProps } from "./type/AnimationProps";
 
 export const AnimationPD: React.FC<AnimationElementProps> = ({
-  classElement, // your class item
+  classElement, // your class item.
   index = 0,
   totalItem, // total item in your loop function.
   animation, // fadeIn, fadeInUp, ...
@@ -44,7 +44,7 @@ export const AnimationPD: React.FC<AnimationElementProps> = ({
       ref={elementRef}
       className={`${classElement} animate__animated ${
         isVisible ? `animate__${animation}` : ""
-      } animate-pd-js`}
+      }`}
       style={{
         animationDuration: `${duration}s`,
         animationDelay: calculatedDelay,
