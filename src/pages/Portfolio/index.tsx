@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { HeadinGroup, MovingParallax, Popup } from "../../components";
+import {
+  AnimationPD,
+  HeadinGroup,
+  MovingParallax,
+  Popup,
+} from "../../components";
 import { PortfolioItem } from "./types/PortfolioCard";
 import Card from "./Card/Card";
 import "./Porfolio.scss";
@@ -80,25 +85,32 @@ export const Portfolio: React.FC = () => {
       ></MovingParallax>
       <div className="container">
         <div className="content">
-          <HeadinGroup
-            textAlign="center"
-            maxWidth="100%"
-            subTitle="Portfolio"
-            mainTitle="My Amazing Works"
-          >
-            <p>
-              Dliquip ex ea commo do conse namber onequa ute irure dolor in
-              reprehen derit in <br /> voluptate
-            </p>
-          </HeadinGroup>
+          <AnimationPD animation="fadeIn" delayBase={0.5} duration={1}>
+            <HeadinGroup
+              textAlign="center"
+              maxWidth="100%"
+              subTitle="Portfolio"
+              mainTitle="My Amazing Works"
+            >
+              <p>
+                Dliquip ex ea commo do conse namber onequa ute irure dolor in
+                reprehen derit in <br /> voluptate
+              </p>
+            </HeadinGroup>
+          </AnimationPD>
           <div className="list-portfolio">
             {portfolioItem.length > 0 &&
               portfolioItem.map((item: PortfolioItem, index: number) => (
-                <Card
+                <AnimationPD
+                  animation="fadeIn"
                   key={index}
-                  data={item}
-                  onOpen={() => handleOnclick(item)}
-                ></Card>
+                  totalItem={portfolioItem.length}
+                  delayBase={0.5}
+                  delayStepMore={0.2}
+                  duration={1.5}
+                >
+                  <Card data={item} onOpen={() => handleOnclick(item)} />
+                </AnimationPD>
               ))}
           </div>
         </div>

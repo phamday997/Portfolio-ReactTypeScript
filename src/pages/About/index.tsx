@@ -7,6 +7,7 @@ import icon2 from "./images/icon-react.png";
 import icon3 from "./images/icon-laravel.png";
 import icon4 from "./images/icon-shopify.png";
 import {
+  AnimationPD,
   Button,
   HeadinGroup,
   MovingParallax,
@@ -49,25 +50,60 @@ export const About: React.FC = () => {
           <div className="about-group">
             <div className="about-group--left">
               <div className="image-wrap">
-                <img className="main-img" src={mainImg} alt="main-image" />
-                <div className="extra-image">
+                <AnimationPD delayBase={0.2} duration={1} animation="fadeIn">
+                  <img className="main-img" src={mainImg} alt="main-image" />
+                </AnimationPD>
+                <AnimationPD
+                  classElement="extra-image"
+                  delayBase={0.4}
+                  duration={1}
+                  animation="fadeIn"
+                >
                   <img src={extraImg} alt="extra-image" />
-                </div>
-                <span className="icon icon1">
+                </AnimationPD>
+                <AnimationPD
+                  as="span"
+                  classElement="icon icon1"
+                  animation="zoomIn"
+                  delayBase={0.6}
+                  duration={0.6}
+                >
                   <img width={80} src={icon1} alt="icon-wordpress" />
-                </span>
-                <span className="icon icon2">
+                </AnimationPD>
+                <AnimationPD
+                  as="span"
+                  classElement="icon icon2"
+                  animation="zoomIn"
+                  delayBase={1}
+                  duration={0.6}
+                >
                   <img width={75} src={icon2} alt="icon-react" />
-                </span>
-                <span className="icon icon3">
+                </AnimationPD>
+                <AnimationPD
+                  as="span"
+                  classElement="icon icon3"
+                  animation="zoomIn"
+                  duration={0.6}
+                  delayBase={0.8}
+                >
                   <img width={55} src={icon3} alt="icon-laravel" />
-                </span>
-                <span className="icon icon4">
+                </AnimationPD>
+                <AnimationPD
+                  as="span"
+                  classElement="icon icon4"
+                  animation="zoomIn"
+                  duration={0.6}
+                  delayBase={1.2}
+                >
                   <img width={65} src={icon4} alt="icon-shopify" />
-                </span>
+                </AnimationPD>
               </div>
             </div>
-            <div className="about-group--right">
+            <AnimationPD
+              animation="fadeIn"
+              delayBase={1.2}
+              classElement="about-group--right"
+            >
               <HeadinGroup
                 maxWidth="100%"
                 subTitle="I'm a Developer"
@@ -92,7 +128,7 @@ export const About: React.FC = () => {
               >
                 View Portfolio
               </Button>
-            </div>
+            </AnimationPD>
           </div>
         </div>
       </div>
@@ -100,8 +136,15 @@ export const About: React.FC = () => {
         <div className="container">
           <div className="counter-lists">
             {counterNumber.length > 0 &&
-              counterNumber.map((item, index) => (
-                <div className="counter-lists--item" key={index}>
+              counterNumber.map((item: counterItem, index: number) => (
+                <AnimationPD
+                  animation="fadeInUp"
+                  classElement="counter-lists--item"
+                  index={index}
+                  totalItem={counterNumber.length}
+                  delayBase={0.5}
+                  key={index}
+                >
                   <div className="numbers">
                     <ScrollCounter
                       className={`dp-counter-nummber ${
@@ -119,7 +162,7 @@ export const About: React.FC = () => {
                       />
                     )}
                   </div>
-                </div>
+                </AnimationPD>
               ))}
           </div>
         </div>

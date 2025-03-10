@@ -3,16 +3,18 @@ import { AnimationElementProps } from "./type/AnimationProps";
 
 export const AnimationPD: React.FC<AnimationElementProps> = ({
   classElement, // your class item.
-  index = 0,
+  idElement,
+  as: Component = "div",
+  index = 0, // includes total item for delay
   totalItem, // total item in your loop function.
-  animation, // fadeIn, fadeInUp, ...
+  animation, // fadeIn, fadeInUp, ... Require
   duration = 1, // seconds.
   delayBase = 0, // seconds.
   delayStepMore = 0, // seconds.
-  children,
+  children, //Require
 }) => {
   const elementRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const isInViewport = (el: HTMLElement): boolean => {
     const rect = el.getBoundingClientRect();
@@ -36,13 +38,16 @@ export const AnimationPD: React.FC<AnimationElementProps> = ({
   }, []);
 
   const calculatedDelay = `${
-    index !== 0 ? index / totalItem + delayBase + delayStepMore : delayBase
+    index !== 0 && totalItem
+      ? index / totalItem + delayBase + delayStepMore
+      : delayBase
   }s`;
 
   return (
-    <div
+    <Component
       ref={elementRef}
-      className={`${classElement} animate__animated ${
+      {...(idElement && { id: idElement })}
+      className={`${classElement || ""} animate__animated ${
         isVisible ? `animate__${animation}` : ""
       }`}
       style={{
@@ -52,6 +57,6 @@ export const AnimationPD: React.FC<AnimationElementProps> = ({
       }}
     >
       {children}
-    </div>
+    </Component>
   );
 };
