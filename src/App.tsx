@@ -9,7 +9,7 @@ import {
   OverviewInfor,
   About,
   Portfolio,
-  Service,
+  MySkills,
   Contact,
   Blog,
 } from "./pages";
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <OverviewInfor />
         <About />
         <Portfolio />
-        <Service />
+        <MySkills />
         <Contact />
         <Blog />
       </main>

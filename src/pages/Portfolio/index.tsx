@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   AnimationPD,
-  HeadinGroup,
+  HeadingGroup,
   MovingParallax,
   Popup,
 } from "../../components";
@@ -86,7 +86,7 @@ export const Portfolio: React.FC = () => {
       <div className="container">
         <div className="content">
           <AnimationPD animation="fadeIn" delayBase={0.5} duration={1}>
-            <HeadinGroup
+            <HeadingGroup
               textAlign="center"
               maxWidth="100%"
               subTitle="Portfolio"
@@ -96,7 +96,7 @@ export const Portfolio: React.FC = () => {
                 Dliquip ex ea commo do conse namber onequa ute irure dolor in
                 reprehen derit in <br /> voluptate
               </p>
-            </HeadinGroup>
+            </HeadingGroup>
           </AnimationPD>
           <div className="list-portfolio">
             {portfolioItem.length > 0 &&
@@ -119,7 +119,7 @@ export const Portfolio: React.FC = () => {
         direction="Y"
         speed={20}
         style={{
-          bottom: 100,
+          bottom: 130,
           background: "#142eb5",
           width: "25%",
           height: "45vh",

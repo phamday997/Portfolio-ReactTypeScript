@@ -9,7 +9,7 @@ import icon4 from "./images/icon-shopify.png";
 import {
   AnimationPD,
   Button,
-  HeadinGroup,
+  HeadingGroup,
   MovingParallax,
   ScrollCounter,
 } from "../../components";
@@ -104,7 +104,7 @@ export const About: React.FC = () => {
               delayBase={1.2}
               classElement="about-group--right"
             >
-              <HeadinGroup
+              <HeadingGroup
                 maxWidth="100%"
                 subTitle="I'm a Developer"
                 mainTitle="I Develop Application that Help People"

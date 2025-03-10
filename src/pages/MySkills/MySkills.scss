@@ -1,0 +1,22 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.section-my-skill {
+  padding: 20px 0;
+  .heading-group {
+    margin-bottom: 60px;
+  }
+  .skill-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 140px;
+    @include mixins.desktop {
+      gap: 0 80px;
+    }
+    @include mixins.tablet {
+      display: block;
+      gap: 0;
+    }
+  }
+}

@@ -8,7 +8,7 @@ interface contentProps {
   mainTitle?: string | TrustedHTML;
   children?: ReactNode;
 }
-export const HeadinGroup: React.FC<contentProps> = ({
+export const HeadingGroup: React.FC<contentProps> = ({
   maxWidth,
   textAlign,
   subTitle,
