@@ -14,6 +14,7 @@ import iconStar from "./images/star.png";
 import iconWeb from "./images/web.png";
 import banner from "./images/banner.jpg";
 import Card from "./Card/Card";
+import AccordionPD from "../../components/AccordionPD/AccordionPD";
 
 interface SkillItem {
   labelBar: string;
@@ -102,6 +103,26 @@ export const MySkills: React.FC = () => {
     },
   ];
 
+  const accordionData = [
+    {
+      title: "Work Strategy",
+      content: `Ut enim ad minim veniam, quis nostrud exercitation utur adipisicing elit,
+        sed do eiusmod einisha chor amay vebona sukher mohona kobita tumi sopono carini hoye.`,
+    },
+    {
+      title: "The Process of Our Work",
+      content: "Details about the process of our work go here.",
+    },
+    {
+      title: "Core Value of Development",
+      content: "Core value details for development are shared here.",
+    },
+    {
+      title: "Desire to Work Hard",
+      content: "Insights on the dedication and commitment to hard work.",
+    },
+  ];
+
   const handleOnclick = (record: ServiceCard): void => {
     setPopupData(record);
     setPopup("show");
@@ -178,6 +199,27 @@ export const MySkills: React.FC = () => {
             height: "190px",
           }}
         ></MovingParallax>
+      </div>
+      <div className="group-working">
+        <div className="container">
+          <div className="group-working-wraper">
+            <div className="left">
+              <HeadingGroup
+                subTitle="Working to make difference"
+                mainTitle="Real Passion to Create <br/> Amazing Things"
+              >
+                <p>
+                  Dliquip ex ea commo do conse namber onequa ute irure dolor in
+                  <br />
+                  reprehen derit in voluptate
+                </p>
+              </HeadingGroup>
+            </div>
+            <div className="right">
+              <AccordionPD data={accordionData} />
+            </div>
+          </div>
+        </div>
       </div>
       <PopupService
         classAnimation={popup}
