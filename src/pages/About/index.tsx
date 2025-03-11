@@ -50,13 +50,13 @@ export const About: React.FC = () => {
           <div className="about-group">
             <div className="about-group--left">
               <div className="image-wrap">
-                <AnimationPD delayBase={0.2} duration={1} animation="fadeIn">
+                <AnimationPD delayBase={0.2} duration={1.2} animation="fadeIn">
                   <img className="main-img" src={mainImg} alt="main-image" />
                 </AnimationPD>
                 <AnimationPD
                   classElement="extra-image"
                   delayBase={0.4}
-                  duration={1}
+                  duration={1.2}
                   animation="fadeIn"
                 >
                   <img src={extraImg} alt="extra-image" />
@@ -66,7 +66,7 @@ export const About: React.FC = () => {
                   classElement="icon icon1"
                   animation="zoomIn"
                   delayBase={0.6}
-                  duration={0.6}
+                  duration={1}
                 >
                   <img width={80} src={icon1} alt="icon-wordpress" />
                 </AnimationPD>
@@ -75,7 +75,7 @@ export const About: React.FC = () => {
                   classElement="icon icon2"
                   animation="zoomIn"
                   delayBase={1}
-                  duration={0.6}
+                  duration={1}
                 >
                   <img width={75} src={icon2} alt="icon-react" />
                 </AnimationPD>
@@ -83,7 +83,7 @@ export const About: React.FC = () => {
                   as="span"
                   classElement="icon icon3"
                   animation="zoomIn"
-                  duration={0.6}
+                  duration={1}
                   delayBase={0.8}
                 >
                   <img width={55} src={icon3} alt="icon-laravel" />
@@ -92,7 +92,7 @@ export const About: React.FC = () => {
                   as="span"
                   classElement="icon icon4"
                   animation="zoomIn"
-                  duration={0.6}
+                  duration={1}
                   delayBase={1.2}
                 >
                   <img width={65} src={icon4} alt="icon-shopify" />
@@ -102,6 +102,7 @@ export const About: React.FC = () => {
             <AnimationPD
               animation="fadeIn"
               delayBase={1.2}
+              duration={1.2}
               classElement="about-group--right"
             >
               <HeadingGroup

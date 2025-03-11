@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ScrollProgressBar.scss";
+import { ScrollCounter } from "../ScrollCounter";
 
 interface ProgressBarProps {
   labelBar?: string;
@@ -64,7 +65,12 @@ export const ScrollProgressBars: React.FC<ProgressBarProps> = ({
           } as React.CSSProperties
         }
       >
-        {percentCurrent}%
+        <ScrollCounter
+          targetNumber={percentCurrent}
+          duration={120}
+          repeat={true}
+        ></ScrollCounter>
+        %
       </div>
       <div className="progress" style={{ background: background }}>
         <div

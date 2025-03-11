@@ -11,12 +11,94 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0 140px;
+    margin-bottom: 150px;
     @include mixins.desktop {
       gap: 0 80px;
+      margin-bottom: 120px;
     }
     @include mixins.tablet {
       display: block;
       gap: 0;
+      margin-bottom: 100px;
+    }
+  }
+  .group-service {
+    position: relative;
+  }
+}
+
+.list-service-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 180px;
+  @include mixins.desktop {
+    margin-bottom: 120px;
+  }
+  @include mixins.tablet {
+    display: block;
+    margin-bottom: 100px;
+  }
+  .service-card {
+    position: relative;
+    --padding-inner: 125px 70px 75px;
+    --icon-size: 75px;
+    --space-bottom: 30px;
+    --title-size: 36px;
+    --text-size: 18px;
+    @include mixins.transition(all 0.5s ease-in-out);
+    .overlay-action {
+      position: absolute;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    &:hover {
+      background: vars.$color__main !important;
+    }
+    @include mixins.big_screen {
+      --padding-inner: 100px 60px 65px;
+      --space-bottom: 20px;
+      --title-size: 31px;
+      --text-size: 16px;
+    }
+    @include mixins.large_screen {
+      --padding-inner: 75px 30px 50px;
+      --icon-size: 60px;
+      --space-bottom: 25px;
+      --title-size: 24px;
+    }
+    @include mixins.mobile {
+      --padding-inner: 60px 25px 40px;
+      --icon-size: 55px;
+      --space-bottom: 20px;
+    }
+    &--inner {
+      padding: var(--padding-inner);
+    }
+    .icon {
+      display: block;
+      height: var(--icon-size);
+      width: var(--icon-size);
+      margin-bottom: var(--space-bottom);
+    }
+    .title {
+      font-size: var(--title-size);
+      color: vars.$color__light;
+      margin-bottom: var(--space-bottom);
+    }
+    .description {
+      color: vars.$color__light;
+      margin-bottom: 0;
+      line-height: 37px;
+      font-size: var(--text-size);
+      @include mixins.desktop {
+        line-height: 35px;
+      }
     }
   }
 }

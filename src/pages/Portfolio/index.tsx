@@ -3,7 +3,7 @@ import {
   AnimationPD,
   HeadingGroup,
   MovingParallax,
-  Popup,
+  PopupPortfolio,
 } from "../../components";
 import { PortfolioItem } from "./types/PortfolioCard";
 import Card from "./Card/Card";
@@ -85,7 +85,7 @@ export const Portfolio: React.FC = () => {
       ></MovingParallax>
       <div className="container">
         <div className="content">
-          <AnimationPD animation="fadeIn" delayBase={0.5} duration={1}>
+          <AnimationPD animation="fadeIn" delayBase={0.5} duration={1.2}>
             <HeadingGroup
               textAlign="center"
               maxWidth="100%"
@@ -125,7 +125,11 @@ export const Portfolio: React.FC = () => {
           height: "45vh",
         }}
       ></MovingParallax>
-      <Popup classAnimation={popup} data={popupData} onClose={handleClose} />
+      <PopupPortfolio
+        classAnimation={popup}
+        data={popupData}
+        onClose={handleClose}
+      />
     </section>
   );
 };
