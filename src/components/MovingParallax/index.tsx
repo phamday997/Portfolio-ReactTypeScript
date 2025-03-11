@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import "./MovingParallax.scss";
-import { AnimationPD } from "../AnimationPD";
 
 interface Parallax {
   direction: "Y" | "X";
