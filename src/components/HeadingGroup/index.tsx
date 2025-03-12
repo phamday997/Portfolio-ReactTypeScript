@@ -17,7 +17,7 @@ export const HeadingGroup: React.FC<contentProps> = ({
 }) => {
   return (
     <div
-      className={`heading-group ${textAlign}`}
+      className={`heading-group ${textAlign ?? ""}`}
       style={{ textAlign: textAlign, maxWidth: maxWidth }}
     >
       {subTitle && (

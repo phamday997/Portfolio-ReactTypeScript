@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AccordionContext } from "react-bootstrap";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 
 interface CustomToggleProps {
@@ -12,27 +13,20 @@ const CustomToggle: React.FC<CustomToggleProps> = ({
   eventKey,
   onToggle,
 }) => {
+  const { activeEventKey } = useContext(AccordionContext);
   const decoratedOnClick = useAccordionButton(eventKey, () => {
     if (onToggle) onToggle();
   });
+  const isCurrentEventKey = activeEventKey === eventKey;
 
   return (
     <div
       role="button"
-      aria-expanded={false}
-      tabIndex={0}
+      className={`button-toggle ${isCurrentEventKey ? "open" : ""}`}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           decoratedOnClick(e);
         }
-      }}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-        fontWeight: "bold",
-        backgroundColor: "#f8f9fa",
-        padding: "10px 15px",
       }}
       onClick={decoratedOnClick}
     >

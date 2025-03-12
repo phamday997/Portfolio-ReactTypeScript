@@ -1,5 +1,6 @@
 /* Components */
 export * from "./AnimationPD";
+export * from "./AccordionPD";
 export * from "./HeroHeader";
 export * from "./Button";
 export * from "./HeadingGroup";

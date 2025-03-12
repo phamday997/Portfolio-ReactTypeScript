@@ -1,0 +1,124 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.accordion-pd {
+  --title-size: 24px;
+  --text-size: 18px;
+  @include mixins.big_screen {
+    --text-size: 16px;
+  }
+  @include mixins.tablet {
+    --title-size: 21px;
+  }
+  .card {
+    background: transparent;
+    &.style-1 {
+      border: none;
+      margin-bottom: 5px;
+      width: 100%;
+      h3.title {
+        margin: 0;
+        padding: 0;
+        color: vars.$color__dark;
+        font-size: var(--title-size);
+        font-weight: 600;
+        font-family: vars.$font-family-extra;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+      .button-toggle {
+        .button-plus-minus {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          margin-top: 4px;
+          @include mixins.translate(0, -50%);
+          span {
+            display: block;
+            width: 18px;
+            height: 18px;
+            &::before,
+            &::after {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 4px;
+              top: 50%;
+              left: 50%;
+              background-color: vars.$color__dark;
+              display: block;
+              @include mixins.translate(-50%, -50%);
+              @include mixins.transition(all 0.3s ease);
+            }
+            &::after {
+              transform: translate(-50%, -50%) rotate(90deg);
+            }
+          }
+        }
+        &.open {
+          .button-plus-minus {
+            span {
+              &::before {
+                transform: translate(-50%, -50%) rotate(180deg);
+              }
+              &::after {
+                transform: translate(-50%, -50%) rotate(0deg);
+              }
+            }
+          }
+        }
+      }
+      .card-header {
+        position: relative;
+        cursor: pointer;
+        min-height: 50px;
+        height: auto;
+        width: 100%;
+        background-color: transparent;
+        padding: 14px 0 7px 50px;
+        display: flex;
+        align-items: center;
+        border: none;
+      }
+      .accordion-collapse {
+        margin: 5px 0;
+      }
+      .card-body {
+        padding: 11px 0 8px 50px;
+        p {
+          margin: 0;
+          padding: 0;
+          font-size: var(--text-size);
+          color: vars.$color__gray-five;
+        }
+      }
+    }
+  }
+}
+
+@include mixins.ThemeMode {
+  .accordion-pd {
+    .card.style-1 {
+      h3.title {
+        color: vars.$color__light;
+      }
+      .button-toggle {
+        .button-plus-minus {
+          span {
+            &::before,
+            &::after {
+              background-color: vars.$color__light;
+            }
+          }
+        }
+      }
+      .card-body {
+        p {
+          color: vars.$text-color-dark;
+        }
+      }
+    }
+  }
+}

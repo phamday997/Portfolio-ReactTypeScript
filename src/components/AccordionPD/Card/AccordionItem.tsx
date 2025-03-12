@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Accordion, Card } from "react-bootstrap";
 import CustomToggle from "./CustomToggle";
 
@@ -16,14 +16,18 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   return (
     <Card className="style-1">
       <Card.Header>
-        <CustomToggle eventKey={eventKey}>
-          <span className={`button-plus-minus ${false ? "" : "open"}`} />
-          <span>{title}</span>
+        <CustomToggle eventKey={eventKey} onToggle={() => {}}>
+          <div className="button-plus-minus">
+            <span></span>
+          </div>
+          <h3 className="title">{title}</h3>
         </CustomToggle>
       </Card.Header>
 
       <Accordion.Collapse eventKey={eventKey}>
-        <Card.Body>{children}</Card.Body>
+        <Card.Body>
+          <p>{children}</p>
+        </Card.Body>
       </Accordion.Collapse>
     </Card>
   );

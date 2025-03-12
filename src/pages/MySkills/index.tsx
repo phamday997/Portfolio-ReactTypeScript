@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import {
   AnimationPD,
+  AccordionPD,
   HeadingGroup,
   MovingParallax,
   PopupService,
   ScrollProgressBars,
 } from "../../components";
-import "./MySkills.scss";
 import { ServiceCard } from "./type/ServiceCard";
+import { SkillItem } from "./type/SkillItem";
+import { AccordionItemProps } from "../../components/AccordionPD/type/AccordionItemProps";
 import iconCpu from "./images/cpu.png";
 import iconPhone from "./images/phone.png";
 import iconStar from "./images/star.png";
 import iconWeb from "./images/web.png";
 import banner from "./images/banner.jpg";
 import Card from "./Card/Card";
-import AccordionPD from "../../components/AccordionPD/AccordionPD";
-
-interface SkillItem {
-  labelBar: string;
-  percentBar: number;
-}
+import "./MySkills.scss";
 
 export const MySkills: React.FC = () => {
   const skillItem: SkillItem[] = [
@@ -103,7 +100,7 @@ export const MySkills: React.FC = () => {
     },
   ];
 
-  const accordionData = [
+  const accordionData: AccordionItemProps[] = [
     {
       title: "Work Strategy",
       content: `Ut enim ad minim veniam, quis nostrud exercitation utur adipisicing elit,
@@ -111,15 +108,18 @@ export const MySkills: React.FC = () => {
     },
     {
       title: "The Process of Our Work",
-      content: "Details about the process of our work go here.",
+      content: `Ut enim ad minim veniam, quis nostrud exercitation utur adipisicing elit,
+        sed do eiusmod einisha chor amay vebona sukher mohona kobita tumi sopono carini hoye.`,
     },
     {
       title: "Core Value of Development",
-      content: "Core value details for development are shared here.",
+      content: `Ut enim ad minim veniam, quis nostrud exercitation utur adipisicing elit,
+      sed do eiusmod einisha chor amay vebona sukher mohona kobita tumi sopono carini hoye.`,
     },
     {
       title: "Desire to Work Hard",
-      content: "Insights on the dedication and commitment to hard work.",
+      content: `Ut enim ad minim veniam, quis nostrud exercitation utur adipisicing elit,
+        sed do eiusmod einisha chor amay vebona sukher mohona kobita tumi sopono carini hoye.`,
     },
   ];
 
@@ -203,20 +203,28 @@ export const MySkills: React.FC = () => {
       <div className="group-working">
         <div className="container">
           <div className="group-working-wraper">
-            <div className="left">
+            <AnimationPD
+              animation="fadeIn"
+              delayBase={0.2}
+              duration={1.2}
+              classElement="left"
+            >
               <HeadingGroup
                 subTitle="Working to make difference"
                 mainTitle="Real Passion to Create <br/> Amazing Things"
               >
                 <p>
                   Dliquip ex ea commo do conse namber onequa ute irure dolor in
-                  <br />
                   reprehen derit in voluptate
                 </p>
               </HeadingGroup>
-            </div>
+            </AnimationPD>
             <div className="right">
-              <AccordionPD data={accordionData} />
+              <AccordionPD
+                defaultActiveKey="0"
+                data={accordionData}
+                animationDelay={0.4}
+              />
             </div>
           </div>
         </div>

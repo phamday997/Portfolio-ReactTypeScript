@@ -6,6 +6,9 @@
   padding: 20px 0;
   .heading-group {
     margin-bottom: 60px;
+    @include mixins.tablet {
+      margin-bottom: 40px;
+    }
   }
   .skill-wrapper {
     display: grid;
@@ -99,6 +102,32 @@
       @include mixins.desktop {
         line-height: 35px;
       }
+    }
+  }
+}
+
+.group-working-wraper {
+  display: flex;
+  margin-bottom: 150px;
+  @include mixins.desktop {
+    margin-bottom: 100px;
+  }
+  .left,
+  .right {
+    width: 50%;
+  }
+  & > div:first-child {
+    padding-right: 50px;
+  }
+  @include mixins.tablet {
+    display: block;
+    margin-bottom: 80px;
+    .left,
+    .right {
+      width: 100%;
+    }
+    & > div:first-child {
+      padding-right: 0;
     }
   }
 }
