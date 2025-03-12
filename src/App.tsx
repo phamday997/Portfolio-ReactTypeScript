@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./App.scss";
 import React from "react";
@@ -10,6 +12,7 @@ import {
   About,
   Portfolio,
   MySkills,
+  Testimonial,
   Contact,
   Blog,
 } from "./pages";
@@ -24,6 +27,7 @@ const App: React.FC = () => {
         <About />
         <Portfolio />
         <MySkills />
+        <Testimonial />
         <Contact />
         <Blog />
       </main>

@@ -1,0 +1,101 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.section-testimonial {
+  position: relative;
+  margin-bottom: 180px;
+  @include mixins.desktop {
+    margin-bottom: 150px;
+  }
+  @include mixins.tablet {
+    margin-bottom: 100px;
+  }
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  .heading-group {
+    margin-bottom: 72px;
+    @include mixins.desktop {
+      margin-bottom: 50px;
+    }
+  }
+  .testimonial-list-warraper {
+    --padding-inner: 65px 50px;
+    --content-size: 24px;
+    --content-margin: 40px;
+    --author-size: 24px;
+    --pos-size: 16px;
+    @include mixins.big_screen {
+      --padding-inner: 50px 35px;
+      --content-size: 19px;
+      --author-size: 19px;
+      --pos-size: 15px;
+    }
+    @include mixins.desktop {
+      --padding-inner: 50px 25px;
+      --author-size: 21px;
+      --content-margin: 35px;
+    }
+    .testimonial-item {
+      margin: 15px;
+      cursor: grab;
+    }
+    .testimonial-inner {
+      border-radius: 10px;
+      background-color: vars.$color__light;
+      padding: var(--padding-inner);
+      box-shadow: 6px 3px 11px rgba(10, 15, 70, 0.06);
+    }
+    .group-author-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avt {
+      img {
+        border-radius: 50%;
+      }
+    }
+    .infor {
+      padding-left: 20px;
+    }
+    .author {
+      color: vars.$color__dark;
+      font-weight: 600;
+      font-family: vars.$font-family-extra;
+      font-size: var(--author-size);
+    }
+    .position {
+      font-size: var(--pos-size);
+    }
+    .icon-quote {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .description {
+      text-align: center;
+      margin-bottom: var(--content-margin);
+      p {
+        font-size: var(--content-size);
+        font-style: italic;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@include mixins.ThemeMode {
+  .section-testimonial {
+    .testimonial-list-warraper {
+      .testimonial-inner {
+        background-color: vars.$color__background-second;
+      }
+      .author {
+        color: vars.$color__light;
+      }
+    }
+  }
+}
