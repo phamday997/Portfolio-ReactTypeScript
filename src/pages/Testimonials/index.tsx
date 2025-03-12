@@ -92,6 +92,7 @@ export const Testimonial: React.FC = () => {
             slidesShow={3}
             arrows={false}
             slidesScroll={1}
+            infinity={true}
             autoplay={true}
             autoplaySpeed={3000}
           >
