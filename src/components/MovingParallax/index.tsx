@@ -6,12 +6,14 @@ interface Parallax {
   speed?: number;
   style?: React.CSSProperties;
   align?: "left" | "right";
+  darkmodeBg?: string;
 }
 export const MovingParallax: React.FC<Parallax> = ({
   direction = "Y",
   speed = 10,
   style = {},
   align = "right",
+  darkmodeBg = "#2c314b",
 }) => {
   const shapRef = useRef<HTMLDivElement | null>(null);
   const handleScreenScroll = useCallback(() => {

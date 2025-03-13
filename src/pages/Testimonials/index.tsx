@@ -11,8 +11,6 @@ import author1 from "./images/author-1.jpg";
 import author2 from "./images/author-2.jpg";
 import author3 from "./images/author-3.jpg";
 import author4 from "./images/author-4.jpg";
-import author5 from "./images/author-5.jpg";
-import author6 from "./images/author-6.jpg";
 import iconQuote from "./images/icon-quote.png";
 
 interface TestimonialItem {
