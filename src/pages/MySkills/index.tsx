@@ -192,9 +192,9 @@ export const MySkills: React.FC = () => {
           direction="Y"
           align="left"
           speed={20}
+          lightmodeBg="#142eb5"
           style={{
             top: -350,
-            background: "#142eb5",
             width: "90px",
             height: "190px",
           }}

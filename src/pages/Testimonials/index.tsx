@@ -63,9 +63,9 @@ export const Testimonial: React.FC = () => {
         direction="Y"
         speed={20}
         align="left"
+        lightmodeBg="#6b97d3"
         style={{
           top: -400,
-          background: "#6b97d3",
           width: "20%",
           height: "450px",
         }}

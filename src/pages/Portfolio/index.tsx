@@ -76,9 +76,10 @@ export const Portfolio: React.FC = () => {
         direction="Y"
         speed={20}
         align="left"
+        lightmodeBg="#6b97d3"
+        darkmodeBg="#252a40"
         style={{
           top: -20,
-          background: "#6b97d3",
           width: "20%",
           height: "45vh",
         }}
@@ -118,9 +119,10 @@ export const Portfolio: React.FC = () => {
       <MovingParallax
         direction="Y"
         speed={20}
+        lightmodeBg="#142eb5"
+        darkmodeBg="#2c324d"
         style={{
           bottom: 130,
-          background: "#142eb5",
           width: "25%",
           height: "45vh",
         }}

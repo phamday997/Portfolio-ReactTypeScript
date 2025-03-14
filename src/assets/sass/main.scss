@@ -33,6 +33,19 @@
     }
   }
   .site-header {
+    .theme-toggle-select-wrapper {
+      .theme-toggle-select {
+        background-color: $background-color;
+        @include mixins.box-shadow(0, 0, 10px, rgba(255, 255, 255, 0.1));
+        .item-select {
+          color: $title-color;
+          font-weight: 600;
+          &.selected {
+            color: vars.$color__main;
+          }
+        }
+      }
+    }
     &.shrink {
       background-color: rgba($color: $background-color, $alpha: 1);
       @include mixins.box-shadow(0, 0, 10px, rgba(255, 255, 255, 0.1));
