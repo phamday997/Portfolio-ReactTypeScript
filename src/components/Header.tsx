@@ -127,8 +127,7 @@ const Header: React.FC = () => {
   const navMbRef = useRef<HTMLDivElement | null>(null);
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
-  // const themeModeRef = useRef<HTMLButtonElement | null>(null);
-  const themeModeRef = useRef<HTMLDivElement>(null); 
+  const themeModeRef = useRef<HTMLDivElement>(null);
 
   const handleNavMobile = (): void => {
     const header = headerRef.current;
@@ -163,7 +162,7 @@ const Header: React.FC = () => {
     const headerHeight = header?.scrollHeight || 0;
 
     if (header && navMobile) {
-      navMobile.style.paddingTop = `${headerHeight + 15}px`;
+      navMobile.style.paddingTop = `${headerHeight - 40}px`;
       navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
     }
 
@@ -180,7 +179,7 @@ const Header: React.FC = () => {
 
     if (header && navMobile && navChildMbRef) {
       navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
-      navMobile.style.paddingTop = `${headerHeight + 15}px`;
+      navMobile.style.paddingTop = `${headerHeight - 40}px`;
 
       if (window.scrollY > headerHeight) {
         setShrink("shrink");
