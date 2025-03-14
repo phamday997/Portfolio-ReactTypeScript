@@ -1,0 +1,91 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.section-partner {
+  position: relative;
+  z-index: 2;
+  padding: 30px 0 190px;
+  @include mixins.tablet {
+    padding: 30px 0 120px;
+  }
+  .list-partner {
+    --borderColor: #e5e5e5;
+    display: grid;
+    overflow: hidden;
+    border-radius: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--borderColor);
+    background-color: vars.$color__light;
+    @include mixins.desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &--item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--borderColor);
+      .item-inner {
+        position: relative;
+        width: 100%;
+        line-height: 230px;
+        @include mixins.big_screen {
+          line-height: 200px;
+        }
+        @include mixins.mobile {
+          line-height: 160px;
+        }
+      }
+      .link-target {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        display: inline-block;
+        font-size: 0;
+      }
+      .cont-img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+      }
+      img {
+        @include mixins.transition(all 0.3s ease-in-out);
+        filter: brightness(0) invert(0.6);
+        max-width: 33%;
+        max-height: 100px;
+        @include mixins.mobile {
+          max-width: 40%;
+        }
+        @include mixins.small_screen {
+          max-width: 50%;
+        }
+      }
+      &:hover {
+        img {
+          filter: brightness(1) invert(0);
+        }
+      }
+    }
+  }
+}
+@include mixins.ThemeMode {
+  .section-partner {
+    --borderColorDark: #595a6b;
+    .list-partner {
+      border: 1px solid var(--borderColorDark);
+      background-color: vars.$background-color-dark;
+      &--item {
+        border: 1px solid var(--borderColorDark);
+        &:hover {
+          img {
+            filter: brightness(0) invert(1);
+          }
+        }
+      }
+    }
+  }
+}

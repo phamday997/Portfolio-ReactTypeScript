@@ -16,6 +16,7 @@ import {
   Testimonial,
   Contact,
   Blog,
+  Partner,
 } from "./pages";
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           <Portfolio />
           <MySkills />
           <Testimonial />
+          <Partner />
           <Contact />
           <Blog />
         </main>

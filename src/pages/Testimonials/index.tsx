@@ -136,6 +136,19 @@ export const Testimonial: React.FC = () => {
           </SliderSlickPD>
         </div>
       </div>
+      <MovingParallax
+        direction="Y"
+        speed={20}
+        align="right"
+        lightmodeBg="#6e7fd1"
+        style={{
+          bottom: "144px",
+          width: "164px",
+          height: "164px",
+          marginRight: "3%",
+          borderRadius: "12px",
+        }}
+      ></MovingParallax>
     </section>
   );
 };
