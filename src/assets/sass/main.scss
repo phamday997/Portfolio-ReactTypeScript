@@ -39,9 +39,17 @@
       .site-logo {
         color: $title-color;
       }
-      .theme-toggle {
+      .theme-toggle,
+      .auto-icon {
         svg {
           fill: $title-color;
+        }
+      }
+      .theme-toggle-select-wrapper {
+        .dropdown-icon {
+          img {
+            filter: brightness(0) invert(1);
+          }
         }
       }
       .hamburger-toggle {
@@ -65,9 +73,17 @@
       .site-logo {
         color: $title-color;
       }
-      .theme-toggle {
+      .theme-toggle,
+      .auto-icon {
         svg {
           fill: $title-color;
+        }
+      }
+      .theme-toggle-select-wrapper {
+        .dropdown-icon {
+          img {
+            filter: brightness(0) invert(1);
+          }
         }
       }
       .hamburger-toggle {

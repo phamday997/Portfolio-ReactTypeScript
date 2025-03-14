@@ -79,7 +79,77 @@
       display: none;
     }
   }
-  .theme-toggle {
+  .theme-toggle-select-wrapper {
+    position: relative;
+    padding: 12px 17px 12px 0;
+    .dropdown-icon {
+      width: fit-content;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      @include mixins.translate(0, -50%);
+      img {
+        display: inline-block;
+        cursor: pointer;
+        width: 13px;
+        height: auto;
+        filter: brightness(0) invert(1);
+        @include mixins.rotate(-90);
+        @include mixins.transition(all 0.3s ease-in-out);
+        &:focus-visible,
+        &:focus {
+          outline: none;
+        }
+      }
+      &.active {
+        img {
+          @include mixins.rotate(90);
+        }
+      }
+    }
+    .theme-toggle-select {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      border-radius: 6px;
+      background-color: vars.$color__secondary;
+      padding: 10px 15px;
+      right: 0;
+      margin-top: 12px;
+      width: auto;
+      min-width: 120px;
+      @include mixins.transition(all 0.3s ease-in-out);
+      .item-select {
+        padding: 10px 0;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: vars.$font-family-extra;
+        color: vars.$color__light;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        width: fit-content;
+        &.selected {
+          pointer-events: none;
+          opacity: 0.8;
+        }
+      }
+      &.show {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  .auto-icon {
+    &.light {
+      animation: anm_rotate 10s linear infinite;
+    }
+    &.dark {
+      animation: anm_ring 4s linear infinite;
+    }
+  }
+  .theme-toggle,
+  .auto-icon {
     background-color: transparent;
     border: none;
     padding: 0;
@@ -111,9 +181,17 @@
     .site-logo {
       color: vars.$title-color-light;
     }
-    .theme-toggle {
+    .theme-toggle,
+    .auto-icon {
       svg {
         fill: vars.$title-color-light;
+      }
+    }
+    .theme-toggle-select-wrapper {
+      .dropdown-icon {
+        img {
+          filter: brightness(0) invert(0);
+        }
       }
     }
     .hamburger-toggle {
@@ -137,9 +215,17 @@
     .site-logo {
       color: vars.$title-color-light;
     }
-    .theme-toggle {
+    .theme-toggle,
+    .auto-icon {
       svg {
         fill: vars.$title-color-light;
+      }
+    }
+    .theme-toggle-select-wrapper {
+      .dropdown-icon {
+        img {
+          filter: brightness(0) invert(0);
+        }
       }
     }
     .hamburger-toggle {

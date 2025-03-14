@@ -1,10 +1,17 @@
-import React, { ForwardedRef } from "react";
+import React, {
+  ForwardedRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useTheme } from "../context";
+import iconArrow from "../assets/images/icon/icon-arrow.png";
 
 interface ThemeModeProps {}
 
-const ThemeMode = React.forwardRef<HTMLButtonElement, ThemeModeProps>(
-  (props, ref: ForwardedRef<HTMLButtonElement>) => {
+const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
+  (props, ref: ForwardedRef<HTMLDivElement>) => {
     const { theme, mode, toggleTheme, setMode } = useTheme();
 
     const SunIcon = () => (
@@ -21,25 +28,61 @@ const ThemeMode = React.forwardRef<HTMLButtonElement, ThemeModeProps>(
 
     const AutoIcon =
       mode === "auto" && (theme === "light" ? <SunIcon /> : <MoonIcon />);
+    const refDropdownIcon = useRef<HTMLDivElement>(null);
+    const refDropdown = useRef<HTMLDivElement>(null);
+    const [show, setShow] = useState<"show" | "hidden">("hidden");
+
+    const handleShowMenu = (): void => {
+      setShow(show === "show" ? "hidden" : "show");
+    };
+
+    const handleClickOutSide = useCallback(
+      (event: React.MouseEvent<any>): void => {
+        if (!refDropdownIcon?.current?.contains(event.target as Node)) {
+          if (!refDropdown?.current?.contains(event.target as Node)) {
+            setShow("hidden");
+          }
+        }
+      },
+      [setShow]
+    );
+    useEffect(() => {
+      const handleDocumentClick = (event: MouseEvent) =>
+        handleClickOutSide(event as unknown as React.MouseEvent<any>);
+
+      document.addEventListener("click", handleDocumentClick);
+      return () => {
+        document.removeEventListener("click", handleDocumentClick);
+      };
+    }, [handleClickOutSide]);
 
     return (
-      <div className="theme-toggle-select-wrapper">
+      <div className={`theme-toggle-select-wrapper ${mode}`} ref={ref}>
         {mode === "manual" && (
-          <button onClick={toggleTheme} className="theme-toggle" ref={ref}>
+          <button onClick={toggleTheme} className="theme-toggle manual-icon">
             {theme === "light" ? <SunIcon /> : <MoonIcon />}
           </button>
         )}
-        {AutoIcon && <span className="auto-icon">{AutoIcon}</span>}
-
-        <div className="theme-toggle-select">
-          <select
-            className="theme-mode-select"
-            value={mode}
-            onChange={(e) => setMode(e.target.value as "manual" | "auto")}
+        {AutoIcon && <span className={`auto-icon ${theme}`}>{AutoIcon}</span>}
+        <div
+          className={`dropdown-icon mouse-event ${
+            show === "show" ? "active" : ""
+          }`}
+          ref={refDropdownIcon}
+          onClick={handleShowMenu}
+        >
+          <img width={15} src={iconArrow} alt="icon-arrow-down" />
+        </div>
+        <div className={`theme-toggle-select ${show}`} ref={refDropdown}>
+          <div className="selected item-select">
+            {mode === "manual" ? "Manual" : "Auto"}
+          </div>
+          <div
+            className="mouse-event item-select"
+            onClick={() => setMode(mode === "manual" ? "auto" : "manual")}
           >
-            <option value="manual">Manual</option>
-            <option value="auto">Auto Mode</option>
-          </select>
+            {mode === "manual" ? "Auto" : "Manual"}
+          </div>
         </div>
       </div>
     );
