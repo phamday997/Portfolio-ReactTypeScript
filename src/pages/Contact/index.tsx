@@ -6,6 +6,7 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import "./Contact.scss";
 
 export const Contact: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ export const Contact: React.FC = () => {
                   <div className="list-infor">
                     <div className="item-infor">
                       <div className="icon icon-location">
-                        <FontAwesomeIcon icon={faLocationDot} />
+                        <FontAwesomeIcon icon={faLocationDot} color="#ffffff" />
                       </div>
                       <div className="content">
                         <h3 className="title-h3">Address</h3>
@@ -37,7 +38,7 @@ export const Contact: React.FC = () => {
                     </div>
                     <div className="item-infor">
                       <div className="icon icon-email">
-                        <FontAwesomeIcon icon={faEnvelope} />
+                        <FontAwesomeIcon icon={faEnvelope} color="#ffffff" />
                       </div>
                       <div className="content">
                         <h3 className="title-h3">Email</h3>
@@ -46,7 +47,7 @@ export const Contact: React.FC = () => {
                     </div>
                     <div className="item-infor">
                       <div className="icon icon-phone">
-                        <FontAwesomeIcon icon={faPhone} />
+                        <FontAwesomeIcon icon={faPhone} color="#ffffff" />
                       </div>
                       <div className="content">
                         <h3 className="title-h3">Phone</h3>

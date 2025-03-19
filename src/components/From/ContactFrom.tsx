@@ -72,7 +72,7 @@ export const ContactForm: React.FC = () => {
           error={errors.message}
         />
 
-        <Button typeEle="button" type="submit">
+        <Button typeEle="button" className="secondary" type="submit">
           Submit Message
           {isSubmitting && (
             <div
