@@ -11,3 +11,4 @@ export * from "./ScrollCounter";
 export * from "./ScrollProgressBars";
 export * from "./SliderSlickPD";
 export * from "./Popup";
+export * from "./From";

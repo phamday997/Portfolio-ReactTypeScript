@@ -5,7 +5,7 @@ interface contentProps {
   maxWidth?: number | string;
   textAlign?: "center" | "right";
   subTitle?: string | TrustedHTML;
-  mainTitle?: string | TrustedHTML;
+  mainTitle: string | TrustedHTML;
   children?: ReactNode;
 }
 export const HeadingGroup: React.FC<contentProps> = ({

@@ -93,6 +93,14 @@
       }
     }
   }
+  .shape-testimonial-square {
+    @include mixins.big_screen {
+      margin-right: 0 !important;
+      width: 90px !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
 }
 
 @include mixins.ThemeMode {

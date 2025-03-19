@@ -8,6 +8,7 @@ import logoP5 from "./images/logo-partner-5.png";
 import logoP6 from "./images/logo-partner-6.png";
 import logoP7 from "./images/logo-partner-7.png";
 import logoP8 from "./images/logo-partner-8.png";
+import { AnimationPD } from "../../components";
 
 interface ItemPartnerProps {
   srcImg: string;
@@ -54,7 +55,15 @@ export const Partner: React.FC = () => {
         <div className="list-partner">
           {itemPartners.length > 0 &&
             itemPartners.map((item: ItemPartnerProps, index: number) => (
-              <div className="list-partner--item" key={index}>
+              <AnimationPD
+                animation="fadeIn"
+                delayBase={0.2}
+                duration={1.2}
+                index={index}
+                totalItem={itemPartners.length}
+                classElement="list-partner--item"
+                key={index}
+              >
                 <div className="item-inner">
                   <div className="cont-img">
                     <img src={item.srcImg} alt="logo-partner" />
@@ -70,7 +79,7 @@ export const Partner: React.FC = () => {
                     </a>
                   )}
                 </div>
-              </div>
+              </AnimationPD>
             ))}
         </div>
       </div>

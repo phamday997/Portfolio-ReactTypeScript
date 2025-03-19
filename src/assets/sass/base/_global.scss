@@ -38,6 +38,11 @@ a {
   &:hover {
     color: vars.$color__main;
   }
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+  }
 }
 
 /* Button Hamburger */

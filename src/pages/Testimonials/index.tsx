@@ -137,6 +137,7 @@ export const Testimonial: React.FC = () => {
         </div>
       </div>
       <MovingParallax
+        classCustom="shape-testimonial-square"
         direction="Y"
         speed={20}
         align="right"

@@ -3,6 +3,7 @@ import "./MovingParallax.scss";
 import { useTheme } from "../../context";
 
 interface Parallax {
+  classCustom?: string;
   direction: "Y" | "X";
   speed?: number;
   style?: React.CSSProperties;
@@ -11,6 +12,7 @@ interface Parallax {
   darkmodeBg?: string;
 }
 export const MovingParallax: React.FC<Parallax> = ({
+  classCustom = "",
   direction = "Y",
   speed = 10,
   style = {},
@@ -37,7 +39,7 @@ export const MovingParallax: React.FC<Parallax> = ({
 
   return (
     <div
-      className={`shape moving-parallax parallax-effect ${align}`}
+      className={`shape moving-parallax parallax-effect ${align} ${classCustom}`}
       ref={shapRef}
       style={{
         ...style,

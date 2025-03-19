@@ -59,11 +59,19 @@ const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
     return (
       <div className={`theme-toggle-select-wrapper ${mode}`} ref={ref}>
         {mode === "manual" && (
-          <button onClick={toggleTheme} className="theme-toggle manual-icon">
+          <button
+            title={mode === "manual" ? "Mode Manual" : "Mode Auto"}
+            onClick={toggleTheme}
+            className="theme-toggle manual-icon"
+          >
             {theme === "light" ? <SunIcon /> : <MoonIcon />}
           </button>
         )}
-        {AutoIcon && <span className={`auto-icon ${theme}`}>{AutoIcon}</span>}
+        {AutoIcon && (
+          <span title="Mode Auto" className={`auto-icon ${theme}`}>
+            {AutoIcon}
+          </span>
+        )}
         <div
           className={`dropdown-icon mouse-event ${
             show === "show" ? "active" : ""
@@ -74,12 +82,12 @@ const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
           <img width={15} src={iconArrow} alt="icon-arrow-down" />
         </div>
         <div className={`theme-toggle-select ${show}`} ref={refDropdown}>
-          <div className="selected item-select">
-            {mode === "manual" ? "Manual" : "Auto"}
-          </div>
           <div
             className="mouse-event item-select"
             onClick={() => setMode(mode === "manual" ? "auto" : "manual")}
+            title={
+              mode === "auto" ? "Change to mode Manual" : "Change to mode Auto"
+            }
           >
             {mode === "manual" ? "Auto" : "Manual"}
           </div>

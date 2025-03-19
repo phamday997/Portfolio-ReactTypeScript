@@ -131,8 +131,7 @@
         white-space: nowrap;
         cursor: pointer;
         width: fit-content;
-        &.selected {
-          pointer-events: none;
+        &:hover {
           color: vars.$color__main;
         }
       }

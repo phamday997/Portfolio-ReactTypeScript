@@ -144,6 +144,7 @@ export const About: React.FC = () => {
                   index={index}
                   totalItem={counterNumber.length}
                   delayBase={0.5}
+                  duration={1.2}
                   key={index}
                 >
                   <div className="numbers">
