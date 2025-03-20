@@ -9,14 +9,14 @@ import { Button } from "../Button";
 
 const schema = yup
   .object({
-    fullName: yup.string().required("This field is required"),
+    fullName: yup.string().required("Please fill out this field."),
     email: yup
       .string()
-      .email("Invalid email format")
-      .required("This field is required"),
+      .email("Invalid email format.")
+      .required("Please fill out this field."),
     message: yup
       .string()
-      .test("wordCount", "Message must be less than 50 words", (value) => {
+      .test("wordCount", "Message must be less than 50 words.", (value) => {
         if (!value) return true; // Allow empty values (optional)
         return value.trim().split(/\s+/).length < 50;
       })
@@ -39,7 +39,7 @@ export const ContactForm: React.FC = () => {
 
   const clearSuccessMessage = useDebouncedCallback(() => {
     setSuccessMessage(null);
-  }, 5000);
+  }, 6000);
 
   const onSubmit = async (data: FormProps) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -51,7 +51,10 @@ export const ContactForm: React.FC = () => {
 
   return (
     <div className="contact-form-wrapper">
-      <form onSubmit={handleSubmit(onSubmit)} className="form-contact">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="form-contact form-control-pd"
+      >
         <InputField
           type="text"
           placeholder="Full Name*"
@@ -75,21 +78,21 @@ export const ContactForm: React.FC = () => {
         <Button typeEle="button" className="secondary" type="submit">
           Submit Message
           {isSubmitting && (
-            <div
-              className="loader-icon spinner-border text-light"
-              role="status"
-            >
-              <span className="visually-hidden">Loading...</span>
+            <div className="loader-wrapper">
+              <div
+                className="loader-icon spinner-border text-light"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
             </div>
           )}
-          <div className="loader-icon spinner-border text-light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
         </Button>
       </form>
-
       {successMessage && (
-        <p className="message messages-success">{successMessage}</p>
+        <p className="message message-success text-center mt-3">
+          {successMessage}
+        </p>
       )}
     </div>
   );

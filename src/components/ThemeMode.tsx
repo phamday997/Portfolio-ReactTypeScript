@@ -62,7 +62,7 @@ const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
           <button
             title={mode === "manual" ? "Mode Manual" : "Mode Auto"}
             onClick={toggleTheme}
-            className="theme-toggle manual-icon"
+            className="theme-toggle manual-icon mouse-event"
           >
             {theme === "light" ? <SunIcon /> : <MoonIcon />}
           </button>

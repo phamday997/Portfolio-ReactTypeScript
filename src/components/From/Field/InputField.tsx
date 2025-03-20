@@ -14,6 +14,6 @@ export const InputField: React.FC<InputFieldProps> = ({
       {...register}
       className={error ? "error" : ""}
     />
-    {error && <p className="message messages-error">{error.message}</p>}
+    {error && <p className="message message-error">{error.message}</p>}
   </div>
 );

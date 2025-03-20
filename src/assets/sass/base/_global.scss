@@ -44,6 +44,123 @@ a {
     outline: none;
   }
 }
+/* Form Input */
+.form-control-pd {
+  input[type="submit"],
+  button[type="submit"] {
+    position: relative;
+    width: 100%;
+    display: block;
+    @include mixins.mobile {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .loader-wrapper {
+    top: 50%;
+    right: 20px;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    opacity: 0.5;
+    @include mixins.translate(0, -50%);
+    @include mixins.mobile {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .loader-icon {
+    width: 100%;
+    height: 100%;
+    @include mixins.mobile {
+      border-width: 3px;
+    }
+  }
+}
+.input-control-pd {
+  width: 100%;
+  margin-bottom: 18px;
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    border: 1px solid transparent;
+    display: block;
+    width: 100%;
+    line-height: 1.2;
+    padding: 10px 25px;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 5px;
+    @include mixins.transition(all 0.3s ease-in-out);
+    background-color: vars.$color__light;
+    @include mixins.mobile {
+      font-size: 15px;
+      padding: 15px 20px;
+      height: 50px;
+    }
+    &::placeholder {
+      color: vars.$color__gray-second;
+    }
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      outline: none;
+      border-color: vars.$color__third;
+    }
+    &.error {
+      border-color: vars.$color__error;
+    }
+  }
+}
+.textarea-control-pd {
+  margin-bottom: 18px;
+  width: 100%;
+  .message {
+    font-weight: 600;
+  }
+  textarea {
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    height: 180px;
+    padding: 19px 25px 25px;
+    resize: none;
+    font-size: 18px;
+    @include mixins.transition(all 0.3s ease-in-out);
+    background-color: vars.$color__light;
+    @include mixins.mobile {
+      font-size: 15px;
+      padding: 15px 20px 20px;
+      height: 160px;
+    }
+    &::placeholder {
+      color: vars.$color__gray-second;
+    }
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      outline: none;
+      border-color: vars.$color__third;
+    }
+    &.error {
+      border-color: vars.$color__error;
+    }
+  }
+}
+
+.message {
+  font-size: 15px;
+  margin-bottom: 0;
+  margin-top: 5px;
+  &.message-error {
+    color: vars.$color__error;
+  }
+  &.message-success {
+    color: vars.$color__light;
+    font-weight: 500;
+  }
+}
 
 /* Button Hamburger */
 .hamburger-toggle {

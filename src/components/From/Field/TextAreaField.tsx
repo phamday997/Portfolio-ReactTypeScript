@@ -12,6 +12,6 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
       placeholder={placeholder}
       {...register}
     />
-    {error && <p className="message messages-error">{error.message}</p>}
+    {error && <p className="message message-error">{error.message}</p>}
   </div>
 );

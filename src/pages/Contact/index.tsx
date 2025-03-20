@@ -1,5 +1,5 @@
 import React from "react";
-import { HeadingGroup, ContactForm } from "../../components";
+import { HeadingGroup, ContactForm, MovingParallax } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -58,9 +58,34 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
+            <MovingParallax
+              direction="Y"
+              speed={20}
+              align="left"
+              lightmodeBg="#6b97d3"
+              darkmodeBg="#444359"
+              style={{
+                borderRadius: "12px",
+                marginLeft: "-100px",
+                bottom: "350px",
+                width: "160px",
+                height: "160px",
+              }}
+            ></MovingParallax>
           </div>
         </div>
       </div>
+      <MovingParallax
+        direction="Y"
+        speed={20}
+        align="right"
+        lightmodeBg="#6e7fd1"
+        style={{
+          top: "150px",
+          width: "22%",
+          height: "450px",
+        }}
+      ></MovingParallax>
     </section>
   );
 };
