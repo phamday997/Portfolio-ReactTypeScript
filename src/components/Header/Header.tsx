@@ -1,124 +1,9 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  ForwardedRef,
-  useCallback,
-  useMemo,
-} from "react";
-import ThemeMode from "./ThemeMode";
-import { Button } from "../components";
-import logo from "../assets/images/logo/logo.png";
-import cvPdf from "../assets/files/cv.pdf";
-import { Link as ScrollLink } from "react-scroll";
-import { useDebouncedCallback } from "use-debounce";
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import ThemeMode from "../ThemeMode";
+import logo from "../../assets/images/logo/logo.png";
 
-interface NavigationProps {
-  device: "desktop" | "mobile";
-  setShow?: (value: string) => void;
-}
-interface MenuItem {
-  label: string;
-  url: string;
-}
-const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
-  ({ device = "desktop", setShow }, ref: ForwardedRef<HTMLElement>) => {
-    const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-    const menuItems: MenuItem[] = useMemo(
-      () => [
-        { label: "Home", url: "home" },
-        { label: "About", url: "about" },
-        { label: "Portfolio", url: "portfolio" },
-        { label: "Service", url: "service" },
-        { label: "Contact", url: "contact" },
-        { label: "Blog", url: "blog" },
-      ],
-      []
-    );
-
-    const handleClick = useDebouncedCallback((): void => {
-      if (device === "mobile" && setShow) {
-        setShow("");
-      }
-    }, 1000);
-
-    const handleScroll = useCallback(() => {
-      menuItems.forEach((item, index) => {
-        const sectionId = item.label.toLowerCase();
-        const element = document.getElementById(sectionId);
-
-        if (element) {
-          const elementTop = element.getBoundingClientRect().top;
-          const elementBottom = element.getBoundingClientRect().bottom;
-
-          if (elementBottom > 0 && elementTop < window.innerHeight / 2) {
-            setActiveIndex(index);
-          }
-        }
-      });
-    }, [menuItems]);
-
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, [handleScroll]);
-
-    return (
-      <nav
-        id={`navigation-${device}`}
-        className={`navigation navigation-${device}`}
-        ref={ref}
-      >
-        <ul className="navigation-list">
-          {menuItems.map((item, index) => (
-            <li key={index} className="navigation-list--item">
-              <ScrollLinkComponent
-                to={item.url}
-                smooth={true}
-                duration={500}
-                offset={-70} // Adjust for fixed headers
-                className={activeIndex === index ? "current" : ""}
-                onClick={handleClick}
-              >
-                {item.label}
-              </ScrollLinkComponent>
-            </li>
-          ))}
-          <li className="navigation-list--item">
-            {device === "mobile" ? (
-              <Button
-                download
-                typeEle="link"
-                sizeEle="small"
-                className="secondary"
-                href={cvPdf}
-                style={{
-                  marginTop: "15px",
-                  padding: "7px 40px 10px",
-                }}
-              >
-                Download CV
-              </Button>
-            ) : (
-              <Button
-                download
-                typeEle="link"
-                sizeEle="small"
-                className="secondary"
-                href={cvPdf}
-              >
-                Download CV
-              </Button>
-            )}
-          </li>
-        </ul>
-      </nav>
-    );
-  }
-);
+import { Link, useLocation } from "react-router-dom";
+import { Navigation } from "./Navigation";
 
 const Header: React.FC = () => {
   const [show, setShow] = useState<string>("");
@@ -128,6 +13,7 @@ const Header: React.FC = () => {
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const themeModeRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const handleNavMobile = (): void => {
     const header = headerRef.current;
@@ -211,10 +97,19 @@ const Header: React.FC = () => {
       >
         <div className="container">
           <div className="site-header--wraper">
-            <div className="site-logo">
-              <img src={logo} alt="logo daypham portfolio" />
-              <span>DevMan</span>
-            </div>
+            {location.pathname === "/" ? (
+              <div className="site-logo">
+                <img src={logo} alt="logo daypham portfolio" />
+                <span>DevMan</span>
+              </div>
+            ) : (
+              <div className="site-logo">
+                <Link to="/">
+                  <img src={logo} alt="logo daypham portfolio" />
+                  <span>DevMan</span>
+                </Link>
+              </div>
+            )}
             <div className="site-navigation">
               <Navigation device="desktop" />
               <ThemeMode ref={themeModeRef} />

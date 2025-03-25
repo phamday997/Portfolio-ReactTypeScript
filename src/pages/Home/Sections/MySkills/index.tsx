@@ -6,10 +6,10 @@ import {
   MovingParallax,
   PopupService,
   ScrollProgressBars,
-} from "../../components";
+} from "../../../../components";
 import { ServiceCard } from "./type/ServiceCard";
 import { SkillItem } from "./type/SkillItem";
-import { AccordionItemProps } from "../../components/AccordionPD/type/AccordionItemProps";
+import { AccordionItemProps } from "../../../../components/AccordionPD/type/AccordionItemProps";
 import iconCpu from "./images/cpu.png";
 import iconPhone from "./images/phone.png";
 import iconStar from "./images/star.png";

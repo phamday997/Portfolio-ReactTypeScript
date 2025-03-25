@@ -12,7 +12,7 @@ import {
   HeadingGroup,
   MovingParallax,
   ScrollCounter,
-} from "../../components";
+} from "../../../../components";
 
 interface counterItem {
   label?: string | TrustedHTML;

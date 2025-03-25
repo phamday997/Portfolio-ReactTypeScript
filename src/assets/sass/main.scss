@@ -51,6 +51,9 @@
       @include mixins.box-shadow(0, 0, 10px, rgba(255, 255, 255, 0.1));
       .site-logo {
         color: $title-color;
+        a {
+          color: $title-color !important;
+        }
       }
       .theme-toggle,
       .auto-icon {
@@ -85,6 +88,9 @@
       background-color: rgba($color: $background-color, $alpha: 1);
       .site-logo {
         color: $title-color;
+        a {
+          color: $title-color !important;
+        }
       }
       .theme-toggle,
       .auto-icon {

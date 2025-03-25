@@ -1,0 +1,31 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.page-404-not-found {
+  .icon-404 {
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+  h1 {
+    font-size: 36px;
+    margin: 20px 0 15px 0;
+    font-weight: 500;
+    @include mixins.mobile {
+      font-size: 28px;
+    }
+  }
+  p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    @include mixins.mobile {
+      font-size: 16px;
+    }
+  }
+  .content-inner {
+    text-align: center;
+    padding: 65px 0;
+  }
+}

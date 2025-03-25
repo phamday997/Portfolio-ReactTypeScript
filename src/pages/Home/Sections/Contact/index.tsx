@@ -1,5 +1,10 @@
 import React from "react";
-import { HeadingGroup, ContactForm, MovingParallax } from "../../components";
+import {
+  HeadingGroup,
+  ContactForm,
+  MovingParallax,
+  AnimationPD,
+} from "../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -14,17 +19,29 @@ export const Contact: React.FC = () => {
       <div className="container">
         <div className="content">
           <div className="contact-wrapper">
-            <HeadingGroup
-              subTitle="Don't be shy"
-              mainTitle="Drop Me a Line"
-            ></HeadingGroup>
+            <AnimationPD animation="fadeIn" duration={1.2} delayBase={0.2}>
+              <HeadingGroup
+                subTitle="Don't be shy"
+                mainTitle="Drop Me a Line"
+              ></HeadingGroup>
+            </AnimationPD>
             <div className="group-row-wrapper">
-              <div className="col-left">
+              <AnimationPD
+                animation="fadeIn"
+                delayBase={0.4}
+                duration={1.2}
+                classElement="col-left"
+              >
                 <div className="form-inner">
                   <ContactForm />
                 </div>
-              </div>
-              <div className="col-right">
+              </AnimationPD>
+              <AnimationPD
+                animation="fadeIn"
+                delayBase={0.6}
+                duration={1.2}
+                classElement="col-right"
+              >
                 <div className="infor-inner">
                   <div className="list-infor">
                     <div className="item-infor">
@@ -56,18 +73,18 @@ export const Contact: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimationPD>
             </div>
             <MovingParallax
               direction="Y"
-              speed={20}
+              speed={30}
               align="left"
               lightmodeBg="#6b97d3"
               darkmodeBg="#444359"
               style={{
                 borderRadius: "12px",
                 marginLeft: "-100px",
-                bottom: "350px",
+                bottom: "200px",
                 width: "160px",
                 height: "160px",
               }}

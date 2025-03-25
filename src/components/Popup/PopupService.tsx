@@ -1,6 +1,6 @@
 import React from "react";
 import PopupBase from "./PopupBase";
-import { ServiceCard } from "../../pages/MySkills/type/ServiceCard";
+import { ServiceCard } from "../../pages/Home/Sections/MySkills/type/ServiceCard";
 
 interface PopupServiceProps {
   classAnimation: string;

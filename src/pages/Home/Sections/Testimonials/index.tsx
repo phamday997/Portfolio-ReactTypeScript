@@ -4,7 +4,7 @@ import {
   HeadingGroup,
   MovingParallax,
   SliderSlickPD,
-} from "../../components";
+} from "../../../../components";
 import "./Testimonials.scss";
 import author0 from "./images/author-0.jpg";
 import author1 from "./images/author-1.jpg";

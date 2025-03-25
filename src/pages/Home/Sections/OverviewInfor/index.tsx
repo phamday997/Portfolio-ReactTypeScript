@@ -3,7 +3,7 @@ import "./OverviewInfor.scss";
 import iconDed from "./images/dedication.png";
 import iconSma from "./images/smart-work.png";
 import iconInt from "./images/intelligence.png";
-import { AnimationPD } from "../../components";
+import { AnimationPD } from "../../../../components";
 
 interface overviewItem {
   icon?: string;

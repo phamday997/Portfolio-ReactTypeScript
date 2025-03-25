@@ -27,6 +27,13 @@
     align-items: center;
     gap: 8px;
     @include mixins.transition(all 0.3s ease);
+    a {
+      @include mixins.transition(all 0.3s ease);
+      color: vars.$title-color-dark !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     img {
       width: 48px;
       height: 48px;
@@ -170,6 +177,9 @@
     background-color: vars.$background-color-light;
     .site-logo {
       color: vars.$title-color-light;
+      a {
+        color: vars.$title-color-light !important;
+      }
     }
   }
   &.shrink {
@@ -181,6 +191,9 @@
     }
     .site-logo {
       color: vars.$title-color-light;
+      a {
+        color: vars.$title-color-light !important;
+      }
     }
     .theme-toggle,
     .auto-icon {
@@ -215,6 +228,9 @@
     background-color: rgba($color: vars.$background-color, $alpha: 1);
     .site-logo {
       color: vars.$title-color-light;
+      a {
+        color: vars.$title-color-light !important;
+      }
     }
     .theme-toggle,
     .auto-icon {

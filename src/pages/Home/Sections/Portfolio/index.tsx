@@ -4,7 +4,7 @@ import {
   HeadingGroup,
   MovingParallax,
   PopupPortfolio,
-} from "../../components";
+} from "../../../../components";
 import { PortfolioItem } from "./types/PortfolioCard";
 import Card from "./Card/Card";
 import "./Porfolio.scss";

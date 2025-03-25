@@ -8,7 +8,7 @@ import logoP5 from "./images/logo-partner-5.png";
 import logoP6 from "./images/logo-partner-6.png";
 import logoP7 from "./images/logo-partner-7.png";
 import logoP8 from "./images/logo-partner-8.png";
-import { AnimationPD } from "../../components";
+import { AnimationPD } from "../../../../components";
 
 interface ItemPartnerProps {
   srcImg: string;
