@@ -88,7 +88,7 @@ export const Contact: React.FC = () => {
                 width: "160px",
                 height: "160px",
               }}
-            ></MovingParallax>
+            />
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@ export const Contact: React.FC = () => {
           width: "22%",
           height: "450px",
         }}
-      ></MovingParallax>
+      />
     </section>
   );
 };

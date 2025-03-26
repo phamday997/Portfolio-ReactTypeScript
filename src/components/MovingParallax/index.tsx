@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./MovingParallax.scss";
 import { useTheme } from "../../context";
 
@@ -21,28 +21,25 @@ export const MovingParallax: React.FC<Parallax> = ({
   darkmodeBg = "#2c314b", // Background at Darkmode (Hex,Rgb,..)
 }) => {
   const { theme } = useTheme();
-  const shapRef = useRef<HTMLDivElement | null>(null);
+  const [pos, setPos] = useState<number>(0);
   const handleScreenScroll = useCallback(() => {
-    const shapeMoving = shapRef.current!;
     const scrollTop = window.scrollY;
-    const pos = scrollTop / speed;
-    shapeMoving.style.transform = `translate${direction}(${pos}px)`;
-  }, [speed, direction]);
+    setPos(scrollTop / speed);
+  }, [speed]);
 
   useEffect(() => {
-    handleScreenScroll();
     document.addEventListener("scroll", handleScreenScroll);
     return () => {
       document.removeEventListener("scroll", handleScreenScroll);
     };
-  }, [handleScreenScroll]);
+  }, [handleScreenScroll, pos]);
 
   return (
     <div
       className={`shape moving-parallax parallax-effect ${align} ${classCustom}`}
-      ref={shapRef}
       style={{
         ...style,
+        transform: `translate${direction}(${pos}px)`,
         backgroundColor: theme === "dark" ? darkmodeBg : lightmodeBg,
       }}
     ></div>

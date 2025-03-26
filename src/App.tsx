@@ -7,7 +7,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MouseCursor, ScrollTop } from "./components";
 import { ThemeProvider } from "./context";
-import { Home, NotFound } from "./pages";
+import { BlogDetails, Home, NotFound } from "./pages";
 import { BlankLayout, MainLayout } from "./layouts";
 
 const App: React.FC = () => {
@@ -32,6 +32,7 @@ const App: React.FC = () => {
                 </BlankLayout>
               }
             />
+            <Route path="/blog/:id" element={<BlogDetails />} />
           </Routes>
           <MouseCursor />
           <ScrollTop />

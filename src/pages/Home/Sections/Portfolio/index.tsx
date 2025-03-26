@@ -81,9 +81,9 @@ export const Portfolio: React.FC = () => {
         style={{
           top: -20,
           width: "20%",
-          height: "45vh",
+          height: "400px",
         }}
-      ></MovingParallax>
+      />
       <div className="container">
         <div className="content">
           <AnimationPD animation="fadeIn" delayBase={0.5} duration={1.2}>
@@ -126,7 +126,7 @@ export const Portfolio: React.FC = () => {
           width: "25%",
           height: "45vh",
         }}
-      ></MovingParallax>
+      />
       <PopupPortfolio
         classAnimation={popup}
         data={popupData}

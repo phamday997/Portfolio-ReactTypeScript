@@ -1,0 +1,110 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.blog-list-pd {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  &[data-colum="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &[data-colum="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &[data-colum="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &[data-colum="5"] {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  &[data-colum="6"] {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @include mixins.large_screen {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  @include mixins.desktop {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  @include mixins.tablet {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  &--item {
+    position: relative;
+    .link-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: 5;
+    }
+    .feature-img {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 68%;
+      overflow: hidden;
+      border-radius: 13px;
+      margin-bottom: 20px;
+      z-index: 1;
+      @include mixins.mobile {
+        margin-bottom: 12px;
+        border-radius: 10px;
+      }
+      img {
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        @include mixins.transition(all 0.3s ease-out);
+      }
+    }
+    .cat {
+      font-weight: 600;
+      font-family: vars.$font-family-extra;
+      font-size: 16px;
+      color: vars.$color__main;
+      margin-bottom: 2px;
+    }
+    .title {
+      color: vars.$color__dark;
+      font-size: 21px;
+      font-weight: 600;
+      font-family: vars.$font-family-extra;
+      line-height: 1.4;
+      @include mixins.transition(all 0.3s ease-out);
+      @include mixins.big_screen {
+        font-size: 19px;
+      }
+    }
+    &:hover {
+      .feature-img {
+        img {
+          @include mixins.scale(1.1);
+        }
+      }
+      .title {
+        color: vars.$color__main;
+      }
+    }
+  }
+}
+
+@include mixins.ThemeMode {
+  .blog-list-pd {
+    &--item {
+      .title {
+        color: vars.$color__light;
+      }
+      &:hover {
+        .title {
+          color: vars.$color__main;
+        }
+      }
+    }
+  }
+}

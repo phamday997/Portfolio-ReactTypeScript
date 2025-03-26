@@ -69,7 +69,7 @@ export const Testimonial: React.FC = () => {
           width: "20%",
           height: "450px",
         }}
-      ></MovingParallax>
+      />
       <div className="container">
         <AnimationPD animation="fadeIn" delayBase={0.2} duration={1.2}>
           <HeadingGroup
@@ -149,7 +149,7 @@ export const Testimonial: React.FC = () => {
           marginRight: "3%",
           borderRadius: "12px",
         }}
-      ></MovingParallax>
+      />
     </section>
   );
 };

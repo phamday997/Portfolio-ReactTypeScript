@@ -173,7 +173,7 @@ export const About: React.FC = () => {
           speed={20}
           align="right"
           style={{ bottom: -20 }}
-        ></MovingParallax>
+        />
       </div>
     </section>
   );
