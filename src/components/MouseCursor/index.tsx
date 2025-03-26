@@ -14,16 +14,19 @@ export const MouseCursor: React.FC = () => {
     }
   };
 
-  const handleMouseMove = useCallback((e: MouseEvent): void => {
-    setStyles(mouseOuter.current, {
-      transform: `translate(${e.clientX}px, ${e.clientY}px)`,
-      visibility: "visible",
-    });
-    setStyles(mouseInner.current, {
-      transform: `translate(${e.clientX}px, ${e.clientY}px)`,
-      visibility: "visible",
-    });
-  }, []);
+  const handleMouseMove = useCallback(
+    (e: MouseEvent): void => {
+      setStyles(mouseOuter.current, {
+        transform: `translate(${e.clientX}px, ${e.clientY}px)`,
+        visibility: "visible",
+      });
+      setStyles(mouseInner.current, {
+        transform: `translate(${e.clientX}px, ${e.clientY}px)`,
+        visibility: "visible",
+      });
+    },
+    [mouseOuter, mouseInner]
+  );
 
   const handleMouseEnter = useCallback((): void => {
     setStyles(mouseOuter.current, { opacity: "0" });
@@ -34,7 +37,7 @@ export const MouseCursor: React.FC = () => {
       marginTop: "-40px",
       marginLeft: "-40px",
     });
-  }, []);
+  }, [mouseOuter, mouseInner]);
 
   const handleMouseLeave = useCallback((): void => {
     setStyles(mouseOuter.current, { opacity: "0.5" });
@@ -45,7 +48,7 @@ export const MouseCursor: React.FC = () => {
       marginTop: "-3px",
       marginLeft: "-3px",
     });
-  }, []);
+  }, [mouseOuter, mouseInner]);
 
   useEffect(() => {
     const interactiveElements = document.querySelectorAll(

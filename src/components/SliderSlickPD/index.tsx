@@ -1,6 +1,6 @@
 import React, { ReactNode, useRef } from "react";
 import "./SliderSlickPD.scss";
-const Slider = require("react-slick").default;
+import Slider from "react-slick";
 
 interface SliderSlickProps {
   children: ReactNode;

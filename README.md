@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Portfolio React TypeScript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is built with **Vite**, **React**, and **TypeScript**, optimized for fast development and deployment via **GitHub Pages**.
 
-## Available Scripts
+## 🔧 Tech Stack
+
+- ⚛️ React 19
+- ⚡ Vite
+- 💅 SCSS, Bootstrap, Styled Components
+- 🎠 React Slick, Animate.css
+- 📝 React Hook Form + Yup
+- 🚀 Deployed via GitHub Actions to GitHub Pages
+
+---
+
+## 📦 Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Starts the development server with hot reloading.  
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `dist` folder.  
+Automatically uses the correct `base` from `.env.production`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `yarn preview`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Serves the production build locally at [http://localhost:4173](http://localhost:4173).
 
-### `yarn eject`
+### `yarn deploy`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Builds and deploys the app to the `gh-pages` branch on GitHub.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🌐 Environment Variables
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Environment settings are controlled using `.env` files:
 
-## Learn More
+| File              | Purpose          | Key Example                                |
+| ----------------- | ---------------- | ------------------------------------------ |
+| `.env`            | Development      | `VITE_APP_BASE=/`                          |
+| `.env.production` | Production build | `VITE_APP_BASE=/Portfolio-ReactTypeScript` |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can switch to a single `.env` and use logic if preferred.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 🚀 Deployment (CI/CD)
+
+Deployment is fully automated via GitHub Actions. On every push to `master`, your app is:
+
+1. Built using Vite
+2. Deployed to GitHub Pages (`gh-pages` branch)
+3. Available at:  
+   [https://phamday997.github.io/Portfolio-ReactTypeScript](https://phamday997.github.io/Portfolio-ReactTypeScript)
+
+---
+
+## 📚 Learn More
+
+- [Vite Docs](https://vitejs.dev/guide/)
+- [React Docs](https://react.dev/)
+- [GitHub Pages Deployment](https://vitejs.dev/guide/static-deploy.html#github-pages)

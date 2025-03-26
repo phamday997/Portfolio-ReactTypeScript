@@ -7,9 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const isProd = import.meta.env.MODE === "production";
+const basename = isProd
+  ? import.meta.env.VITE_APP_PROD_BASE
+  : import.meta.env.VITE_APP_DEV_BASE;
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/Portfolio-ReactTypeScript">
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
