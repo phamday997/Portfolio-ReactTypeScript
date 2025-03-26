@@ -46,7 +46,11 @@ export const BlogList: React.FC<BlogPostProps> = ({
             <div className="blog-item-inner">
               <Link to={`/blog/${post.id}`} className="link-overlay" />
               <div className="feature-img">
-                <img src={post.image} width="450" alt={post.title} />
+                <img
+                  src={`${import.meta.env.BASE_URL}${post.image}`}
+                  width="450"
+                  alt={post.title}
+                />
               </div>
               <div className="group-text">
                 <div className="cat">{post.category}</div>

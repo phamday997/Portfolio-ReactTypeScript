@@ -6,7 +6,7 @@
     "author": "Admin",
     "date": "Dec 12, 2024",
     "category": "Marketing",
-    "image": "/images/marketing.jpg"
+    "image": "images/post/marketing.jpg"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "author": "Admin",
     "date": "Jan 1, 2025",
     "category": "Analysis",
-    "image": "/images/analysis.jpg"
+    "image": "images/post/analysis.jpg"
   },
   {
     "id": 3,
@@ -24,6 +24,6 @@
     "author": "Admin",
     "date": "Mar 25 2025",
     "category": "Social Media",
-    "image": "/images/social-media.jpg"
+    "image": "images/post/social-media.jpg"
   }
 ]
