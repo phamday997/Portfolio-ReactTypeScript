@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import "./BlogList.scss";
+import { AnimationPD } from "../AnimationPD";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   numOfPost,
@@ -31,23 +32,32 @@ export const BlogList: React.FC<BlogPostProps> = ({
       data-colum={numOfPost}
       style={{ gap: `${spaceRow}px ${spaceCol}px` }}
     >
-      {blogPosts.map((post) => (
-        <div key={post.id} className="blog-list-pd--item">
-          <div className="blog-item-inner">
-            <Link
-              to={`/blog/${post.id}`}
-              className="link-overlay mouse-event"
-            />
-            <div className="feature-img">
-              <img src={post.image} width="450" alt={post.title} />
+      {blogPosts.length > 0 &&
+        blogPosts.map((post, index: number) => (
+          <AnimationPD
+            key={index}
+            animation="fadeIn"
+            delayBase={0.2}
+            duration={1.2}
+            index={index}
+            totalItem={blogPosts.length}
+            classElement="blog-list-pd--item"
+          >
+            <div className="blog-item-inner">
+              <Link
+                to={`/blog/${post.id}`}
+                className="link-overlay mouse-event"
+              />
+              <div className="feature-img">
+                <img src={post.image} width="450" alt={post.title} />
+              </div>
+              <div className="group-text">
+                <div className="cat">{post.category}</div>
+                <div className="title">{post.title}</div>
+              </div>
             </div>
-            <div className="group-text">
-              <div className="cat">{post.category}</div>
-              <div className="title">{post.title}</div>
-            </div>
-          </div>
-        </div>
-      ))}
+          </AnimationPD>
+        ))}
     </div>
   );
 };
