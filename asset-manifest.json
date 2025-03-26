@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Portfolio-ReactTypeScript/static/css/main.9f3e6e20.css",
-    "main.js": "/Portfolio-ReactTypeScript/static/js/main.bd2f8a61.js",
+    "main.js": "/Portfolio-ReactTypeScript/static/js/main.11bce159.js",
     "static/js/453.ace21015.chunk.js": "/Portfolio-ReactTypeScript/static/js/453.ace21015.chunk.js",
     "static/media/something-lost.png": "/Portfolio-ReactTypeScript/static/media/something-lost.bc5d46aaff3de2cbed9c.png",
     "static/media/logo-partner-8.png": "/Portfolio-ReactTypeScript/static/media/logo-partner-8.b43c372653a139f5bcf5.png",
@@ -33,11 +33,11 @@
     "static/media/slick.woff": "/Portfolio-ReactTypeScript/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Portfolio-ReactTypeScript/index.html",
     "main.9f3e6e20.css.map": "/Portfolio-ReactTypeScript/static/css/main.9f3e6e20.css.map",
-    "main.bd2f8a61.js.map": "/Portfolio-ReactTypeScript/static/js/main.bd2f8a61.js.map",
+    "main.11bce159.js.map": "/Portfolio-ReactTypeScript/static/js/main.11bce159.js.map",
     "453.ace21015.chunk.js.map": "/Portfolio-ReactTypeScript/static/js/453.ace21015.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f3e6e20.css",
-    "static/js/main.bd2f8a61.js"
+    "static/js/main.11bce159.js"
   ]
 }
