@@ -93,6 +93,7 @@ export const Contact: React.FC = () => {
         </div>
       </div>
       <MovingParallax
+        classCustom="shape-contact"
         direction="Y"
         speed={20}
         align="right"

@@ -60,6 +60,7 @@ export const Testimonial: React.FC = () => {
   return (
     <section className="section-testimonial">
       <MovingParallax
+        classCustom="shape-testimonials"
         direction="Y"
         speed={20}
         align="left"

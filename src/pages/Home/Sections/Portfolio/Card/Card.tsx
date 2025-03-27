@@ -12,7 +12,7 @@ const Card: React.FC<cardPorfolio> = ({ data, onOpen }) => {
 
   return (
     <div className={`card-porfolio align-${objectAlign}`}>
-      <div className="overlay-action" onClick={onOpen}></div>
+      <div className="overlay-action mouse-cursor" onClick={onOpen}></div>
       <div className="bg-img">
         <img src={srcImg} alt={srcImg} />
       </div>

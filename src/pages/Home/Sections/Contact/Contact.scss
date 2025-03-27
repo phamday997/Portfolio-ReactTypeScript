@@ -127,6 +127,11 @@
       }
     }
   }
+  .shape-contact {
+    @include mixins.big_screen {
+      height: 400px !important;
+    }
+  }
 }
 @include mixins.ThemeMode {
   .section-contact {

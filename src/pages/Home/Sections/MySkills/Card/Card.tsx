@@ -9,7 +9,7 @@ interface cardServiceProps {
 const Card: React.FC<cardServiceProps> = ({ data, onOpen }) => {
   return (
     <div className="service-card" style={{ background: data?.background }}>
-      <div className="overlay-action" onClick={onOpen}></div>
+      <div className="overlay-action mouse-cursor" onClick={onOpen}></div>
       <div className="service-card--inner">
         <img className="icon" src={data?.icon} alt={data?.title} />
         <h3 className="title">{data?.title}</h3>

@@ -101,6 +101,12 @@
       border-bottom-right-radius: 0 !important;
     }
   }
+  .shape-testimonials {
+    @include mixins.big_screen {
+      height: 400px !important;
+      width: 200px !important;
+    }
+  }
 }
 
 @include mixins.ThemeMode {

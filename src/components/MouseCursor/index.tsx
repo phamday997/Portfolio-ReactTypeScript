@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import "./MouseCursor.scss";
 
 export const MouseCursor: React.FC = () => {
   const mouseOuter = useRef<HTMLDivElement | null>(null);
   const mouseInner = useRef<HTMLDivElement | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const setStyles = (
     element: HTMLDivElement | null,
@@ -14,19 +15,20 @@ export const MouseCursor: React.FC = () => {
     }
   };
 
-  const handleMouseMove = useCallback(
-    (e: MouseEvent): void => {
-      setStyles(mouseOuter.current, {
-        transform: `translate(${e.clientX}px, ${e.clientY}px)`,
-        visibility: "visible",
-      });
-      setStyles(mouseInner.current, {
-        transform: `translate(${e.clientX}px, ${e.clientY}px)`,
-        visibility: "visible",
-      });
-    },
-    [mouseOuter, mouseInner]
-  );
+  const handleMouseMove = useCallback((e: MouseEvent): void => {
+    const { clientX, clientY } = e;
+
+    setMousePosition({ x: clientX, y: clientY });
+
+    setStyles(mouseOuter.current, {
+      transform: `translate(${clientX}px, ${clientY}px)`,
+      visibility: "visible",
+    });
+    setStyles(mouseInner.current, {
+      transform: `translate(${clientX}px, ${clientY}px)`,
+      visibility: "visible",
+    });
+  }, []);
 
   const handleMouseEnter = useCallback((): void => {
     setStyles(mouseOuter.current, { opacity: "0" });
@@ -37,7 +39,7 @@ export const MouseCursor: React.FC = () => {
       marginTop: "-40px",
       marginLeft: "-40px",
     });
-  }, [mouseOuter, mouseInner]);
+  }, []);
 
   const handleMouseLeave = useCallback((): void => {
     setStyles(mouseOuter.current, { opacity: "0.5" });
@@ -48,11 +50,11 @@ export const MouseCursor: React.FC = () => {
       marginTop: "-3px",
       marginLeft: "-3px",
     });
-  }, [mouseOuter, mouseInner]);
+  }, []);
 
   useEffect(() => {
     const interactiveElements = document.querySelectorAll(
-      "a,a[href],a.link-overlay,button,input[type='submit'],.mouse-event,.overlay-action,.dp-btn-link-scroll,.button-toggle"
+      "a,a[href],button,input[type='submit'],.mouse-cursor"
     );
 
     interactiveElements.forEach((el) => {
@@ -69,7 +71,7 @@ export const MouseCursor: React.FC = () => {
       });
       document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [handleMouseEnter, handleMouseLeave, handleMouseMove]);
+  }, [mousePosition]);
 
   return (
     <div className="mouse-cursor-wrapper">
