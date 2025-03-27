@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useCallback, useState } from "react";
 import "./MouseCursor.scss";
+import { useLocation } from "react-router-dom";
 
 export const MouseCursor: React.FC = () => {
   const mouseOuter = useRef<HTMLDivElement | null>(null);
   const mouseInner = useRef<HTMLDivElement | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const location = useLocation();
 
   const setStyles = (
     element: HTMLDivElement | null,
@@ -54,7 +56,7 @@ export const MouseCursor: React.FC = () => {
 
   useEffect(() => {
     const interactiveElements = document.querySelectorAll(
-      "a,a[href],button,input[type='submit'],.mouse-cursor"
+      "a,a[href],button,input[type='submit'],.mouse-cursor-hover"
     );
 
     interactiveElements.forEach((el) => {
@@ -72,6 +74,20 @@ export const MouseCursor: React.FC = () => {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, [mousePosition]);
+
+  useEffect(() => {
+    setStyles(mouseOuter.current, {
+      opacity: "0.5",
+      transform: "translate(-50%, -50%)",
+    });
+    setStyles(mouseInner.current, {
+      opacity: "1",
+      width: "6px",
+      height: "6px",
+      marginTop: "-3px",
+      marginLeft: "-3px",
+    });
+  }, [location]);
 
   return (
     <div className="mouse-cursor-wrapper">

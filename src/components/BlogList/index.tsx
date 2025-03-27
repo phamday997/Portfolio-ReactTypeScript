@@ -44,10 +44,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
             classElement="blog-list-pd--item"
           >
             <div className="blog-item-inner">
-              <Link
-                to={`/blog/${post.id}`}
-                className="link-overlay mouse-cursor"
-              />
+              <Link to={`/blog/${post.id}`} className="link-overlay" />
               <div className="feature-img">
                 <img
                   src={`${import.meta.env.BASE_URL}${post.image}`}

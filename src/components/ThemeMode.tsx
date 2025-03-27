@@ -73,7 +73,7 @@ const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
           </span>
         )}
         <div
-          className={`dropdown-icon mouse-cursor ${
+          className={`dropdown-icon mouse-cursor-hover ${
             show === "show" ? "active" : ""
           }`}
           ref={refDropdownIcon}
@@ -83,7 +83,7 @@ const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
         </div>
         <div className={`theme-toggle-select ${show}`} ref={refDropdown}>
           <div
-            className="mouse-cursor item-select"
+            className="mouse-cursor-hover item-select"
             onClick={() => setMode(mode === "manual" ? "auto" : "manual")}
             title={
               mode === "auto" ? "Change to mode Manual" : "Change to mode Auto"

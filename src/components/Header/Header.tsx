@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Navigation } from "./Navigation";
 
 const Header: React.FC = () => {
+  const location = useLocation();
   const [show, setShow] = useState<string>("");
   const [shrink, setShrink] = useState<string>("");
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -13,71 +14,56 @@ const Header: React.FC = () => {
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const themeModeRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
+  const [heightHeader, setHeightHeader] = useState<number>(
+    headerRef?.current?.clientHeight || 0
+  );
 
   const handleNavMobile = (): void => {
-    const header = headerRef.current;
-    const headerHeight = header?.scrollHeight || 0;
-
+    const currentHeight = headerRef?.current?.clientHeight || 0;
+    setHeightHeader(currentHeight);
     setShow((prev) => (prev === "active" ? "" : "active"));
 
-    if (window.scrollY > headerHeight) {
+    if (window.scrollY > currentHeight) {
       setShrink("shrink");
     } else {
       setShrink("");
     }
   };
 
+  console.log(heightHeader);
+
   const handleClickOutside = useCallback((event: MouseEvent) => {
     if (
-      navMbRef.current &&
-      !navMbRef.current.contains(event.target as Node) &&
-      hamburgerRef.current &&
-      !hamburgerRef.current.contains(event.target as Node) &&
-      themeModeRef.current &&
-      !themeModeRef.current.contains(event.target as Node)
+      navMbRef?.current &&
+      !navMbRef?.current.contains(event.target as Node) &&
+      hamburgerRef?.current &&
+      !hamburgerRef?.current.contains(event.target as Node) &&
+      themeModeRef?.current &&
+      !themeModeRef?.current.contains(event.target as Node)
     ) {
       setShow("");
     }
   }, []);
 
   const handleScreenResize = useCallback((): void => {
-    const header = headerRef.current;
-    const navMobile = navMbRef.current;
-    const navChildMobile = navChildMbRef.current!;
-    const headerHeight = header?.scrollHeight || 0;
-
-    if (header && navMobile) {
-      navMobile.style.paddingTop = `${headerHeight - 40}px`;
-      navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
-    }
-
+    const currentHeight = headerRef?.current?.clientHeight || 0;
+    setHeightHeader(currentHeight);
     if (window.innerWidth > 991) {
       setShow("");
     }
   }, []);
 
   const handleScreenScroll = useCallback((): void => {
-    const header = headerRef.current;
-    const navMobile = navMbRef.current;
-    const navChildMobile = navChildMbRef.current!;
-    const headerHeight = header?.scrollHeight || 0;
-
-    if (header && navMobile && navChildMbRef) {
-      navChildMobile.style.maxHeight = `calc(100vh - ${headerHeight + 45}px)`;
-      navMobile.style.paddingTop = `${headerHeight - 40}px`;
-
-      if (window.scrollY > headerHeight) {
-        setShrink("shrink");
-      } else {
-        setShrink("");
-      }
+    const currentHeight = headerRef?.current?.clientHeight || 0;
+    setHeightHeader(currentHeight);
+    if (window.scrollY > currentHeight) {
+      setShrink("shrink");
+    } else {
+      setShrink("");
     }
   }, []);
 
   useEffect(() => {
-    handleScreenResize();
-    handleScreenScroll();
     document.addEventListener("click", handleClickOutside);
     window.addEventListener("resize", handleScreenResize);
     window.addEventListener("scroll", handleScreenScroll);
@@ -97,14 +83,14 @@ const Header: React.FC = () => {
       >
         <div className="container">
           <div className="site-header--wraper">
-            {location.pathname === "/" ? (
+            {location.pathname === `${import.meta.env.BASE_URL}` ? (
               <div className="site-logo">
                 <img src={logo} alt="logo daypham portfolio" />
                 <span>DevMan</span>
               </div>
             ) : (
               <div className="site-logo">
-                <Link to="/">
+                <Link to={`${import.meta.env.BASE_URL}`}>
                   <img src={logo} alt="logo daypham portfolio" />
                   <span>DevMan</span>
                 </Link>
@@ -129,9 +115,17 @@ const Header: React.FC = () => {
       <div
         className={`site-navigation-mobile ${show} ${shrink}`}
         ref={navMbRef}
+        style={{
+          paddingTop: `${heightHeader + 15}px`,
+        }}
       >
         <div className="container">
-          <Navigation device="mobile" ref={navChildMbRef} setShow={setShow} />
+          <Navigation
+            heightParent={heightHeader}
+            device="mobile"
+            ref={navChildMbRef}
+            setShow={setShow}
+          />
         </div>
       </div>
     </div>

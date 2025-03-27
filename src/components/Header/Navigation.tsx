@@ -13,7 +13,10 @@ import { MenuItemProps, NavigationProps } from "./type";
 import { Button } from "../Button";
 
 export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
-  ({ device = "desktop", setShow }, ref: ForwardedRef<HTMLElement>) => {
+  (
+    { device = "desktop", heightParent, setShow },
+    ref: ForwardedRef<HTMLElement>
+  ) => {
     const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const menuItems: MenuItemProps[] = useMemo(
@@ -63,12 +66,17 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         id={`navigation-${device}`}
         className={`navigation navigation-${device}`}
         ref={ref}
+        style={{
+          maxHeight: `calc(100dvh - ${
+            heightParent ? heightParent + 45 : ""
+          }px)`,
+        }}
       >
         <ul className="navigation-list">
           {menuItems.map((item, index) => (
             <li key={index} className="navigation-list--item">
               {index === 0 ? (
-                location.pathname === "/" ? (
+                location.pathname === `${import.meta.env.BASE_URL}` ? (
                   <ScrollLinkComponent
                     to={item.url}
                     smooth={true}
@@ -80,7 +88,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
                     {item.label}
                   </ScrollLinkComponent>
                 ) : (
-                  <Link to="/">{item.label}</Link>
+                  <Link to={`${import.meta.env.BASE_URL}`}>{item.label}</Link>
                 )
               ) : (
                 <ScrollLinkComponent

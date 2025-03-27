@@ -22,7 +22,7 @@ const CustomToggle: React.FC<CustomToggleProps> = ({
   return (
     <div
       role="button"
-      className={`button-toggle mouse-cursor ${
+      className={`button-toggle mouse-cursor-hover ${
         isCurrentEventKey ? "open" : ""
       }`}
       onKeyDown={(e) => {
