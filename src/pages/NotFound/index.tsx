@@ -1,6 +1,5 @@
 import React from "react";
 import Icon404 from "./images/something-lost.png";
-import { Button } from "../../components";
 import "./NotFound.scss";
 import { Link } from "react-router-dom";
 
