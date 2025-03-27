@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import ThemeMode from "../ThemeMode";
 import logo from "../../assets/images/logo/logo.png";
-
 import { Link, useLocation } from "react-router-dom";
 import { Navigation } from "./Navigation";
 
@@ -20,6 +19,7 @@ const Header: React.FC = () => {
 
   const handleNavMobile = (): void => {
     const currentHeight = headerRef?.current?.clientHeight || 0;
+
     setHeightHeader(currentHeight);
     setShow((prev) => (prev === "active" ? "" : "active"));
 
@@ -30,16 +30,11 @@ const Header: React.FC = () => {
     }
   };
 
-  console.log(heightHeader);
-
-  const handleClickOutside = useCallback((event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent): void => {
     if (
-      navMbRef?.current &&
-      !navMbRef?.current.contains(event.target as Node) &&
-      hamburgerRef?.current &&
-      !hamburgerRef?.current.contains(event.target as Node) &&
-      themeModeRef?.current &&
-      !themeModeRef?.current.contains(event.target as Node)
+      !navMbRef?.current?.contains(event.target as Node) &&
+      !hamburgerRef?.current?.contains(event.target as Node) &&
+      !themeModeRef?.current?.contains(event.target as Node)
     ) {
       setShow("");
     }
@@ -47,7 +42,9 @@ const Header: React.FC = () => {
 
   const handleScreenResize = useCallback((): void => {
     const currentHeight = headerRef?.current?.clientHeight || 0;
+
     setHeightHeader(currentHeight);
+
     if (window.innerWidth > 991) {
       setShow("");
     }
@@ -55,7 +52,9 @@ const Header: React.FC = () => {
 
   const handleScreenScroll = useCallback((): void => {
     const currentHeight = headerRef?.current?.clientHeight || 0;
+
     setHeightHeader(currentHeight);
+
     if (window.scrollY > currentHeight) {
       setShrink("shrink");
     } else {
