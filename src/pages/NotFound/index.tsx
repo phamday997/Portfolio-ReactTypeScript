@@ -2,6 +2,7 @@ import React from "react";
 import Icon404 from "./images/something-lost.png";
 import { Button } from "../../components";
 import "./NotFound.scss";
+import { Link } from "react-router-dom";
 
 export const NotFound: React.FC = () => {
   return (
@@ -16,9 +17,9 @@ export const NotFound: React.FC = () => {
             <p>
               This is not a fault, just an accident that was not intentional.
             </p>
-            <Button typeEle="link" href="/">
+            <Link className="primary dp-btn dp-btn--normal" to={`/`}>
               Back to Home
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

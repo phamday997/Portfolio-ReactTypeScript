@@ -82,14 +82,14 @@ const Header: React.FC = () => {
       >
         <div className="container">
           <div className="site-header--wraper">
-            {location.pathname === `${import.meta.env.BASE_URL}` ? (
+            {location.pathname === "/" ? (
               <div className="site-logo">
                 <img src={logo} alt="logo daypham portfolio" />
                 <span>DevMan</span>
               </div>
             ) : (
               <div className="site-logo">
-                <Link to={`${import.meta.env.BASE_URL}`}>
+                <Link to={`/`}>
                   <img src={logo} alt="logo daypham portfolio" />
                   <span>DevMan</span>
                 </Link>

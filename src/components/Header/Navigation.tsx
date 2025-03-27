@@ -76,7 +76,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
           {menuItems.map((item, index) => (
             <li key={index} className="navigation-list--item">
               {index === 0 ? (
-                location.pathname === `${import.meta.env.BASE_URL}` ? (
+                location.pathname === "/" ? (
                   <ScrollLinkComponent
                     to={item.url}
                     smooth={true}
@@ -88,7 +88,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
                     {item.label}
                   </ScrollLinkComponent>
                 ) : (
-                  <Link to={`${import.meta.env.BASE_URL}`}>{item.label}</Link>
+                  <Link to={`/`}>{item.label}</Link>
                 )
               ) : (
                 <ScrollLinkComponent
