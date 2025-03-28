@@ -1,13 +1,17 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import ThemeMode from "../ThemeMode";
 import logo from "../../assets/images/logo/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "./Navigation";
+import { Link as ScrollLink, LinkProps, scroller } from "react-scroll";
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const ScrollLinkComponent: React.FC<LinkProps> = ScrollLink as any;
   const [show, setShow] = useState<string>("");
   const [shrink, setShrink] = useState<string>("");
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navMbRef = useRef<HTMLDivElement | null>(null);
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
@@ -62,6 +66,19 @@ const Header: React.FC = () => {
     }
   }, []);
 
+  const handleLogoClick = (): void => {
+    setActiveIndex(0);
+    if (location.pathname !== "/") {
+      navigate("/");
+    } else {
+      scroller.scrollTo("home", {
+        duration: 200,
+        smooth: true,
+        offset: -100,
+      });
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     window.addEventListener("resize", handleScreenResize);
@@ -84,19 +101,31 @@ const Header: React.FC = () => {
           <div className="site-header--wraper">
             {location.pathname === "/" ? (
               <div className="site-logo">
-                <img src={logo} alt="logo daypham portfolio" />
-                <span>DevMan</span>
+                <ScrollLinkComponent
+                  to="home"
+                  smooth={true}
+                  duration={500}
+                  offset={-70}
+                  onClick={handleLogoClick}
+                >
+                  <img src={logo} alt="logo daypham portfolio" />
+                  <span>DevMan</span>
+                </ScrollLinkComponent>
               </div>
             ) : (
               <div className="site-logo">
-                <Link to={`/`}>
+                <Link to={`/`} onClick={handleLogoClick}>
                   <img src={logo} alt="logo daypham portfolio" />
                   <span>DevMan</span>
                 </Link>
               </div>
             )}
             <div className="site-navigation">
-              <Navigation device="desktop" />
+              <Navigation
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+                device="desktop"
+              />
               <ThemeMode ref={themeModeRef} />
               <div
                 className={`hamburger-toggle ${show}`}
@@ -120,6 +149,8 @@ const Header: React.FC = () => {
       >
         <div className="container">
           <Navigation
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
             heightParent={heightHeader}
             device="mobile"
             ref={navChildMbRef}

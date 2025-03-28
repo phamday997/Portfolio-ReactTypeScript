@@ -1,2 +1,2 @@
-export * from "./MenuItem";
-export * from "./Navigation";
+export * from "./MenuItems";
+export * from "./NavigationProps";

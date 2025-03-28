@@ -12,3 +12,4 @@ export * from "./ScrollProgressBars";
 export * from "./SliderSlickPD";
 export * from "./Popup";
 export * from "./From";
+export * from "./Loader";

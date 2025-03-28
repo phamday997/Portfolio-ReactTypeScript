@@ -6,20 +6,22 @@ import React, {
   useMemo,
 } from "react";
 import cvPdf from "../../assets/files/cv.pdf";
-import { Link as ScrollLink } from "react-scroll";
-import { Link, useLocation } from "react-router-dom";
+import { LinkProps, scroller, Link as ScrollLink } from "react-scroll";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
-import { MenuItemProps, NavigationProps } from "./type";
+import { MenuItems, NavigationProps } from "./type";
 import { Button } from "../Button";
 
 export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   (
-    { device = "desktop", heightParent, setShow },
+    { device = "desktop", heightParent, setShow, activeIndex, setActiveIndex },
     ref: ForwardedRef<HTMLElement>
   ) => {
-    const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-    const menuItems: MenuItemProps[] = useMemo(
+    const location = useLocation();
+    const navigate = useNavigate();
+    const ScrollLinkComponent: React.FC<LinkProps> = ScrollLink as any;
+
+    const menuItems: MenuItems[] = useMemo(
       () => [
         { label: "Home", url: "home" },
         { label: "About", url: "about" },
@@ -30,16 +32,32 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
       ],
       []
     );
-    const location = useLocation();
 
-    const handleClick = useDebouncedCallback((): void => {
+    const handleClick = useDebouncedCallback((to: string, index: number) => {
       if (device === "mobile" && setShow) {
         setShow("");
       }
-    }, 1000);
+
+      if (to === "home" && typeof setActiveIndex === "function") {
+        setActiveIndex(0);
+      } else if (typeof setActiveIndex === "function") {
+        setActiveIndex(index);
+      }
+
+      if (location.pathname !== "/") {
+        sessionStorage.setItem("scrollTo", to);
+        navigate("/");
+      } else {
+        scroller.scrollTo(to, {
+          duration: 200,
+          smooth: true,
+          offset: -100,
+        });
+      }
+    }, 200);
 
     const handleScroll = useCallback(() => {
-      menuItems.forEach((item, index) => {
+      menuItems.forEach((item: MenuItems, index: number) => {
         const sectionId = item.label.toLowerCase();
         const element = document.getElementById(sectionId);
 
@@ -73,34 +91,27 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         }}
       >
         <ul className="navigation-list">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item: MenuItems, index: number) => (
             <li key={index} className="navigation-list--item">
-              {index === 0 ? (
-                location.pathname === "/" ? (
-                  <ScrollLinkComponent
-                    to={item.url}
-                    smooth={true}
-                    duration={500}
-                    offset={-70} // Adjust for fixed headers
-                    className={activeIndex === index ? "current" : ""}
-                    onClick={handleClick}
-                  >
-                    {item.label}
-                  </ScrollLinkComponent>
-                ) : (
-                  <Link to={`/`}>{item.label}</Link>
-                )
-              ) : (
+              {location.pathname === "/" ? (
                 <ScrollLinkComponent
                   to={item.url}
                   smooth={true}
-                  duration={500}
-                  offset={-70} // Adjust for fixed headers
+                  duration={200}
+                  offset={-100}
                   className={activeIndex === index ? "current" : ""}
-                  onClick={handleClick}
+                  onClick={() => handleClick(item.url, index)}
                 >
                   {item.label}
                 </ScrollLinkComponent>
+              ) : (
+                <Link
+                  to="/"
+                  onClick={() => handleClick(item.url, index)}
+                  className={activeIndex === index ? "current" : ""}
+                >
+                  {item.label}
+                </Link>
               )}
             </li>
           ))}
