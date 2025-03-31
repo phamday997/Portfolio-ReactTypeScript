@@ -1,24 +1,20 @@
-import React, {
-  useState,
-  useEffect,
-  ForwardedRef,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useEffect, ForwardedRef, useCallback, useMemo } from "react";
 import cvPdf from "../../assets/files/cv.pdf";
 import { LinkProps, scroller, Link as ScrollLink } from "react-scroll";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import { MenuItems, NavigationProps } from "./type";
 import { Button } from "../Button";
+import { useGlobalStateZustand } from "../../hooks/useGlobalStateZustand";
 
 export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   (
-    { device = "desktop", heightParent, setShow, activeIndex, setActiveIndex },
+    { device = "desktop", heightParent, setShow },
     ref: ForwardedRef<HTMLElement>
   ) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { activeIndex, setActiveIndex } = useGlobalStateZustand();
     const ScrollLinkComponent: React.FC<LinkProps> = ScrollLink as any;
 
     const menuItems: MenuItems[] = useMemo(
@@ -38,7 +34,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
         setShow("");
       }
 
-      if (to === "home" && typeof setActiveIndex === "function") {
+      if (to === "top" && typeof setActiveIndex === "function") {
         setActiveIndex(0);
       } else if (typeof setActiveIndex === "function") {
         setActiveIndex(index);
@@ -58,7 +54,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
 
     const handleScroll = useCallback(() => {
       menuItems.forEach((item: MenuItems, index: number) => {
-        const sectionId = item.label.toLowerCase();
+        const sectionId = item.url.toLowerCase();
         const element = document.getElementById(sectionId);
 
         if (element) {
@@ -105,11 +101,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
                   {item.label}
                 </ScrollLinkComponent>
               ) : (
-                <Link
-                  to="/"
-                  onClick={() => handleClick(item.url, index)}
-                  className={activeIndex === index ? "current" : ""}
-                >
+                <Link to="/" onClick={() => handleClick(item.url, index)}>
                   {item.label}
                 </Link>
               )}

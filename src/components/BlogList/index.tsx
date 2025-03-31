@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import "./BlogList.scss";
 import { AnimationPD } from "../AnimationPD";
 import { scroller } from "react-scroll";
+import { useGlobalStateZustand } from "../../hooks/useGlobalStateZustand";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   numOfPost,
@@ -12,9 +13,12 @@ export const BlogList: React.FC<BlogPostProps> = ({
   spaceRow,
   sortOrder = "desc",
 }) => {
+  const location = useLocation();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const { activeIndex, setActiveIndex } = useGlobalStateZustand();
 
   const handleLinkClick = (): void => {
+    setActiveIndex(activeIndex);
     scroller.scrollTo("top", {
       duration: 200,
       smooth: true,
@@ -33,7 +37,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
       .slice(0, numOfPost);
 
     setBlogPosts(sortedData);
-  }, [numOfPost, sortOrder]);
+  }, [numOfPost, sortOrder, location]);
 
   return (
     <div

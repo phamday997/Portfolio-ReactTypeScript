@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./MovingParallax.scss";
-import { useTheme } from "../../context";
+import { useThemePorfolio } from "../../context";
 
 interface Parallax {
   classCustom?: string;
@@ -20,7 +20,7 @@ export const MovingParallax: React.FC<Parallax> = ({
   lightmodeBg = "#6e7fd1",
   darkmodeBg = "#2c314b", // Background at Darkmode (Hex,Rgb,..)
 }) => {
-  const { theme } = useTheme();
+  const { theme } = useThemePorfolio();
   const [pos, setPos] = useState<number>(0);
   const handleScreenScroll = useCallback(() => {
     const scrollTop = window.scrollY;

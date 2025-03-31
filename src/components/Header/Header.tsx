@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import ThemeMode from "../ThemeMode";
 import logo from "../../assets/images/logo/logo.png";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Link as ScrollLink, LinkProps, scroller } from "react-scroll";
+import { useDebouncedCallback } from "use-debounce";
+import { useGlobalStateZustand } from "../../hooks/useGlobalStateZustand";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -11,7 +13,7 @@ const Header: React.FC = () => {
   const ScrollLinkComponent: React.FC<LinkProps> = ScrollLink as any;
   const [show, setShow] = useState<string>("");
   const [shrink, setShrink] = useState<string>("");
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const { setActiveIndex } = useGlobalStateZustand();
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navMbRef = useRef<HTMLDivElement | null>(null);
   const navChildMbRef = useRef<HTMLDivElement | null>(null);
@@ -66,7 +68,7 @@ const Header: React.FC = () => {
     }
   }, []);
 
-  const handleLogoClick = (): void => {
+  const handleLogoClick = useDebouncedCallback(() => {
     setActiveIndex(0);
     if (location.pathname !== "/") {
       navigate("/");
@@ -77,7 +79,7 @@ const Header: React.FC = () => {
         offset: -100,
       });
     }
-  };
+  }, 200);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -121,11 +123,7 @@ const Header: React.FC = () => {
               </div>
             )}
             <div className="site-navigation">
-              <Navigation
-                activeIndex={activeIndex}
-                setActiveIndex={setActiveIndex}
-                device="desktop"
-              />
+              <Navigation device="desktop" />
               <ThemeMode ref={themeModeRef} />
               <div
                 className={`hamburger-toggle ${show}`}
@@ -149,8 +147,6 @@ const Header: React.FC = () => {
       >
         <div className="container">
           <Navigation
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
             heightParent={heightHeader}
             device="mobile"
             ref={navChildMbRef}

@@ -17,6 +17,8 @@ import iconWeb from "./images/web.png";
 import banner from "./images/banner.jpg";
 import Card from "./Card/Card";
 import "./MySkills.scss";
+import { Testimonial } from "../Testimonials";
+import { Partner } from "../Partner";
 
 export const MySkills: React.FC = () => {
   const skillItem: SkillItem[] = [
@@ -134,7 +136,7 @@ export const MySkills: React.FC = () => {
   };
 
   return (
-    <section className="section-my-skill">
+    <section className="section-my-skill" id="service">
       <div className="container">
         <div className="content">
           <AnimationPD animation="fadeIn" delayBase={0.2} duration={1}>
@@ -170,7 +172,7 @@ export const MySkills: React.FC = () => {
           </AnimationPD>
         </div>
       </div>
-      <div className="group-service" id="service">
+      <div className="group-service">
         <div className="container">
           <div className="list-service-box">
             {serviceItem.length > 0 &&
@@ -229,6 +231,8 @@ export const MySkills: React.FC = () => {
           </div>
         </div>
       </div>
+      <Testimonial />
+      <Partner />
       <PopupService
         classAnimation={popup}
         data={popupData}

@@ -19,8 +19,6 @@ export const Home: React.FC = () => {
       <About />
       <Portfolio />
       <MySkills />
-      <Testimonial />
-      <Partner />
       <Contact />
       <Blog />
     </div>

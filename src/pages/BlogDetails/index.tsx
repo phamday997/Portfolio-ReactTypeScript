@@ -6,12 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { HeroHeaderBase } from "../../components/HeroHeader/HeroHeaderBase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./BlogDetails.scss";
-import {
-  faCalendar,
-  faCalendarDay,
-  faCalendarDays,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export const BlogDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

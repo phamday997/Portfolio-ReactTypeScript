@@ -58,7 +58,7 @@ export const Testimonial: React.FC = () => {
     },
   ];
   return (
-    <section className="section-testimonial">
+    <div className="section-testimonial">
       <MovingParallax
         classCustom="shape-testimonials"
         direction="Y"
@@ -151,6 +151,6 @@ export const Testimonial: React.FC = () => {
           borderRadius: "12px",
         }}
       />
-    </section>
+    </div>
   );
 };

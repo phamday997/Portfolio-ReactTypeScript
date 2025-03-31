@@ -5,14 +5,14 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useTheme } from "../context";
+import { useThemePorfolio } from "../context";
 import iconArrow from "../assets/images/icon/icon-arrow.png";
 
 interface ThemeModeProps {}
 
 const ThemeMode = React.forwardRef<HTMLDivElement, ThemeModeProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const { theme, mode, toggleTheme, setMode } = useTheme();
+    const { theme, mode, toggleTheme, setMode } = useThemePorfolio();
 
     const SunIcon = () => (
       <svg viewBox="0 0 24 24" width="24" height="24">
