@@ -49,12 +49,15 @@ export const BlogList: React.FC<BlogPostProps> = ({
                 <img
                   src={`${import.meta.env.BASE_URL}${post.image}`}
                   width="450"
-                  alt={post.title}
+                  alt={post.title?.toString() ?? ""}
                 />
               </div>
               <div className="group-text">
                 <div className="cat">{post.category}</div>
-                <div className="title">{post.title}</div>
+                <div
+                  className="title"
+                  dangerouslySetInnerHTML={{ __html: post.title }}
+                />
               </div>
             </div>
           </AnimationPD>

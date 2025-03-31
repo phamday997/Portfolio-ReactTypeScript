@@ -80,6 +80,9 @@
       @include mixins.big_screen {
         font-size: 19px;
       }
+      br {
+        display: none;
+      }
     }
     &:hover {
       .feature-img {

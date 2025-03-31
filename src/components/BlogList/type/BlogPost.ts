@@ -1,6 +1,6 @@
 export interface BlogPost {
   id: number;
-  title: string;
+  title: string | TrustedHTML;
   content: string | TrustedHTML;
   author: string;
   date: string;

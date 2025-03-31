@@ -20,7 +20,7 @@
   font-size: 22px;
   text-align: center;
   width: fit-content;
-  color: vars.$color__light;
+  color: vars.$color__light !important;
   .dot {
     font-size: 24px;
     font-weight: bold;
