@@ -11,7 +11,7 @@ import { LoadRoutes } from "./routes";
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <div className="dp-portfolio-all-wrap">
+      <div className="dp-portfolio-all-wrap" id="top">
         <LoadRoutes />
         <MouseCursor />
         <ScrollTop />

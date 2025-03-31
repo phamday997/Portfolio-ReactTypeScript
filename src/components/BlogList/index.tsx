@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import "./BlogList.scss";
 import { AnimationPD } from "../AnimationPD";
+import { scroller } from "react-scroll";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   numOfPost,
@@ -12,6 +13,14 @@ export const BlogList: React.FC<BlogPostProps> = ({
   sortOrder = "desc",
 }) => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+  const handleLinkClick = (): void => {
+    scroller.scrollTo("top", {
+      duration: 200,
+      smooth: true,
+      offset: -100,
+    });
+  };
 
   useEffect(() => {
     const sortedData = [...blogData]
@@ -44,7 +53,11 @@ export const BlogList: React.FC<BlogPostProps> = ({
             classElement="blog-list-pd--item"
           >
             <div className="blog-item-inner">
-              <Link to={`/blog/${post.id}`} className="link-overlay" />
+              <Link
+                to={`/blog/${post.id}`}
+                onClick={handleLinkClick}
+                className="link-overlay"
+              />
               <div className="feature-img">
                 <img
                   src={`${import.meta.env.BASE_URL}${post.image}`}

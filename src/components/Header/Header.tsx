@@ -71,7 +71,7 @@ const Header: React.FC = () => {
     if (location.pathname !== "/") {
       navigate("/");
     } else {
-      scroller.scrollTo("home", {
+      scroller.scrollTo("top", {
         duration: 200,
         smooth: true,
         offset: -100,

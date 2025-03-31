@@ -10,7 +10,7 @@ import { Link as ScrollLink } from "react-scroll";
 export const HeroHeader: React.FC = () => {
   const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
   return (
-    <section className="section-hero-header" id="home">
+    <section className="section-hero-header">
       <div className="background-image">
         <img src={heroImg} alt="heroHeader" />
       </div>

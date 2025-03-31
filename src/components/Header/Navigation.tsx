@@ -23,7 +23,7 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
 
     const menuItems: MenuItems[] = useMemo(
       () => [
-        { label: "Home", url: "home" },
+        { label: "Home", url: "top" },
         { label: "About", url: "about" },
         { label: "Portfolio", url: "portfolio" },
         { label: "Service", url: "service" },

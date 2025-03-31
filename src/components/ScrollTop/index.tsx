@@ -34,7 +34,7 @@ export const ScrollTop: React.FC = () => {
   return (
     <div className="progressbar-scroll" ref={scrollTopRef}>
       <ScrollLinkComponent
-        to="home"
+        to="top"
         smooth={true}
         duration={500}
         offset={-70} // Adjust for fixed headers
