@@ -21,7 +21,7 @@ export const getFilteredSortedPosts = (
       case "oldest":
         return a.id - b.id;
 
-      case "lastest":
+      case "latest":
         return b.id - a.id;
 
       case "az":

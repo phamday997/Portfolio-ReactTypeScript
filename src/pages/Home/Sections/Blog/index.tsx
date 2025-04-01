@@ -22,7 +22,7 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
-            columList={3}
+            columList={5}
             postPerPage={pnm1(-1)}
             spaceCol={pn(25)}
             spaceRow={pn(35)}

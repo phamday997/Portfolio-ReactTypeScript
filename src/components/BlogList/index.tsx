@@ -6,6 +6,8 @@ import { AnimationPD } from "../AnimationPD";
 import { CardBlog } from "./Card/CardBlog";
 import "./BlogList.scss";
 import { getFilteredSortedPosts } from "./helper";
+import iconGrid from "./image/grid-icon.png";
+import iconList from "./image/list-icon.png";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   postPerPage,
@@ -18,16 +20,18 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [currentSortOrder, setCurrentSortOrder] = useState<string>(sortOrder);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [layoutColum, setLayoutColum] = useState<number>(columList);
+  const [currentLimit, setCurrentLimit] = useState<number>(postPerPage);
 
   useEffect(() => {
     const finalData = getFilteredSortedPosts(
       blogData,
       searchQuery,
       currentSortOrder,
-      postPerPage
+      currentLimit
     );
     setBlogPosts(finalData);
-  }, [postPerPage, currentSortOrder, searchQuery, location]);
+  }, [currentLimit, currentSortOrder, searchQuery, location]);
 
   return (
     <div className="blog-wrapper">
@@ -43,15 +47,31 @@ export const BlogList: React.FC<BlogPostProps> = ({
         onChange={(e) => setCurrentSortOrder(e.target.value)}
         className="blog-sort-dropdown"
       >
-        <option value="lastest">Lastest</option>
-        <option value="oldest">Oldest</option>
-        <option value="az">A → Z (Title)</option>
-        <option value="za">Z → A (Title)</option>
+        <option value="latest">Sort by latest</option>
+        <option value="oldest">sort by oldest</option>
+        <option value="az">Sort by A → Z (Title)</option>
+        <option value="za">Sort by Z → A (Title)</option>
       </select>
-
+      show
+      <select
+        value={currentLimit}
+        onChange={(e) => setCurrentLimit(Number(e.target.value))}
+        className="blog-sort-dropdown"
+      >
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="9">9</option>
+      </select>
+      <span className="mouse-cursor-hover" onClick={() => setLayoutColum(3)}>
+        <img src={iconGrid} alt="icon-grid" />
+      </span>
+      <span className="mouse-cursor-hover" onClick={() => setLayoutColum(1)}>
+        <img src={iconList} alt="icon-list" />
+      </span>
       <div
         className="blog-list-pd"
-        data-colum={columList}
+        data-colum={layoutColum}
         style={{ gap: `${spaceRow}px ${spaceCol}px` }}
       >
         {blogPosts.length > 0 ? (
