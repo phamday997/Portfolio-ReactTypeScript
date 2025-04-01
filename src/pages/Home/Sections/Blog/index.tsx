@@ -1,7 +1,7 @@
 import React from "react";
-import { BlogList } from "../../../../components/BlogList";
-import { AnimationPD, HeadingGroup } from "../../../../components";
+import { AnimationPD, BlogList, HeadingGroup } from "../../../../components";
 import "./Blog.scss";
+import { pn, pnm1 } from "../../../../components/BlogList/type";
 
 export const Blog: React.FC = () => {
   return (
@@ -22,10 +22,11 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
-            numOfPost={3}
-            spaceCol={25}
-            spaceRow={35}
-            sortOrder="desc"
+            columList={3}
+            postPerPage={pnm1(-1)}
+            spaceCol={pn(25)}
+            spaceRow={pn(35)}
+            sortOrder="lastest"
           />
         </div>
       </div>

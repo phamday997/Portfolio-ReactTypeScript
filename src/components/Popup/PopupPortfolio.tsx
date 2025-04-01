@@ -1,7 +1,7 @@
 import React from "react";
-import PopupBase from "./PopupBase";
 import useEmbedUrl from "../../hooks/useEmbedUrl";
 import { PortfolioItem } from "../../pages/Home/Sections/Portfolio/types/PortfolioCard";
+import { PopupBase } from "./PopupBase";
 
 interface PopupPortProps {
   classAnimation: string;

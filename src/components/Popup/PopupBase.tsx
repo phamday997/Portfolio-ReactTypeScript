@@ -9,7 +9,7 @@ interface PopupBaseProps {
   children: React.ReactNode;
 }
 
-const PopupBase: React.FC<PopupBaseProps> = ({
+export const PopupBase: React.FC<PopupBaseProps> = ({
   classAnimation,
   data,
   onClose,
@@ -41,5 +41,3 @@ const PopupBase: React.FC<PopupBaseProps> = ({
     </div>
   );
 };
-
-export default PopupBase;
