@@ -2,11 +2,18 @@ import { BlogPost } from "../type";
 import { getPlainText } from "./getPlainText";
 
 export const getFilteredSortedPosts = (
+  panigation: boolean,
   posts: BlogPost[],
   query: string,
   sort: string,
-  limit: number
-): BlogPost[] => {
+  limit: number,
+  currentPage: number
+): {
+  results: BlogPost[];
+  totalPages: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+} => {
   const lowerQuery = query.toLowerCase();
 
   const filtered = posts.filter((post) => {
@@ -35,5 +42,24 @@ export const getFilteredSortedPosts = (
     }
   });
 
-  return limit === -1 ? sorted : sorted.slice(0, limit);
+  const totalItems = posts.length;
+  const itemPerPage = limit <= 0 ? 1 : limit;
+  const totalPages = Math.ceil(totalItems / itemPerPage);
+  const page = Math.max(1, Math.min(currentPage, totalPages)); // ensure it's in range
+  const startIndex = (page - 1) * itemPerPage;
+  const endIndex = Math.min(startIndex + itemPerPage - 1, totalItems - 1);
+
+  const results =
+    panigation === true
+      ? sorted.slice(startIndex, endIndex + 1)
+      : limit === -1
+      ? sorted
+      : sorted.slice(0, limit);
+
+  return {
+    results,
+    totalPages,
+    hasPrev: page > 1,
+    hasNext: page < totalPages,
+  };
 };

@@ -13,11 +13,12 @@ export const toPositiveNumberOrMinusOne = (
   return n as PositiveNumOrMinusOne;
 };
 export interface BlogPostProps {
+  panigation: boolean;
   postPerPage: PositiveNumOrMinusOne; // -1 show all
   columList: 1 | 2 | 3 | 4 | 5 | 6;
   spaceCol: PositiveNumber;
   spaceRow: PositiveNumber;
-  sortOrder: "oldest" | "lastest" | "za" | "az";
+  sortOrder: "oldest" | "latest" | "za" | "az";
 }
 
 // ALIASES for cleaner JSX usage

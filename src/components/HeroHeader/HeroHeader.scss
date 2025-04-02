@@ -358,11 +358,17 @@
 
 .hero-header-base {
   position: relative;
-  padding: 170px 20px 150px;
+  padding: 230px 20px 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+  @include mixins.big_screen {
+    padding: 200px 20px 160px;
+  }
+  @include mixins.desktop {
+    padding: 170px 20px 140px;
+  }
   @include mixins.mobile {
     margin-bottom: 80px;
   }

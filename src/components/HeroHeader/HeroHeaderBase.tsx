@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import heroImg from "./images/page-header.jpg";
 import "./HeroHeader.scss";
 

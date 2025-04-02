@@ -8,8 +8,10 @@ import "./BlogList.scss";
 import { getFilteredSortedPosts } from "./helper";
 import iconGrid from "./image/grid-icon.png";
 import iconList from "./image/list-icon.png";
+import { getPaginationRange } from "./helper/getPanigationRange";
 
 export const BlogList: React.FC<BlogPostProps> = ({
+  panigation,
   postPerPage,
   columList,
   spaceCol,
@@ -22,16 +24,32 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [layoutColum, setLayoutColum] = useState<number>(columList);
   const [currentLimit, setCurrentLimit] = useState<number>(postPerPage);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [paginationRange, setPaginationRange] = useState<(number | "...")[]>(
+    []
+  );
+  const [hasPrev, setHasPrev] = useState<boolean>(false);
+  const [hasNext, setHasNext] = useState<boolean>(false);
+  const [useTotalPages, setUseTotalPages] = useState<number>(1);
 
   useEffect(() => {
-    const finalData = getFilteredSortedPosts(
+    const { results, totalPages, hasNext, hasPrev } = getFilteredSortedPosts(
+      panigation,
       blogData,
       searchQuery,
       currentSortOrder,
-      currentLimit
+      currentLimit,
+      currentPage
     );
-    setBlogPosts(finalData);
-  }, [currentLimit, currentSortOrder, searchQuery, location]);
+
+    setPaginationRange(
+      getPaginationRange(currentPage, totalPages, [10, 100], 1)
+    );
+    setHasPrev(hasPrev);
+    setHasNext(hasNext);
+    setUseTotalPages(totalPages);
+    setBlogPosts(results);
+  }, [currentLimit, currentSortOrder, searchQuery, location, currentPage]);
 
   return (
     <div className="blog-wrapper">
@@ -58,10 +76,12 @@ export const BlogList: React.FC<BlogPostProps> = ({
         onChange={(e) => setCurrentLimit(Number(e.target.value))}
         className="blog-sort-dropdown"
       >
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="5">5</option>
-        <option value="9">9</option>
+        <option value="6">6</option>
+        <option value="20">20</option>
+        <option value="40">40</option>
+        <option value="80">80</option>
+        <option value="100">100</option>
+        {!panigation && <option value="-1">Show all</option>}
       </select>
       <span className="mouse-cursor-hover" onClick={() => setLayoutColum(3)}>
         <img src={iconGrid} alt="icon-grid" />
@@ -91,6 +111,53 @@ export const BlogList: React.FC<BlogPostProps> = ({
           <p>No posts found.</p>
         )}
       </div>
+      {panigation && paginationRange.length > 0 && useTotalPages > 1 && (
+        <div
+          className="blog-pagination"
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            gap: "6px",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            onClick={() => setCurrentPage((p) => p - 1)}
+            disabled={!hasPrev}
+          >
+            Prev
+          </button>
+
+          {paginationRange.map((page, idx) =>
+            page === "..." ? (
+              <span key={idx} style={{ padding: "0 6px" }}>
+                ...
+              </span>
+            ) : (
+              <button
+                key={idx}
+                onClick={() => setCurrentPage(page)}
+                style={{
+                  fontWeight: currentPage === page ? "bold" : "normal",
+                  backgroundColor:
+                    currentPage === page ? "#eee" : "transparent",
+                  border: "1px solid #ccc",
+                  padding: "4px 8px",
+                }}
+              >
+                {page}
+              </button>
+            )
+          )}
+
+          <button
+            onClick={() => setCurrentPage((p) => p + 1)}
+            disabled={!hasNext}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };
