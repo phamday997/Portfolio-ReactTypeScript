@@ -13,7 +13,11 @@ export const toPositiveNumberOrMinusOne = (
   return n as PositiveNumOrMinusOne;
 };
 export interface BlogPostProps {
-  panigation: boolean;
+  panigation?: boolean;
+  linkReadMore?: boolean;
+  layout?: boolean;
+  search?: boolean;
+  sort?: boolean;
   postPerPage: PositiveNumOrMinusOne; // -1 show all
   columList: 1 | 2 | 3 | 4 | 5 | 6;
   spaceCol: PositiveNumber;

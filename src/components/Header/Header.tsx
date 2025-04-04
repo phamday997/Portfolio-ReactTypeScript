@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Link as ScrollLink, LinkProps, scroller } from "react-scroll";
 import { useDebouncedCallback } from "use-debounce";
-import { useGlobalStateZustand } from "../../hooks/useGlobalStateZustand";
+import { useGlobalStateZustand } from "../../hooks";
 
 const Header: React.FC = () => {
   const location = useLocation();

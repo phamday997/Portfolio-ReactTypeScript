@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 
-export default function useEmbedUrl(
-  url: string | null | undefined
-): string | null {
+export const useEmbedUrl = (url: string | null | undefined): string | null => {
   return useMemo(() => {
     if (!url) return null;
 
@@ -27,4 +25,4 @@ export default function useEmbedUrl(
     // Return null if the result no map to any patttern
     return null;
   }, [url]);
-}
+};

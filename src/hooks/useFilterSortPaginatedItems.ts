@@ -1,24 +1,32 @@
-import { BlogPost } from "../type";
-import { getPlainText } from "./getPlainText";
+import { getPlainText } from "../helper";
 
-export const getFilteredSortedPosts = (
+type Extractor<T> = {
+  title: (item: T) => string; // required for search + sort (az/za)
+  category?: (item: T) => string; // optional, used for filtering
+  id: (item: T) => number; // required for sorting (oldest/latest)
+};
+
+export const useFilteredSortedPaginatedItems = <T>(
   panigation: boolean,
-  posts: BlogPost[],
+  items: T[],
   query: string,
   sort: string,
   limit: number,
-  currentPage: number
+  currentPage: number,
+  extractor: Extractor<T>
 ): {
-  results: BlogPost[];
+  results: T[];
   totalPages: number;
   hasPrev: boolean;
   hasNext: boolean;
 } => {
   const lowerQuery = query.toLowerCase();
 
-  const filtered = posts.filter((post) => {
-    const title = getPlainText(post.title).toLowerCase();
-    const category = getPlainText(post.category || "").toLowerCase();
+  const filtered = items.filter((item) => {
+    const title = getPlainText(extractor.title(item)).toLowerCase();
+    const category = extractor.category
+      ? getPlainText(extractor.category(item) || "").toLowerCase()
+      : "";
 
     return title.includes(lowerQuery) || category.includes(lowerQuery);
   });
@@ -26,23 +34,27 @@ export const getFilteredSortedPosts = (
   const sorted = filtered.sort((a, b) => {
     switch (sort) {
       case "oldest":
-        return a.id - b.id;
+        return extractor.id(a) - extractor.id(b);
 
       case "latest":
-        return b.id - a.id;
+        return extractor.id(b) - extractor.id(a);
 
       case "az":
-        return getPlainText(a.title).localeCompare(getPlainText(b.title));
+        return getPlainText(extractor.title(a)).localeCompare(
+          getPlainText(extractor.title(b))
+        );
 
       case "za":
-        return getPlainText(b.title).localeCompare(getPlainText(a.title));
+        return getPlainText(extractor.title(b)).localeCompare(
+          extractor.title(a)
+        );
 
       default:
         return 0;
     }
   });
 
-  const totalItems = posts.length;
+  const totalItems = items.length;
   const itemPerPage = limit <= 0 ? 1 : limit;
   const totalPages = Math.ceil(totalItems / itemPerPage);
   const page = Math.max(1, Math.min(currentPage, totalPages)); // ensure it's in range

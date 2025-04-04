@@ -1,6 +1,6 @@
-import useScrollCounter from "../../hooks/useScrollCounter";
 import styled from "styled-components";
 import "./ScrollCounter.scss";
+import { useScrollCounter } from "../../hooks";
 
 interface CounterProps {
   className?: string;

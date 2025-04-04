@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import { AnimationPD } from "../AnimationPD";
 import { CardBlog } from "./Card/CardBlog";
 import "./BlogList.scss";
-import { getFilteredSortedPosts } from "./helper";
-import iconGrid from "./image/grid-icon.png";
+import iconGrid1 from "./image/icon-grid1.png";
+import iconGrid2 from "./image/icon-grid2.png";
+import iconGrid3 from "./image/icon-grid3.png";
 import iconList from "./image/list-icon.png";
-import { getPaginationRange } from "./helper/getPanigationRange";
+import { Button } from "../Button";
+import { getPaginationRange } from "../../helper";
+import { useFilteredSortedPaginatedItems } from "../../hooks";
 
 export const BlogList: React.FC<BlogPostProps> = ({
-  panigation,
+  panigation = false,
+  linkReadMore = false,
+  search = false,
+  sort = false,
   postPerPage,
   columList,
   spaceCol,
@@ -31,16 +37,50 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const [hasPrev, setHasPrev] = useState<boolean>(false);
   const [hasNext, setHasNext] = useState<boolean>(false);
   const [useTotalPages, setUseTotalPages] = useState<number>(1);
+  const [layoutCard, setLayoutCard] = useState<"vertical" | "horizontal">(
+    "vertical"
+  );
+
+  const handleLayoutVertical = useCallback((): void => {
+    setLayoutColum(1);
+    setLayoutCard("horizontal");
+  }, [layoutCard, layoutColum]);
+
+  const handleLayoutHorizontal = useCallback((): void => {
+    setLayoutCard("vertical");
+    setLayoutColum(3);
+  }, [layoutCard, layoutColum]);
+
+  const handleScreenResize = useCallback((): void => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 1200 && windowWidth >= 992) {
+      setLayoutColum(3);
+      console.log("aaa");
+    } else if (windowWidth < 992 && windowWidth >= 768) {
+      setLayoutColum(2);
+      console.log("bb");
+    } else if (windowWidth < 768) {
+      setLayoutColum(1);
+      console.log("aaacc");
+    }
+  }, [layoutColum]);
 
   useEffect(() => {
-    const { results, totalPages, hasNext, hasPrev } = getFilteredSortedPosts(
-      panigation,
-      blogData,
-      searchQuery,
-      currentSortOrder,
-      currentLimit,
-      currentPage
-    );
+    const { results, totalPages, hasNext, hasPrev } =
+      useFilteredSortedPaginatedItems<BlogPost>(
+        panigation,
+        blogData,
+        searchQuery,
+        currentSortOrder,
+        currentLimit,
+        currentPage,
+        {
+          title: (item) => (typeof item.title === "string" ? item.title : ""),
+          category: (item) => item.category,
+          id: (item) => item.id,
+        }
+      );
 
     setPaginationRange(
       getPaginationRange(currentPage, totalPages, [10, 100], 1)
@@ -49,46 +89,77 @@ export const BlogList: React.FC<BlogPostProps> = ({
     setHasNext(hasNext);
     setUseTotalPages(totalPages);
     setBlogPosts(results);
-  }, [currentLimit, currentSortOrder, searchQuery, location, currentPage]);
+
+    window.addEventListener("resize", handleScreenResize);
+    return () => {
+      window.removeEventListener("resize", handleScreenResize);
+    };
+  }, [
+    currentLimit,
+    currentSortOrder,
+    searchQuery,
+    location,
+    currentPage,
+    layoutColum,
+  ]);
 
   return (
     <div className="blog-wrapper">
-      <input
-        type="text"
-        placeholder="Search by name or category..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className="blog-search-input"
-      />
-      <select
-        value={currentSortOrder}
-        onChange={(e) => setCurrentSortOrder(e.target.value)}
-        className="blog-sort-dropdown"
-      >
-        <option value="latest">Sort by latest</option>
-        <option value="oldest">sort by oldest</option>
-        <option value="az">Sort by A → Z (Title)</option>
-        <option value="za">Sort by Z → A (Title)</option>
-      </select>
-      show
-      <select
-        value={currentLimit}
-        onChange={(e) => setCurrentLimit(Number(e.target.value))}
-        className="blog-sort-dropdown"
-      >
-        <option value="6">6</option>
-        <option value="20">20</option>
-        <option value="40">40</option>
-        <option value="80">80</option>
-        <option value="100">100</option>
-        {!panigation && <option value="-1">Show all</option>}
-      </select>
-      <span className="mouse-cursor-hover" onClick={() => setLayoutColum(3)}>
-        <img src={iconGrid} alt="icon-grid" />
-      </span>
-      <span className="mouse-cursor-hover" onClick={() => setLayoutColum(1)}>
-        <img src={iconList} alt="icon-list" />
-      </span>
+      <div className="group-filter-sort-action">
+        {search && (
+          <div className="search-filter">
+            <input
+              type="text"
+              placeholder="Search by name or category..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="blog-search-input"
+            />
+          </div>
+        )}
+
+        {sort && (
+          <div className="sort-select-filter">
+            <select
+              value={currentSortOrder}
+              onChange={(e) => setCurrentSortOrder(e.target.value)}
+              className="blog-sort-dropdown"
+            >
+              <option value="latest">Sort by latest</option>
+              <option value="oldest">sort by oldest</option>
+              <option value="az">Sort by A → Z (Title)</option>
+              <option value="za">Sort by Z → A (Title)</option>
+            </select>
+          </div>
+        )}
+
+        <div className="show-item-per-page">
+          show
+          <select
+            value={currentLimit}
+            onChange={(e) => setCurrentLimit(Number(e.target.value))}
+            className="blog-sort-dropdown"
+          >
+            <option value="6">6</option>
+            <option value="20">20</option>
+            <option value="40">40</option>
+            <option value="80">80</option>
+            <option value="100">100</option>
+            {!panigation && <option value="-1">Show all</option>}
+          </select>
+        </div>
+        <div className="change-layout-list">
+          <span className="mouse-cursor-hover" onClick={handleLayoutHorizontal}>
+            <img src={iconGrid1} alt="icon-grid" />
+            <img src={iconGrid2} alt="icon-grid" />
+            <img src={iconGrid3} alt="icon-grid" />
+          </span>
+          <span className="mouse-cursor-hover" onClick={handleLayoutVertical}>
+            <img src={iconList} alt="icon-list" />
+          </span>
+        </div>
+      </div>
+
       <div
         className="blog-list-pd"
         data-colum={layoutColum}
@@ -104,13 +175,23 @@ export const BlogList: React.FC<BlogPostProps> = ({
               index={index}
               totalItem={blogPosts.length}
             >
-              <CardBlog dataPost={post} />
+              <CardBlog layoutCard={layoutCard} dataPost={post} />
             </AnimationPD>
           ))
         ) : (
           <p>No posts found.</p>
         )}
       </div>
+      {linkReadMore && (
+        <div
+          className="wrapper-button"
+          style={{ marginTop: "50px", textAlign: "center" }}
+        >
+          <Button typeEle="link" href="#">
+            See all articles
+          </Button>
+        </div>
+      )}
       {panigation && paginationRange.length > 0 && useTotalPages > 1 && (
         <div
           className="blog-pagination"

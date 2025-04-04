@@ -1,5 +1,5 @@
 import React from "react";
-import useEmbedUrl from "../../hooks/useEmbedUrl";
+import { useEmbedUrl } from "../../hooks/useEmbedUrl";
 import { PortfolioItem } from "../../pages/Home/Sections/Portfolio/types/PortfolioCard";
 import { PopupBase } from "./PopupBase";
 

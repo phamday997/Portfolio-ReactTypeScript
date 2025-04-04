@@ -22,9 +22,10 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
-            panigation={false}
+            linkReadMore={true}
+            panigation={true}
             columList={3}
-            postPerPage={pnm1(3)}
+            postPerPage={pnm1(6)}
             spaceCol={pn(25)}
             spaceRow={pn(35)}
             sortOrder="latest"

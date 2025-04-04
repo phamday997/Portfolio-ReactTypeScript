@@ -1,17 +1,12 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import { Link } from "react-router-dom";
-import { useGlobalStateZustand } from "../../../hooks/useGlobalStateZustand";
-import { BlogPost } from "../type";
+import { CardBlogProps } from "../type/CardBlogProps";
 import "./CardBlog.scss";
-
-interface CardBlogProps {
-  styleType?: "vertical" | "horizontal";
-  dataPost: BlogPost;
-}
+import { useGlobalStateZustand } from "../../../hooks";
 
 export const CardBlog: React.FC<CardBlogProps> = ({
-  styleType = "vertical",
+  layoutCard = "vertical",
   dataPost,
 }) => {
   const { activeIndex, setActiveIndex } = useGlobalStateZustand();
@@ -24,7 +19,7 @@ export const CardBlog: React.FC<CardBlogProps> = ({
     });
   };
   return (
-    <div className={`card-blog-pd ${styleType}`}>
+    <div className={`card-blog-pd ${layoutCard}`}>
       <div className="blog-item-inner">
         <Link
           to={`/blog/${dataPost.id}`}

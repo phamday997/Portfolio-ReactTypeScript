@@ -20,13 +20,4 @@
   &[data-colum="6"] {
     grid-template-columns: repeat(6, 1fr);
   }
-  @include mixins.large_screen {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-  @include mixins.desktop {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  @include mixins.tablet {
-    grid-template-columns: repeat(1, 1fr) !important;
-  }
 }

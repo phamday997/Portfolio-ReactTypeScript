@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDebouncedCallback } from "use-debounce";
 import { MenuItems, NavigationProps } from "./type";
 import { Button } from "../Button";
-import { useGlobalStateZustand } from "../../hooks/useGlobalStateZustand";
+import { useGlobalStateZustand } from "../../hooks";
 
 export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   (
