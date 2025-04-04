@@ -1,0 +1,42 @@
+/* Variable & Mixins */
+@use "../../../../assets/sass/base/variables" as vars;
+@use "../../../../assets/sass/base/mixins" as mixins;
+
+.layout-grid-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  .icon-layout {
+    cursor: pointer;
+    span {
+      line-height: 1;
+    }
+  }
+  .icon-col-1 {
+    position: relative;
+    top: -1px;
+    display: none;
+    @include mixins.tablet {
+      display: inline-block;
+    }
+  }
+  .icon-col-2 {
+    position: relative;
+    top: -1px;
+    display: none;
+    @include mixins.desktop {
+      display: inline-block;
+    }
+    @include mixins.tablet {
+      display: none;
+    }
+  }
+  .icon-col-3 {
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    @include mixins.desktop {
+      display: none;
+    }
+  }
+}

@@ -1,9 +1,20 @@
 /* Variable & Mixins */
-@use "../../../assets/sass/base/variables" as vars;
-@use "../../../assets/sass/base/mixins" as mixins;
+@use "../../../../assets/sass/base/variables" as vars;
+@use "../../../../assets/sass/base/mixins" as mixins;
 
 .card-blog-pd {
   position: relative;
+  @include mixins.desktop {
+    gap: 25px !important;
+  }
+  @include mixins.mobile {
+    gap: 20px !important;
+  }
+  .blog-item-inner {
+    @include mixins.desktop {
+      margin-bottom: 10px;
+    }
+  }
   .link-overlay {
     position: absolute;
     width: 100%;
@@ -65,6 +76,63 @@
     }
     .title {
       color: vars.$color__main;
+    }
+  }
+  &.horizontal {
+    .cat {
+      font-size: 19px;
+      @include mixins.tablet {
+        font-size: 16px;
+      }
+      @include mixins.mobile {
+        font-size: 15px;
+      }
+      @include mixins.small_screen {
+        font-size: 14px;
+      }
+    }
+    .title {
+      font-size: 24px;
+      @include mixins.desktop {
+        font-size: 22px;
+      }
+      @include mixins.tablet {
+        font-size: 20px;
+      }
+      @include mixins.mobile {
+        font-size: 16px;
+      }
+      @include mixins.small_screen {
+        font-size: 15px;
+      }
+    }
+    .blog-item-inner {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 0;
+      @include mixins.desktop {
+        gap: 25px;
+      }
+      @include mixins.tablet {
+        gap: 20px;
+      }
+      @include mixins.mobile {
+        gap: 15px;
+      }
+    }
+    .feature-img {
+      margin-bottom: 0;
+      width: 28%;
+      height: fit-content;
+      padding-top: 0;
+      img {
+        aspect-ratio: 1;
+        position: static;
+      }
+    }
+    .group-text {
+      width: 72%;
     }
   }
 }

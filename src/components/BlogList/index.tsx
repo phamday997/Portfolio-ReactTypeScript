@@ -3,15 +3,12 @@ import { useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import { AnimationPD } from "../AnimationPD";
-import { CardBlog } from "./Card/CardBlog";
+import { CardBlog } from "./components/Card/CardBlog";
 import "./BlogList.scss";
-import iconGrid1 from "./image/icon-grid1.png";
-import iconGrid2 from "./image/icon-grid2.png";
-import iconGrid3 from "./image/icon-grid3.png";
-import iconList from "./image/list-icon.png";
 import { Button } from "../Button";
 import { getPaginationRange } from "../../helper";
 import { useFilteredSortedPaginatedItems } from "../../hooks";
+import { LayoutOption } from "./components/LayoutOption/LayoutOption";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   panigation = false,
@@ -51,21 +48,6 @@ export const BlogList: React.FC<BlogPostProps> = ({
     setLayoutColum(3);
   }, [layoutCard, layoutColum]);
 
-  const handleScreenResize = useCallback((): void => {
-    const windowWidth = window.innerWidth;
-
-    if (windowWidth < 1200 && windowWidth >= 992) {
-      setLayoutColum(3);
-      console.log("aaa");
-    } else if (windowWidth < 992 && windowWidth >= 768) {
-      setLayoutColum(2);
-      console.log("bb");
-    } else if (windowWidth < 768) {
-      setLayoutColum(1);
-      console.log("aaacc");
-    }
-  }, [layoutColum]);
-
   useEffect(() => {
     const { results, totalPages, hasNext, hasPrev } =
       useFilteredSortedPaginatedItems<BlogPost>(
@@ -89,22 +71,10 @@ export const BlogList: React.FC<BlogPostProps> = ({
     setHasNext(hasNext);
     setUseTotalPages(totalPages);
     setBlogPosts(results);
-
-    window.addEventListener("resize", handleScreenResize);
-    return () => {
-      window.removeEventListener("resize", handleScreenResize);
-    };
-  }, [
-    currentLimit,
-    currentSortOrder,
-    searchQuery,
-    location,
-    currentPage,
-    layoutColum,
-  ]);
+  }, [currentLimit, currentSortOrder, searchQuery, location, currentPage]);
 
   return (
-    <div className="blog-wrapper">
+    <div className="list-blog-wrapper">
       <div className="group-filter-sort-action">
         {search && (
           <div className="search-filter">
@@ -148,16 +118,10 @@ export const BlogList: React.FC<BlogPostProps> = ({
             {!panigation && <option value="-1">Show all</option>}
           </select>
         </div>
-        <div className="change-layout-list">
-          <span className="mouse-cursor-hover" onClick={handleLayoutHorizontal}>
-            <img src={iconGrid1} alt="icon-grid" />
-            <img src={iconGrid2} alt="icon-grid" />
-            <img src={iconGrid3} alt="icon-grid" />
-          </span>
-          <span className="mouse-cursor-hover" onClick={handleLayoutVertical}>
-            <img src={iconList} alt="icon-list" />
-          </span>
-        </div>
+        <LayoutOption
+          horizontal={handleLayoutHorizontal}
+          vertical={handleLayoutVertical}
+        />
       </div>
 
       <div

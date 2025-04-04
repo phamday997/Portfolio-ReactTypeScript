@@ -5,19 +5,58 @@
 .blog-list-pd {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  @include mixins.desktop {
+    gap: 25px !important;
+  }
+  @include mixins.mobile {
+    gap: 20px !important;
+  }
   &[data-colum="2"] {
     grid-template-columns: repeat(2, 1fr);
   }
   &[data-colum="3"] {
     grid-template-columns: repeat(3, 1fr);
+    @include mixins.desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mixins.tablet {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
   &[data-colum="4"] {
     grid-template-columns: repeat(4, 1fr);
+    @include mixins.large_screen {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mixins.desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mixins.tablet {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
   &[data-colum="5"] {
     grid-template-columns: repeat(5, 1fr);
+    @include mixins.large_screen {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mixins.desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mixins.tablet {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
   &[data-colum="6"] {
     grid-template-columns: repeat(6, 1fr);
+    @include mixins.large_screen {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mixins.desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mixins.tablet {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
