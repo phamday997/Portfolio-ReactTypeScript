@@ -1,9 +1,9 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import { Link } from "react-router-dom";
-import { CardBlogProps } from "../../type/CardBlogProps";
+import { CardBlogProps } from "../type/CardBlogProps";
 import "./CardBlog.scss";
-import { useGlobalStateZustand } from "../../../../hooks";
+import { useGlobalStateZustand } from "../../../hooks";
 
 export const CardBlog: React.FC<CardBlogProps> = ({
   layoutCard = "vertical",

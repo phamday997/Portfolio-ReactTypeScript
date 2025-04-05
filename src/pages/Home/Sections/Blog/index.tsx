@@ -23,8 +23,11 @@ export const Blog: React.FC = () => {
           </AnimationPD>
           <BlogList
             linkReadMore={true}
-            panigation={true}
+            pagination={true}
             columList={3}
+            search={true}
+            sort={true}
+            showLayoutSeting={true}
             postPerPage={pnm1(6)}
             spaceCol={pn(25)}
             spaceRow={pn(35)}

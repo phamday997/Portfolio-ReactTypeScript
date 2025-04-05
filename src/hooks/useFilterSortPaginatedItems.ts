@@ -1,13 +1,13 @@
 import { getPlainText } from "../helper";
 
 type Extractor<T> = {
-  title: (item: T) => string; // required for search + sort (az/za)
+  title: (item: T) => string | TrustedHTML; // required for search + sort (az/za)
   category?: (item: T) => string; // optional, used for filtering
   id: (item: T) => number; // required for sorting (oldest/latest)
 };
 
 export const useFilteredSortedPaginatedItems = <T>(
-  panigation: boolean,
+  pagination: boolean,
   items: T[],
   query: string,
   sort: string,
@@ -46,7 +46,7 @@ export const useFilteredSortedPaginatedItems = <T>(
 
       case "za":
         return getPlainText(extractor.title(b)).localeCompare(
-          extractor.title(a)
+          getPlainText(extractor.title(a))
         );
 
       default:
@@ -62,7 +62,7 @@ export const useFilteredSortedPaginatedItems = <T>(
   const endIndex = Math.min(startIndex + itemPerPage - 1, totalItems - 1);
 
   const results =
-    panigation === true
+    pagination === true
       ? sorted.slice(startIndex, endIndex + 1)
       : limit === -1
       ? sorted

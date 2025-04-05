@@ -3,18 +3,20 @@ import { useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import { AnimationPD } from "../AnimationPD";
-import { CardBlog } from "./components/Card/CardBlog";
+import { CardBlog } from "./Card/CardBlog";
 import "./BlogList.scss";
 import { Button } from "../Button";
 import { getPaginationRange } from "../../helper";
 import { useFilteredSortedPaginatedItems } from "../../hooks";
-import { LayoutOption } from "./components/LayoutOption/LayoutOption";
+import { LayoutOption, ShowItemPerPage, SortOption } from "../FilterSortLayout";
+import { SearchSort } from "../FilterSortLayout/SearchSort";
 
 export const BlogList: React.FC<BlogPostProps> = ({
-  panigation = false,
+  pagination = false,
   linkReadMore = false,
   search = false,
   sort = false,
+  showLayoutSeting = false,
   postPerPage,
   columList,
   spaceCol,
@@ -51,14 +53,14 @@ export const BlogList: React.FC<BlogPostProps> = ({
   useEffect(() => {
     const { results, totalPages, hasNext, hasPrev } =
       useFilteredSortedPaginatedItems<BlogPost>(
-        panigation,
+        pagination,
         blogData,
         searchQuery,
         currentSortOrder,
         currentLimit,
         currentPage,
         {
-          title: (item) => (typeof item.title === "string" ? item.title : ""),
+          title: (item) => item.title,
           category: (item) => item.category,
           id: (item) => item.id,
         }
@@ -75,61 +77,61 @@ export const BlogList: React.FC<BlogPostProps> = ({
 
   return (
     <div className="list-blog-wrapper">
-      <div className="group-filter-sort-action">
-        {search && (
-          <div className="search-filter">
-            <input
-              type="text"
-              placeholder="Search by name or category..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="blog-search-input"
-            />
-          </div>
-        )}
-
-        {sort && (
-          <div className="sort-select-filter">
-            <select
-              value={currentSortOrder}
-              onChange={(e) => setCurrentSortOrder(e.target.value)}
-              className="blog-sort-dropdown"
+      {(search || sort || showLayoutSeting) && (
+        <div
+          className={`group-filter-sort-action ${
+            search && sort ? "both-cpn" : ""
+          }`}
+        >
+          {(search || sort) && (
+            <div
+              className={`col-left ${search && sort ? "both-cpn" : ""} ${
+                showLayoutSeting ? "" : "only"
+              }`}
             >
-              <option value="latest">Sort by latest</option>
-              <option value="oldest">sort by oldest</option>
-              <option value="az">Sort by A → Z (Title)</option>
-              <option value="za">Sort by Z → A (Title)</option>
-            </select>
-          </div>
-        )}
+              {search && (
+                <SearchSort
+                  label="Search post by name or category..."
+                  width={260}
+                  valueSearch={searchQuery}
+                  handleSearch={setSearchQuery}
+                />
+              )}
+              {sort && (
+                <SortOption
+                  typeName="post"
+                  valueSort={currentSortOrder}
+                  handleSort={setCurrentSortOrder}
+                />
+              )}
+            </div>
+          )}
 
-        <div className="show-item-per-page">
-          show
-          <select
-            value={currentLimit}
-            onChange={(e) => setCurrentLimit(Number(e.target.value))}
-            className="blog-sort-dropdown"
-          >
-            <option value="6">6</option>
-            <option value="20">20</option>
-            <option value="40">40</option>
-            <option value="80">80</option>
-            <option value="100">100</option>
-            {!panigation && <option value="-1">Show all</option>}
-          </select>
+          {showLayoutSeting && (
+            <div
+              className={`col-right ${search && sort ? "both-cpn" : "only"}`}
+            >
+              <ShowItemPerPage
+                pagination={pagination}
+                setChange={setCurrentLimit}
+                currentPerPage={currentLimit}
+                columnList={columList}
+              />
+              <LayoutOption
+                horizontal={handleLayoutHorizontal}
+                vertical={handleLayoutVertical}
+              />
+            </div>
+          )}
         </div>
-        <LayoutOption
-          horizontal={handleLayoutHorizontal}
-          vertical={handleLayoutVertical}
-        />
-      </div>
+      )}
 
       <div
         className="blog-list-pd"
         data-colum={layoutColum}
         style={{ gap: `${spaceRow}px ${spaceCol}px` }}
       >
-        {blogPosts.length > 0 ? (
+        {blogPosts.length > 0 &&
           blogPosts.map((post: BlogPost, index: number) => (
             <AnimationPD
               key={post.id}
@@ -141,22 +143,28 @@ export const BlogList: React.FC<BlogPostProps> = ({
             >
               <CardBlog layoutCard={layoutCard} dataPost={post} />
             </AnimationPD>
-          ))
-        ) : (
-          <p>No posts found.</p>
-        )}
+          ))}
       </div>
+      {blogPosts.length <= 0 && (
+        <div
+          className="result-not-found"
+          style={{ textAlign: "center", width: "70%", margin: "30px auto" }}
+        >
+          Your search for <em style={{ color: "#fb503b" }}>"{searchQuery}"</em>{" "}
+          did not match any items.
+        </div>
+      )}
       {linkReadMore && (
         <div
           className="wrapper-button"
           style={{ marginTop: "50px", textAlign: "center" }}
         >
-          <Button typeEle="link" href="#">
+          <Button typeEle="link" sizeEle="small" href="#">
             See all articles
           </Button>
         </div>
       )}
-      {panigation && paginationRange.length > 0 && useTotalPages > 1 && (
+      {pagination && paginationRange.length > 0 && useTotalPages > 1 && (
         <div
           className="blog-pagination"
           style={{

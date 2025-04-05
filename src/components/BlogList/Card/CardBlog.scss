@@ -1,6 +1,6 @@
 /* Variable & Mixins */
-@use "../../../../assets/sass/base/variables" as vars;
-@use "../../../../assets/sass/base/mixins" as mixins;
+@use "../../../assets/sass/base/variables" as vars;
+@use "../../../assets/sass/base/mixins" as mixins;
 
 .card-blog-pd {
   position: relative;

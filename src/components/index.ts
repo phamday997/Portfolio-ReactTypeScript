@@ -4,6 +4,7 @@ export * from "./AccordionPD";
 export * from "./Button";
 export * from "./BlogList";
 export * from "./From";
+export * from "./FilterSortLayout";
 export * from "./HeroHeader";
 export * from "./HeadingGroup";
 export * from "./Loader";

@@ -1,9 +1,9 @@
 import React from "react";
-import iconGrid1 from "../../image/icon-grid1.png";
-import iconGrid2 from "../../image/icon-grid2.png";
-import iconGrid3 from "../../image/icon-grid3.png";
-import iconList from "../../image/list-icon.png";
-import "./LayoutOption.scss";
+import iconGrid1 from "./image/icon-grid1.png";
+import iconGrid2 from "./image/icon-grid2.png";
+import iconGrid3 from "./image/icon-grid3.png";
+import iconList from "./image/list-icon.png";
+import "./FilterSortLayout.scss";
 
 interface LayoutOptionProps {
   horizontal: () => void;
