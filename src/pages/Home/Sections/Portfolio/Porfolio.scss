@@ -112,12 +112,14 @@
   }
   .view-project {
     a {
-      font-size: 18px;
       text-transform: uppercase;
       font-family: vars.$font-family-extra;
-      font-size: 16px;
+      font-size: 18px;
       color: vars.$color__light;
       font-weight: 600;
+      @include mixins.big_screen {
+        font-size: 16px;
+      }
       @include mixins.desktop {
         font-size: 13px;
       }

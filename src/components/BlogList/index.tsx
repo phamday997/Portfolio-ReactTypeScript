@@ -176,7 +176,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
         <AnimationPD animation="fadeInUp" duration={1.2} delayBase={0.2}>
           <div className="margin-top-action" style={{ textAlign: "center" }}>
             <Link
-              className="primary dp-btn dp-btn--small"
+              className="primary dp-btn dp-btn--normal"
               to={`${urlLinkReadMore ? urlLinkReadMore : "/"}`}
               onClick={handleLinkClick}
             >

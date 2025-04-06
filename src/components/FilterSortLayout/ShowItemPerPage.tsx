@@ -9,12 +9,12 @@ export const ShowItemPerPage: React.FC<ShowItemPerPageProps> = ({
   columnList,
 }) => {
   const perPageOptionsByColumn: Record<1 | 2 | 3 | 4 | 5 | 6, number[]> = {
-    1: [4, 6, 8, 12],
-    2: [6, 10, 20, 80, 100],
-    3: [6, 9, 24, 96],
-    4: [8, 12, 24, 48, 96],
-    5: [10, 15, 30, 60, 120],
-    6: [12, 18, 36, 72, 144],
+    1: [2, 6, 8, 12],
+    2: [4, 6, 10, 20, 50],
+    3: [3, 6, 9, 24, 48],
+    4: [4, 8, 12, 24, 48],
+    5: [5, 10, 15, 30, 60],
+    6: [6, 12, 18, 36, 72],
   };
   const options = perPageOptionsByColumn[columnList] || [];
   return (
