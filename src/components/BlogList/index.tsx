@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
 import blogData from "../../data/post.json";
 import { AnimationPD } from "../AnimationPD";
 import { CardBlog } from "./Card/CardBlog";
 import "./BlogList.scss";
-import { Button } from "../Button";
 import { getPaginationRange } from "../../helper";
 import { useFilteredSortedPaginatedItems } from "../../hooks";
 import { LayoutOption, ShowItemPerPage, SortOption } from "../FilterSortLayout";
 import { SearchSort } from "../FilterSortLayout/SearchSort";
 import { PaginationPD } from "../PaginationPD";
+import { scroller } from "react-scroll";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   pagination = false,
@@ -18,6 +18,8 @@ export const BlogList: React.FC<BlogPostProps> = ({
   search = false,
   sort = false,
   showLayoutSeting = false,
+  typeCard = "vertical",
+  urlLinkReadMore,
   postPerPage,
   columList,
   spaceCol,
@@ -38,7 +40,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const [hasNext, setHasNext] = useState<boolean>(false);
   const [useTotalPages, setUseTotalPages] = useState<number>(1);
   const [layoutCard, setLayoutCard] = useState<"vertical" | "horizontal">(
-    "vertical"
+    typeCard
   );
 
   const handleLayoutVertical = useCallback((): void => {
@@ -50,6 +52,14 @@ export const BlogList: React.FC<BlogPostProps> = ({
     setLayoutCard("vertical");
     setLayoutColum(3);
   }, [layoutCard, layoutColum]);
+
+  const handleLinkClick = (): void => {
+    scroller.scrollTo("top", {
+      duration: 200,
+      smooth: true,
+      offset: -100,
+    });
+  };
 
   useEffect(() => {
     const { results, totalPages, hasNext, hasPrev } =
@@ -83,7 +93,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
         <AnimationPD
           animation="fadeIn"
           duration={1.2}
-          delayBase={1}
+          delayBase={0.2}
           classElement={`group-filter-sort-action ${
             search && sort ? "both-cpn" : ""
           }`}
@@ -163,11 +173,17 @@ export const BlogList: React.FC<BlogPostProps> = ({
 
       {/* handle show link See all articles */}
       {linkReadMore && (
-        <div className="margin-top-action" style={{ textAlign: "center" }}>
-          <Button typeEle="link" sizeEle="small" href="#">
-            See all articles
-          </Button>
-        </div>
+        <AnimationPD animation="fadeInUp" duration={1.2} delayBase={0.2}>
+          <div className="margin-top-action" style={{ textAlign: "center" }}>
+            <Link
+              className="primary dp-btn dp-btn--small"
+              to={`${urlLinkReadMore ? urlLinkReadMore : "/"}`}
+              onClick={handleLinkClick}
+            >
+              See all articles
+            </Link>
+          </div>
+        </AnimationPD>
       )}
 
       {/* handle show pagination */}

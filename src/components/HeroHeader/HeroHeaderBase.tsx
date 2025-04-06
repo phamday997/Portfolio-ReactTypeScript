@@ -1,20 +1,22 @@
 import React, { ReactNode } from "react";
-import heroImg from "./images/page-header.jpg";
-import "./HeroHeader.scss";
 
 interface HeroHeaderBaseProps {
+  classEle?: string;
+  backgroundImg: string;
   children: ReactNode;
 }
 
-export const HeroHeaderBase: React.FC<HeroHeaderBaseProps> = ({ children }) => {
+export const HeroHeaderBase: React.FC<HeroHeaderBaseProps> = ({
+  classEle,
+  backgroundImg,
+  children,
+}) => {
   return (
-    <section className="hero-header-base">
+    <section className={`hero-header-base ${classEle}`}>
       <div className="background-image">
-        <img src={heroImg} alt="heroHeader" />
+        <img src={backgroundImg} alt="heroHeader" />
       </div>
-      <div className="group-inner animate__animated animate__fadeIn animate__slow">
-        <h1 className="title-h1">{children}</h1>
-      </div>
+      {children}
     </section>
   );
 };

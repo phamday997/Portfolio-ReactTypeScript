@@ -15,9 +15,11 @@ export const toPositiveNumberOrMinusOne = (
 export interface BlogPostProps {
   pagination?: boolean;
   linkReadMore?: boolean;
+  urlLinkReadMore?: string;
   search?: boolean;
   sort?: boolean;
   showLayoutSeting?: boolean;
+  typeCard: "vertical" | "horizontal";
   postPerPage: PositiveNumOrMinusOne; // -1 show all
   columList: 1 | 2 | 3 | 4 | 5 | 6;
   spaceCol: PositiveNumber;

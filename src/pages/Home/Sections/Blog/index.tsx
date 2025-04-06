@@ -22,13 +22,11 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
-            // linkReadMore={true}
-            pagination={true}
+            typeCard="vertical"
+            linkReadMore={true}
+            urlLinkReadMore="/blog"
             columList={3}
-            search={true}
-            sort={true}
-            showLayoutSeting={true}
-            postPerPage={pnm1(6)}
+            postPerPage={pnm1(3)}
             spaceCol={pn(25)}
             spaceRow={pn(35)}
             sortOrder="latest"

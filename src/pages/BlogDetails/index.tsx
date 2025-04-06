@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import blogData from "../../data/post.json";
 import { useParams } from "react-router-dom";
-import { BlogPost } from "../../components/BlogList/type";
+import { BlogPost, pn, pnm1 } from "../../components/BlogList/type";
 import { useDebouncedCallback } from "use-debounce";
-import { HeroHeaderBase } from "../../components/HeroHeader/HeroHeaderBase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./BlogDetails.scss";
 import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
+import { BlogList, HeroHeaderNormal } from "../../components";
 
 export const BlogDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,6 +17,17 @@ export const BlogDetails: React.FC = () => {
     setPost(foundPost || null);
   }, 300);
 
+  const dataBreadcumb = [
+    {
+      label: "Blog",
+      url: "/blog",
+    },
+    {
+      label: `${post?.title}`,
+      url: "",
+    },
+  ];
+
   useEffect(() => {
     loadPost();
     return () => loadPost.cancel();
@@ -26,12 +37,12 @@ export const BlogDetails: React.FC = () => {
 
   return (
     <div className="blog-details">
-      <HeroHeaderBase>
+      <HeroHeaderNormal breadcrumb={true} dataBreadcrumb={dataBreadcumb}>
         <span
           className="text"
           dangerouslySetInnerHTML={{ __html: post.title }}
         />
-      </HeroHeaderBase>
+      </HeroHeaderNormal>
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-6 col-sm-12 col-12">
@@ -60,7 +71,17 @@ export const BlogDetails: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 col-12"></div>
+          <div className="col-lg-4 col-md-6 col-sm-12 col-12">
+            <BlogList
+              typeCard="horizontal"
+              search={true}
+              columList={1}
+              postPerPage={pnm1(4)}
+              spaceCol={pn(25)}
+              spaceRow={pn(35)}
+              sortOrder="latest"
+            />
+          </div>
         </div>
       </div>
     </div>

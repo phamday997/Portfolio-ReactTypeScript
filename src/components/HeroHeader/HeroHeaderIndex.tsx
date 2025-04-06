@@ -1,19 +1,17 @@
 import React from "react";
-import { Button, ScrollCounter } from "../../components";
+import { Button, ScrollCounter } from "..";
 import "./HeroHeader.scss";
 import heroImg from "./images/hero-header.jpg";
 import avatarImg from "./images/avatart-man.jpg";
 import iconWin from "./images/icon-win.png";
 import circleCreative from "./images/circle-createtive.png";
 import { Link as ScrollLink } from "react-scroll";
+import { HeroHeaderBase } from "./HeroHeaderBase";
 
-export const HeroHeader: React.FC = () => {
+export const HeroHeaderIndex: React.FC = () => {
   const ScrollLinkComponent = ScrollLink as unknown as React.FC<any>;
   return (
-    <section className="section-hero-header">
-      <div className="background-image">
-        <img src={heroImg} alt="heroHeader" />
-      </div>
+    <HeroHeaderBase backgroundImg={heroImg} classEle="hero-header-index">
       <div className="group-contents">
         <div className="container">
           <div className="content">
@@ -92,6 +90,6 @@ export const HeroHeader: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </HeroHeaderBase>
   );
 };

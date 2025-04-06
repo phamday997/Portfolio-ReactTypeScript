@@ -1,6 +1,7 @@
 import React from "react";
 import { PaginationProps } from "./type/PaginationProps";
 import "./Pagination.scss";
+import { AnimationPD } from "../AnimationPD";
 
 export const PaginationPD: React.FC<PaginationProps> = ({
   totalPage,
@@ -11,8 +12,11 @@ export const PaginationPD: React.FC<PaginationProps> = ({
   hasPrev,
 }) => {
   return (
-    <div
-      className={`pagination-pd-lists margin-top-action ${
+    <AnimationPD
+      animation="fadeIn"
+      duration={1.2}
+      delayBase={0.2}
+      classElement={`pagination-pd-lists margin-top-action ${
         totalPage > 999 ? "unit-max-by-Milion" : ""
       }`}
     >
@@ -47,6 +51,6 @@ export const PaginationPD: React.FC<PaginationProps> = ({
       >
         Next
       </button>
-    </div>
+    </AnimationPD>
   );
 };
