@@ -28,8 +28,11 @@
     border: none;
     text-decoration: none;
   }
+  @include mixins.big_screen {
+    padding: 12px 35px 15px;
+  }
   @include mixins.large_screen {
-    padding: 11px 35px 14px;
+    padding: 11px 30px 14px;
   }
   @include mixins.desktop {
     &[type="submit"] {
