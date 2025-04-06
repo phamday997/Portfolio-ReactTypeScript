@@ -10,6 +10,7 @@ import { getPaginationRange } from "../../helper";
 import { useFilteredSortedPaginatedItems } from "../../hooks";
 import { LayoutOption, ShowItemPerPage, SortOption } from "../FilterSortLayout";
 import { SearchSort } from "../FilterSortLayout/SearchSort";
+import { PaginationPD } from "../PaginationPD";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   pagination = false,
@@ -77,9 +78,13 @@ export const BlogList: React.FC<BlogPostProps> = ({
 
   return (
     <div className="list-blog-wrapper">
+      {/* handle show search, sort and setting layout */}
       {(search || sort || showLayoutSeting) && (
-        <div
-          className={`group-filter-sort-action ${
+        <AnimationPD
+          animation="fadeIn"
+          duration={1.2}
+          delayBase={1}
+          classElement={`group-filter-sort-action ${
             search && sort ? "both-cpn" : ""
           }`}
         >
@@ -94,14 +99,14 @@ export const BlogList: React.FC<BlogPostProps> = ({
                   label="Search post by name or category..."
                   width={260}
                   valueSearch={searchQuery}
-                  handleSearch={setSearchQuery}
+                  setSearch={setSearchQuery}
                 />
               )}
               {sort && (
                 <SortOption
                   typeName="post"
                   valueSort={currentSortOrder}
-                  handleSort={setCurrentSortOrder}
+                  setCurrentSort={setCurrentSortOrder}
                 />
               )}
             </div>
@@ -123,9 +128,10 @@ export const BlogList: React.FC<BlogPostProps> = ({
               />
             </div>
           )}
-        </div>
+        </AnimationPD>
       )}
 
+      {/* handle show list item */}
       <div
         className="blog-list-pd"
         data-colum={layoutColum}
@@ -154,62 +160,26 @@ export const BlogList: React.FC<BlogPostProps> = ({
           did not match any items.
         </div>
       )}
+
+      {/* handle show link See all articles */}
       {linkReadMore && (
-        <div
-          className="wrapper-button"
-          style={{ marginTop: "50px", textAlign: "center" }}
-        >
+        <div className="margin-top-action" style={{ textAlign: "center" }}>
           <Button typeEle="link" sizeEle="small" href="#">
             See all articles
           </Button>
         </div>
       )}
+
+      {/* handle show pagination */}
       {pagination && paginationRange.length > 0 && useTotalPages > 1 && (
-        <div
-          className="blog-pagination"
-          style={{
-            marginTop: "20px",
-            display: "flex",
-            gap: "6px",
-            flexWrap: "wrap",
-          }}
-        >
-          <button
-            onClick={() => setCurrentPage((p) => p - 1)}
-            disabled={!hasPrev}
-          >
-            Prev
-          </button>
-
-          {paginationRange.map((page, idx) =>
-            page === "..." ? (
-              <span key={idx} style={{ padding: "0 6px" }}>
-                ...
-              </span>
-            ) : (
-              <button
-                key={idx}
-                onClick={() => setCurrentPage(page)}
-                style={{
-                  fontWeight: currentPage === page ? "bold" : "normal",
-                  backgroundColor:
-                    currentPage === page ? "#eee" : "transparent",
-                  border: "1px solid #ccc",
-                  padding: "4px 8px",
-                }}
-              >
-                {page}
-              </button>
-            )
-          )}
-
-          <button
-            onClick={() => setCurrentPage((p) => p + 1)}
-            disabled={!hasNext}
-          >
-            Next
-          </button>
-        </div>
+        <PaginationPD
+          totalPage={useTotalPages}
+          paginRange={paginationRange}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          hasNext={hasNext}
+          hasPrev={hasPrev}
+        />
       )}
     </div>
   );

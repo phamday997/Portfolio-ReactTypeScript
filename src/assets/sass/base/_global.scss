@@ -44,6 +44,13 @@ a {
     outline: none;
   }
 }
+/* Specical class */
+.margin-top-action {
+  margin-top: 60px;
+  @include mixins.desktop {
+    margin-top: 40px;
+  }
+}
 
 /* Form Input */
 .form-control-pd {

@@ -15,7 +15,6 @@ export const toPositiveNumberOrMinusOne = (
 export interface BlogPostProps {
   pagination?: boolean;
   linkReadMore?: boolean;
-  layout?: boolean;
   search?: boolean;
   sort?: boolean;
   showLayoutSeting?: boolean;

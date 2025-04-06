@@ -1,24 +1,19 @@
 import React from "react";
-
-interface SortOptionProps {
-  typeName: "post" | "product";
-  width?: number;
-  valueSort: string;
-  handleSort: (e: string) => void;
-}
+import { SortOptionProps } from "./type";
+import "./FilterSortLayout.scss";
 
 export const SortOption: React.FC<SortOptionProps> = ({
   typeName = "post",
   width,
   valueSort,
-  handleSort,
+  setCurrentSort,
 }) => {
   return (
     <div className="sort-select-filter group-select">
       <select
         style={{ width: `${width}px` }}
         value={valueSort}
-        onChange={(e) => handleSort(e.target.value)}
+        onChange={(e) => setCurrentSort(e.target.value)}
         className="blog-sort-dropdown"
       >
         <option value="latest">Sort {typeName} by latest (ID)</option>

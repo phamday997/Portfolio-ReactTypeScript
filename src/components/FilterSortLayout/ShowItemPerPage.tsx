@@ -1,11 +1,6 @@
 import React from "react";
-
-interface ShowItemPerPageProps {
-  pagination?: boolean;
-  currentPerPage: number;
-  setChange: (e: number) => void;
-  columnList: 1 | 2 | 3 | 4 | 5 | 6;
-}
+import { ShowItemPerPageProps } from "./type";
+import "./FilterSortLayout.scss";
 
 export const ShowItemPerPage: React.FC<ShowItemPerPageProps> = ({
   pagination = false,

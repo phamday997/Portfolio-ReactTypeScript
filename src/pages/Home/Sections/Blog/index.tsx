@@ -22,7 +22,7 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
-            linkReadMore={true}
+            // linkReadMore={true}
             pagination={true}
             columList={3}
             search={true}

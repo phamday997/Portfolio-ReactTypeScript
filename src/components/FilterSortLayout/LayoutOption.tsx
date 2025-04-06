@@ -3,12 +3,8 @@ import iconGrid1 from "./image/icon-grid1.png";
 import iconGrid2 from "./image/icon-grid2.png";
 import iconGrid3 from "./image/icon-grid3.png";
 import iconList from "./image/list-icon.png";
+import { LayoutOptionProps } from "./type";
 import "./FilterSortLayout.scss";
-
-interface LayoutOptionProps {
-  horizontal: () => void;
-  vertical: () => void;
-}
 
 export const LayoutOption: React.FC<LayoutOptionProps> = ({
   horizontal,

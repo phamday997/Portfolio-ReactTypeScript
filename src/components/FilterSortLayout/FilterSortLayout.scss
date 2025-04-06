@@ -32,26 +32,26 @@
   }
   input {
     color: vars.$color__dark;
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid vars.$color__gray-six;
-    height: 40px;
-    padding: 0 8px;
+    height: 42px;
+    padding: 0 10px;
     line-height: 30px;
     @include mixins.transition(all 0.3s ease-in-out);
     @include mixins.big_screen {
-      height: 37px;
+      height: 40px;
     }
     &:focus {
       border-color: vars.$color__blue;
     }
   }
   select {
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid vars.$color__gray-six;
     cursor: pointer;
-    height: 40px;
+    height: 42px;
     line-height: 30px;
-    padding: 0 8px;
+    padding: 0 10px;
     color: vars.$color__dark;
     appearance: none; /* Remove default arrow */
     -webkit-appearance: none;
@@ -62,7 +62,7 @@
     background-size: 20px !important;
     @include mixins.transition(all 0.3s ease-in-out);
     @include mixins.big_screen {
-      height: 37px;
+      height: 40px;
     }
     &:focus {
       border-color: vars.$color__blue;

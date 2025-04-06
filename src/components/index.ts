@@ -11,6 +11,7 @@ export * from "./Loader";
 export * from "./MouseCursor";
 export * from "./MovingParallax";
 export * from "./Popup";
+export * from "./PaginationPD";
 export * from "./ScrollTop";
 export * from "./ScrollCounter";
 export * from "./ScrollProgressBars";
