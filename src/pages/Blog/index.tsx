@@ -14,10 +14,7 @@ export const BlogPage: React.FC = () => {
       <HeroHeaderNormal breadcrumb={true} dataBreadcrumb={dataBreadcumb}>
         <span className="text">My Blog Posts</span>
       </HeroHeaderNormal>
-      <section
-        className="section-my-post-list"
-        style={{ paddingBottom: "150px" }}
-      >
+      <section className="section-my-post-list padding-bottom-page">
         <div className="container">
           <BlogList
             typeCard="vertical"

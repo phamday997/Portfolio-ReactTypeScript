@@ -360,7 +360,7 @@
   position: relative;
   padding: 230px 20px 200px;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   @include mixins.big_screen {
     padding: 200px 20px 160px;
   }
@@ -368,7 +368,7 @@
     padding: 170px 20px 140px;
   }
   @include mixins.mobile {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .breadcrumb-pd {
     position: relative;

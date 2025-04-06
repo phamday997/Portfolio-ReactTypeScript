@@ -51,6 +51,15 @@ a {
     margin-top: 40px;
   }
 }
+.padding-bottom-page {
+  padding-bottom: 150px;
+  @include mixins.big_screen {
+    padding-bottom: 120px;
+  }
+  @include mixins.mobile {
+    padding-bottom: 90px;
+  }
+}
 
 /* Form Input */
 .form-control-pd {

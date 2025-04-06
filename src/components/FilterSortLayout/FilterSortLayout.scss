@@ -51,7 +51,7 @@
     cursor: pointer;
     height: 42px;
     line-height: 30px;
-    padding: 0 10px;
+    padding: 0 23px 0 10px;
     color: vars.$color__dark;
     appearance: none; /* Remove default arrow */
     -webkit-appearance: none;
@@ -176,9 +176,10 @@
 }
 .show-item-per-page {
   select {
-    width: 65px;
+    width: auto;
+    min-width: 65px;
     @include mixins.big_screen {
-      width: 55px;
+      min-width: 55px;
     }
   }
 }

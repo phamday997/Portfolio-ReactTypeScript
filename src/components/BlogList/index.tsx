@@ -36,9 +36,6 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const [paginationRange, setPaginationRange] = useState<(number | "...")[]>(
     []
   );
-  const [hasPrev, setHasPrev] = useState<boolean>(false);
-  const [hasNext, setHasNext] = useState<boolean>(false);
-  const [useTotalPages, setUseTotalPages] = useState<number>(1);
   const [layoutCard, setLayoutCard] = useState<"vertical" | "horizontal">(
     typeCard
   );
@@ -61,28 +58,25 @@ export const BlogList: React.FC<BlogPostProps> = ({
     });
   };
 
-  useEffect(() => {
-    const { results, totalPages, hasNext, hasPrev } =
-      useFilteredSortedPaginatedItems<BlogPost>(
-        pagination,
-        blogData,
-        searchQuery,
-        currentSortOrder,
-        currentLimit,
-        currentPage,
-        {
-          title: (item) => item.title,
-          category: (item) => item.category,
-          id: (item) => item.id,
-        }
-      );
+  const { results, totalPages, hasNext, hasPrev } =
+    useFilteredSortedPaginatedItems<BlogPost>(
+      pagination,
+      blogData,
+      searchQuery,
+      currentSortOrder,
+      currentLimit,
+      currentPage,
+      {
+        title: (item) => item.title,
+        category: (item) => item.category,
+        id: (item) => item.id,
+      }
+    );
 
+  useEffect(() => {
     setPaginationRange(
       getPaginationRange(currentPage, totalPages, [10, 100], 1)
     );
-    setHasPrev(hasPrev);
-    setHasNext(hasNext);
-    setUseTotalPages(totalPages);
     setBlogPosts(results);
   }, [currentLimit, currentSortOrder, searchQuery, location, currentPage]);
 
@@ -167,7 +161,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
           style={{ textAlign: "center", width: "70%", margin: "30px auto" }}
         >
           Your search for <em style={{ color: "#fb503b" }}>"{searchQuery}"</em>{" "}
-          did not match any items.
+          did not match any items on page {currentPage}.
         </div>
       )}
 
@@ -187,9 +181,9 @@ export const BlogList: React.FC<BlogPostProps> = ({
       )}
 
       {/* handle show pagination */}
-      {pagination && paginationRange.length > 0 && useTotalPages > 1 && (
+      {pagination && paginationRange.length > 0 && totalPages > 1 && (
         <PaginationPD
-          totalPage={useTotalPages}
+          totalPage={totalPages}
           paginRange={paginationRange}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
