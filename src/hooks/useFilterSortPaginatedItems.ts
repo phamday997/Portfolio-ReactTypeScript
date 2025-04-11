@@ -13,6 +13,7 @@ export const useFilteredSortedPaginatedItems = <T>(
   sort: string,
   limit: number,
   currentPage: number,
+  excludeIds: number[] = [],
   extractor: Extractor<T>
 ): {
   results: T[];
@@ -22,7 +23,12 @@ export const useFilteredSortedPaginatedItems = <T>(
 } => {
   const lowerQuery = query.toLowerCase();
 
-  const filtered = items.filter((item) => {
+  const cleanedItems =
+    excludeIds.length > 0
+      ? items.filter((item) => !excludeIds.includes(extractor.id(item)))
+      : items;
+
+  const filtered = cleanedItems.filter((item) => {
     const title = getPlainText(extractor.title(item)).toLowerCase();
     const category = extractor.category
       ? getPlainText(extractor.category(item) || "").toLowerCase()

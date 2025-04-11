@@ -19,11 +19,15 @@ export interface BlogPostProps {
   search?: boolean;
   sort?: boolean;
   showLayoutSeting?: boolean;
+  showExcerpt?: boolean;
+  showDate?: boolean;
+  showCat?: boolean;
+  excludeIds?: number[]; // use to exclude post current have id matches.
   typeCard: "vertical" | "horizontal";
-  postPerPage: PositiveNumOrMinusOne; // -1 show all
+  postPerPage: PositiveNumOrMinusOne; // use pnm1(number) => -1 show all
   columList: 1 | 2 | 3 | 4 | 5 | 6;
-  spaceCol: PositiveNumber;
-  spaceRow: PositiveNumber;
+  spaceCol: PositiveNumber; // use pn(number)
+  spaceRow: PositiveNumber; // use pn(number)
   sortOrder: "oldest" | "latest" | "za" | "az";
 }
 

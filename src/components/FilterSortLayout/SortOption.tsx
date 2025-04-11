@@ -14,7 +14,7 @@ export const SortOption: React.FC<SortOptionProps> = ({
         style={{ width: `${width}px` }}
         value={valueSort}
         onChange={(e) => setCurrentSort(e.target.value)}
-        className="blog-sort-dropdown"
+        className="blog-sort-dropdown mouse-cursor-hover"
       >
         <option value="latest">Sort {typeName} by latest (ID)</option>
         <option value="oldest">Sort {typeName} by oldest (ID)</option>

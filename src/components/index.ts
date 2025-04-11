@@ -16,3 +16,4 @@ export * from "./ScrollTop";
 export * from "./ScrollCounter";
 export * from "./ScrollProgressBars";
 export * from "./SliderSlickPD";
+export * from "./SidebarPD";

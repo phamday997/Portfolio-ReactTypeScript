@@ -47,6 +47,16 @@
       @include mixins.transition(all 0.3s ease-out);
     }
   }
+  .infor-wraper {
+    margin-bottom: 2px;
+    .post-date {
+      font-weight: 500;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
   .cat {
     font-weight: 600;
     font-family: vars.$font-family-extra;
@@ -68,6 +78,12 @@
       display: none;
     }
   }
+  .excerpt {
+    font-weight: 500;
+    margin-top: 6px;
+    font-size: 15px;
+    @include mixins.limit-line(3, 72);
+  }
   &:hover {
     .feature-img {
       img {
@@ -75,7 +91,7 @@
       }
     }
     .title {
-      color: vars.$color__main;
+      color: vars.$color__main !important;
     }
   }
   &.horizontal {
@@ -101,9 +117,17 @@
       }
       @include mixins.mobile {
         font-size: 16px;
+        @include mixins.limit-line(1, 23);
       }
       @include mixins.small_screen {
         font-size: 15px;
+      }
+    }
+    .excerpt {
+      @include mixins.mobile {
+        margin-top: 3px;
+        @include mixins.limit-line(2, 48);
+        font-size: 13px;
       }
     }
     .blog-item-inner {

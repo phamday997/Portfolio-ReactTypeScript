@@ -5,7 +5,25 @@
 .blog-details {
   margin-bottom: 120px;
   height: auto;
-  min-height: 100vh;
+  min-height: 550px;
+  @include mixins.tablet {
+    margin-bottom: 90px;
+  }
+  .col-right {
+    .col-right-wraper {
+      padding-left: 34px;
+      @include mixins.big_screen {
+        padding-left: 22px;
+      }
+      @include mixins.tablet {
+        padding-left: 0;
+        margin-top: 60px;
+      }
+      @include mixins.mobile {
+        margin-top: 40px;
+      }
+    }
+  }
   .feature-image {
     img {
       width: 100%;
@@ -33,6 +51,12 @@
     display: flex;
     gap: 30px;
     align-items: center;
+    @include mixins.tablet {
+      font-size: 16px;
+    }
+    @include mixins.mobile {
+      font-size: 15px;
+    }
     span {
       display: inline-block;
       line-height: 1;

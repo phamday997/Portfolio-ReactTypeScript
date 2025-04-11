@@ -3,6 +3,7 @@ import heroImg from "./images/page-header.jpg";
 import "./HeroHeader.scss";
 import { HeroHeaderBase } from "./HeroHeaderBase";
 import { Link } from "react-router-dom";
+import { getPlainText } from "../../helper";
 
 interface dataBreadcrumb {
   label: string;
@@ -45,9 +46,11 @@ export const HeroHeaderNormal: React.FC<HeroHeaderNormalProps> = ({
                 <div className="item-breadcrumb" key={index}>
                   <div className="item-breadcrumb--item">
                     {item.url ? (
-                      <Link to={`${item.url}`}>{item.label}</Link>
+                      <Link to={`${item.url}`}>{getPlainText(item.label)}</Link>
                     ) : (
-                      <span>{item.label}</span>
+                      <span title={`${getPlainText(item.label)}`}>
+                        {getPlainText(item.label)}
+                      </span>
                     )}
                   </div>
                   {item.url ? (

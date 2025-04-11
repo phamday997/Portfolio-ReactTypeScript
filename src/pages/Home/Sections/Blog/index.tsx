@@ -22,6 +22,7 @@ export const Blog: React.FC = () => {
             </HeadingGroup>
           </AnimationPD>
           <BlogList
+            showExcerpt={true}
             typeCard="vertical"
             linkReadMore={true}
             urlLinkReadMore="/blog"

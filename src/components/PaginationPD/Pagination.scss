@@ -23,13 +23,19 @@
     border: 1px solid vars.$color__gray-six;
     background-color: vars.$color__light;
     @include mixins.transition(all 0.3s ease-in-out);
+    @include mixins.mobile {
+      min-width: 30px;
+      height: 30px;
+      font-size: 14px;
+    }
     &:hover {
       border-color: vars.$color__main;
       color: vars.$color__main;
     }
     &.current {
-      color: vars.$color__light;
-      background-color: vars.$color__main;
+      color: vars.$color__light !important;
+      background-color: vars.$color__main !important;
+      border-color: vars.$color__main !important;
     }
     &[disabled] {
       pointer-events: none;
@@ -40,6 +46,7 @@
     border: none;
     min-width: fit-content;
     padding: 0;
+    background-color: transparent !important;
   }
   .btn-prev,
   .btn-next {
@@ -48,6 +55,20 @@
   &.unit-max-by-Milion {
     .item-pagin {
       font-size: 14px;
+    }
+  }
+}
+@include mixins.ThemeMode {
+  .pagination-pd-lists {
+    .item-pagin {
+      color: vars.$color__light;
+      background-color: vars.$background-color-dark;
+      &.current {
+        background-color: vars.$color__main;
+      }
+      &:hover {
+        color: vars.$color__main;
+      }
     }
   }
 }

@@ -18,6 +18,10 @@ export const BlogList: React.FC<BlogPostProps> = ({
   search = false,
   sort = false,
   showLayoutSeting = false,
+  showDate = false,
+  showExcerpt = false,
+  showCat = true,
+  excludeIds,
   typeCard = "vertical",
   urlLinkReadMore,
   postPerPage,
@@ -66,6 +70,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
       currentSortOrder,
       currentLimit,
       currentPage,
+      excludeIds ?? [],
       {
         title: (item) => item.title,
         category: (item) => item.category,
@@ -151,7 +156,13 @@ export const BlogList: React.FC<BlogPostProps> = ({
               index={index}
               totalItem={blogPosts.length}
             >
-              <CardBlog layoutCard={layoutCard} dataPost={post} />
+              <CardBlog
+                showCate={showCat}
+                showExcerpt={showExcerpt}
+                showDate={showDate}
+                layoutCard={layoutCard}
+                dataPost={post}
+              />
             </AnimationPD>
           ))}
       </div>

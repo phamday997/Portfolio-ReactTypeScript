@@ -77,15 +77,18 @@
   transform-origin: $origin;
 }
 
-@mixin limit-line($limit) {
+@mixin limit-line($limit, $maxHeight) {
   -webkit-line-clamp: $limit;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  height: auto;
+  min-height: 0;
+  max-height: #{$maxHeight}px;
 }
 
-@mixin limit-line-unset {
+@mixin remove-limit-line {
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
   overflow: unset;
