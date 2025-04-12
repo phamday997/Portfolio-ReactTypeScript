@@ -60,3 +60,11 @@
     }
   }
 }
+.result-not-found-list {
+  text-align: center;
+  width: 70%;
+  margin: 30px auto;
+  .key-word {
+    color: vars.$color__main;
+  }
+}

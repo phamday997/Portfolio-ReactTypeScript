@@ -1,21 +1,32 @@
 import React, { useEffect, useMemo, useState } from "react";
-import blogData from "../../data/post.json";
 import { useParams } from "react-router-dom";
+import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
 import { BlogPost } from "../../components/BlogList/type";
 import { useDebouncedCallback } from "use-debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./BlogDetails.scss";
 import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
-import { AnimationPD, HeroHeaderNormal, SidebarBlog } from "../../components";
+import {
+  AnimationPD,
+  HeroHeaderNormal,
+  Loader,
+  SidebarBlog,
+} from "../../components";
 import { getPlainText } from "../../helper";
+import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 
 export const BlogDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
 
+  const { data: dataPosts } = useBlogPosts(
+    GOOGLE_SHEETS.post.sheetId,
+    GOOGLE_SHEETS.post.apiKey
+  );
+
   const loadPost = useDebouncedCallback(() => {
     const numericId = Number(id);
-    const foundPost = blogData.find((p) => p.id === numericId);
+    const foundPost = dataPosts.find((p) => p.id === numericId);
     setPost(foundPost || null);
   }, 300);
 
@@ -33,11 +44,16 @@ export const BlogDetails: React.FC = () => {
   useEffect(() => {
     loadPost();
     return () => loadPost.cancel();
-  }, [id, loadPost]);
+  }, [id, loadPost, dataPosts]);
 
   const excludeIds = useMemo(() => (post ? [post.id] : []), [post]);
 
-  if (!post) return <div className="blog-details"></div>;
+  if (!post)
+    return (
+      <div className="blog-details">
+        <Loader />
+      </div>
+    );
 
   return (
     <div className="blog-details">
@@ -56,10 +72,7 @@ export const BlogDetails: React.FC = () => {
             classElement="col-lg-8 col-md-7 col-sm-12 col-12 col-left"
           >
             <div className="feature-image">
-              <img
-                src={`${import.meta.env.BASE_URL}${post.image}`}
-                alt={getPlainText(post.title)}
-              />
+              <img src={`${post.image}`} alt={getPlainText(post.title)} />
             </div>
             <div className="infor-wraper">
               <div className="post-date">

@@ -21,6 +21,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_APP_PROD_BASE: "/Portfolio-ReactTypeScript/"
+          VITE_GOOGLE_SHEET_POST_ID: ${{ secrets.VITE_GOOGLE_SHEET_POST_ID }}
+          VITE_GOOGLE_SHEET_POST_API_KEY: ${{ secrets.VITE_GOOGLE_SHEET_POST_API_KEY }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

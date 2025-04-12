@@ -35,7 +35,7 @@ export const CardBlog: React.FC<CardBlogProps> = ({
         />
         <div className="feature-img">
           <img
-            src={`${import.meta.env.BASE_URL}${dataPost.image}`}
+            src={`${dataPost.image}`}
             width="450"
             alt={getPlainText(dataPost.title)}
           />

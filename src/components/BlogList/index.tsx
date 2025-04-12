@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BlogPost, BlogPostProps } from "./type";
-import blogData from "../../data/post.json";
 import { AnimationPD } from "../AnimationPD";
 import { CardBlog } from "./Card/CardBlog";
 import "./BlogList.scss";
@@ -11,6 +10,8 @@ import { LayoutOption, ShowItemPerPage, SortOption } from "../FilterSortLayout";
 import { SearchSort } from "../FilterSortLayout/SearchSort";
 import { PaginationPD } from "../PaginationPD";
 import { scroller } from "react-scroll";
+import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
+import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 
 export const BlogList: React.FC<BlogPostProps> = ({
   pagination = false,
@@ -62,10 +63,15 @@ export const BlogList: React.FC<BlogPostProps> = ({
     });
   };
 
+  const { data: dataPosts, loading } = useBlogPosts(
+    GOOGLE_SHEETS.post.sheetId,
+    GOOGLE_SHEETS.post.apiKey
+  );
+
   const { results, totalPages, hasNext, hasPrev } =
     useFilteredSortedPaginatedItems<BlogPost>(
       pagination,
-      blogData,
+      dataPosts,
       searchQuery,
       currentSortOrder,
       currentLimit,
@@ -83,7 +89,14 @@ export const BlogList: React.FC<BlogPostProps> = ({
       getPaginationRange(currentPage, totalPages, [10, 100], 1)
     );
     setBlogPosts(results);
-  }, [currentLimit, currentSortOrder, searchQuery, location, currentPage]);
+  }, [
+    currentLimit,
+    currentSortOrder,
+    searchQuery,
+    location,
+    currentPage,
+    dataPosts,
+  ]);
 
   return (
     <div className="list-blog-wrapper">
@@ -141,38 +154,51 @@ export const BlogList: React.FC<BlogPostProps> = ({
       )}
 
       {/* handle show list item */}
-      <div
-        className="blog-list-pd"
-        data-colum={layoutColum}
-        style={{ gap: `${spaceRow}px ${spaceCol}px` }}
-      >
-        {blogPosts.length > 0 &&
-          blogPosts.map((post: BlogPost, index: number) => (
+      {!loading ? (
+        <>
+          <div
+            className="blog-list-pd"
+            data-colum={layoutColum}
+            style={{ gap: `${spaceRow}px ${spaceCol}px` }}
+          >
+            {blogPosts.length > 0 &&
+              blogPosts.map((post: BlogPost, index: number) => (
+                <AnimationPD
+                  key={post.id}
+                  animation="fadeIn"
+                  delayBase={0.2}
+                  duration={1.2}
+                  index={index}
+                  totalItem={blogPosts.length}
+                >
+                  <CardBlog
+                    showCate={showCat}
+                    showExcerpt={showExcerpt}
+                    showDate={showDate}
+                    layoutCard={layoutCard}
+                    dataPost={post}
+                  />
+                </AnimationPD>
+              ))}
+          </div>
+          {blogPosts.length <= 0 && (
             <AnimationPD
-              key={post.id}
+              classElement="result-not-found-list"
               animation="fadeIn"
-              delayBase={0.2}
               duration={1.2}
-              index={index}
-              totalItem={blogPosts.length}
+              delayBase={0.2}
             >
-              <CardBlog
-                showCate={showCat}
-                showExcerpt={showExcerpt}
-                showDate={showDate}
-                layoutCard={layoutCard}
-                dataPost={post}
-              />
+              Your search for <em className="key-word">"{searchQuery}"</em> did
+              not match any items on page {currentPage}.
             </AnimationPD>
-          ))}
-      </div>
-      {blogPosts.length <= 0 && (
+          )}
+        </>
+      ) : (
         <div
-          className="result-not-found"
-          style={{ textAlign: "center", width: "70%", margin: "30px auto" }}
+          className="d-flex justify-content-center align-center"
+          style={{ alignItems: "center", height: "auto", minHeight: "200px" }}
         >
-          Your search for <em style={{ color: "#fb503b" }}>"{searchQuery}"</em>{" "}
-          did not match any items on page {currentPage}.
+          Loading...
         </div>
       )}
 
