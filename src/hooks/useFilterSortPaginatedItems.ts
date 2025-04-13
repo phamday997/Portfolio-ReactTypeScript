@@ -60,7 +60,7 @@ export const useFilteredSortedPaginatedItems = <T>(
     }
   });
 
-  const totalItems = items.length;
+  const totalItems = sorted.length;
   const itemPerPage = limit <= 0 ? 1 : limit;
   const totalPages = Math.ceil(totalItems / itemPerPage);
   const page = Math.max(1, Math.min(currentPage, totalPages)); // ensure it's in range

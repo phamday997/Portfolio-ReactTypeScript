@@ -22,6 +22,8 @@ export interface BlogPostProps {
   showExcerpt?: boolean;
   showDate?: boolean;
   showCat?: boolean;
+  taxonomy?: boolean;
+  taxonomyParams?: string;
   excludeIds?: number[]; // use to exclude post current have id matches.
   typeCard: "vertical" | "horizontal";
   postPerPage: PositiveNumOrMinusOne; // use pnm1(number) => -1 show all

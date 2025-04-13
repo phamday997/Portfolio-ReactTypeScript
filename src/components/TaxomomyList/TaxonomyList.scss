@@ -1,0 +1,45 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.taxonomy-list-wrapper {
+  .title-taxonomy {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .taxonomy-list {
+    .item-taxonomy {
+      margin-bottom: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        display: inline-block;
+        font-weight: 400;
+      }
+    }
+    &.type-tag {
+      display: flex;
+      flex-wrap: wrap;
+      .item-taxonomy {
+        margin: 0 7px 7px 0;
+        a {
+          width: fit-content;
+          display: block;
+          padding: 8px 25px 10px;
+          font-size: 15px;
+          border-radius: 100px;
+          border: 1px solid vars.$color__gray-sev;
+          line-height: 1.4;
+        }
+        &:hover {
+          a {
+            background-color: vars.$color__main;
+            border-color: vars.$color__main;
+            color: vars.$color__light;
+          }
+        }
+      }
+    }
+  }
+}

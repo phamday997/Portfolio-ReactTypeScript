@@ -17,3 +17,4 @@ export * from "./ScrollCounter";
 export * from "./ScrollProgressBars";
 export * from "./SliderSlickPD";
 export * from "./SidebarPD";
+export * from "./TaxomomyList";

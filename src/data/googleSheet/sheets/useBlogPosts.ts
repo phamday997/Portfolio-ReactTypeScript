@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useGoogleSheetData } from "../../../hooks";
-import { BlogPost } from "../types/BlogPost";
+import { BlogPost } from "../../../components/BlogList/type";
 
 export const useBlogPosts = (
   sheetId: string,

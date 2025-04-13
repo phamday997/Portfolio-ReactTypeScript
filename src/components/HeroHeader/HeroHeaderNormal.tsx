@@ -4,18 +4,7 @@ import "./HeroHeader.scss";
 import { HeroHeaderBase } from "./HeroHeaderBase";
 import { Link } from "react-router-dom";
 import { getPlainText } from "../../helper";
-
-interface dataBreadcrumb {
-  label: string;
-  url: string;
-}
-
-interface HeroHeaderNormalProps {
-  bgImgOveride?: string;
-  breadcrumb?: boolean;
-  dataBreadcrumb?: dataBreadcrumb[];
-  children: ReactNode;
-}
+import { DataBreadcrumb, HeroHeaderNormalProps } from "./types";
 
 export const HeroHeaderNormal: React.FC<HeroHeaderNormalProps> = ({
   bgImgOveride,
@@ -42,7 +31,7 @@ export const HeroHeaderNormal: React.FC<HeroHeaderNormalProps> = ({
             </div>
             {dataBreadcrumb &&
               dataBreadcrumb?.length > 0 &&
-              dataBreadcrumb.map((item: dataBreadcrumb, index: number) => (
+              dataBreadcrumb.map((item: DataBreadcrumb, index: number) => (
                 <div className="item-breadcrumb" key={index}>
                   <div className="item-breadcrumb--item">
                     {item.url ? (

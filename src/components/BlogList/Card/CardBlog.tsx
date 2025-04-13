@@ -28,7 +28,7 @@ export const CardBlog: React.FC<CardBlogProps> = ({
     <div className={`card-blog-pd ${layoutCard}`}>
       <div className="blog-item-inner">
         <Link
-          to={`/blog/${dataPost.id}`}
+          to={`/blog/post?id=${dataPost.id}`}
           onClick={handleLinkClick}
           className="link-overlay"
           title={getPlainText(dataPost.title)}

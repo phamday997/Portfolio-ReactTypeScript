@@ -1,22 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
-import { BlogPost } from "../../components/BlogList/type";
 import { useDebouncedCallback } from "use-debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./BlogDetails.scss";
-import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
+import { BlogPost } from "../../components/BlogList/type";
+import {
+  faCalendarDays,
+  faFolder,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   AnimationPD,
   HeroHeaderNormal,
   Loader,
   SidebarBlog,
+  TaxonomyList,
 } from "../../components";
 import { getPlainText } from "../../helper";
 import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
+import "./BlogDetails.scss";
 
 export const BlogDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
   const [post, setPost] = useState<BlogPost | null>(null);
 
   const { data: dataPosts } = useBlogPosts(
@@ -26,6 +32,8 @@ export const BlogDetails: React.FC = () => {
 
   const loadPost = useDebouncedCallback(() => {
     const numericId = Number(id);
+    if (!numericId || isNaN(numericId)) return;
+
     const foundPost = dataPosts.find((p) => p.id === numericId);
     setPost(foundPost || null);
   }, 300);
@@ -81,6 +89,12 @@ export const BlogDetails: React.FC = () => {
                 </span>
                 <span>{post.date}</span>
               </div>
+              <div className="cat">
+                <span className="icon-cat icon-infor">
+                  <FontAwesomeIcon icon={faFolder} />
+                </span>
+                <span>{post.category}</span>
+              </div>
               <div className="post-author">
                 <span className="icon-author icon-infor">
                   <FontAwesomeIcon icon={faUser} />
@@ -96,6 +110,15 @@ export const BlogDetails: React.FC = () => {
           <div className="col-lg-4 col-md-5 col-sm-12 col-12 col-right">
             <div className="col-right-wraper">
               <SidebarBlog excludeIds={excludeIds} />
+              <div className="margin-top-action">
+                <TaxonomyList<BlogPost>
+                  typeList="normal"
+                  linkParams="/blog/taxonomy?cat"
+                  data={dataPosts}
+                  title="Categories"
+                  field="category"
+                />
+              </div>
             </div>
           </div>
         </div>

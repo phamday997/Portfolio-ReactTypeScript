@@ -10,7 +10,7 @@ export const PublicRoutes: Array<PublicRouter> = [
   },
   {
     component: React.lazy(() =>
-      import("../pages/Blog").then((module) => ({
+      import("../pages/Blog/BlogPage").then((module) => ({
         default: module.BlogPage,
       }))
     ),
@@ -18,10 +18,18 @@ export const PublicRoutes: Array<PublicRouter> = [
   },
   {
     component: React.lazy(() =>
+      import("../pages/Blog/BlogCatPage").then((module) => ({
+        default: module.BlogCatPage,
+      }))
+    ),
+    path: "/blog/taxonomy",
+  },
+  {
+    component: React.lazy(() =>
       import("../pages/BlogDetails").then((module) => ({
         default: module.BlogDetails,
       }))
     ),
-    path: "/blog/:id",
+    path: "/blog/post",
   },
 ];

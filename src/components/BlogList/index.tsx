@@ -22,6 +22,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
   showDate = false,
   showExcerpt = false,
   showCat = true,
+  taxonomyParams = "",
   excludeIds,
   typeCard = "vertical",
   urlLinkReadMore,
@@ -34,7 +35,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
   const location = useLocation();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [currentSortOrder, setCurrentSortOrder] = useState<string>(sortOrder);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>(taxonomyParams);
   const [layoutColum, setLayoutColum] = useState<number>(columList);
   const [currentLimit, setCurrentLimit] = useState<number>(postPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -188,8 +189,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
               duration={1.2}
               delayBase={0.2}
             >
-              Your search for <em className="key-word">"{searchQuery}"</em> did
-              not match any items on page {currentPage}.
+              No results found.
             </AnimationPD>
           )}
         </>
