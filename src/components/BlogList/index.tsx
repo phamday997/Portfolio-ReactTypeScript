@@ -203,7 +203,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
       )}
 
       {/* handle show link See all articles */}
-      {linkReadMore && (
+      {blogPosts.length > 0 && linkReadMore && (
         <AnimationPD animation="fadeInUp" duration={1.2} delayBase={0.2}>
           <div className="margin-top-action" style={{ textAlign: "center" }}>
             <Link

@@ -18,11 +18,19 @@ export const PublicRoutes: Array<PublicRouter> = [
   },
   {
     component: React.lazy(() =>
+      import("../pages/Blog/BlogCatsPage").then((module) => ({
+        default: module.BlogCatsPage,
+      }))
+    ),
+    path: "/blog/categories",
+  },
+  {
+    component: React.lazy(() =>
       import("../pages/Blog/BlogCatPage").then((module) => ({
         default: module.BlogCatPage,
       }))
     ),
-    path: "/blog/taxonomy",
+    path: "/blog/category",
   },
   {
     component: React.lazy(() =>

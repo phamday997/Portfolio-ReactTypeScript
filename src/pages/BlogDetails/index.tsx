@@ -49,6 +49,8 @@ export const BlogDetails: React.FC = () => {
     },
   ];
 
+  console.table(dataPosts);
+
   useEffect(() => {
     loadPost();
     return () => loadPost.cancel();
@@ -113,10 +115,11 @@ export const BlogDetails: React.FC = () => {
               <div className="margin-top-action">
                 <TaxonomyList<BlogPost>
                   typeList="normal"
-                  linkParams="/blog/taxonomy?cat"
+                  linkParams="/blog/category?cat"
                   data={dataPosts}
                   title="Categories"
                   field="category"
+                  imageField="imageCategory"
                 />
               </div>
             </div>

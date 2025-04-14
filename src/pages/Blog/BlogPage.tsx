@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPageBase } from "./BlogPageBase";
+import { BlogBase } from "./BlogBase";
 import { BlogList } from "../../components";
 import { pn, pnm1 } from "../../components/BlogList/type";
 
@@ -11,7 +11,7 @@ export const BlogPage: React.FC = () => {
     },
   ];
   return (
-    <BlogPageBase titlePage="My Blog Posts" dataBreadcrumb={dataBreadcrumb}>
+    <BlogBase titlePage="My Blog Posts" dataBreadcrumb={dataBreadcrumb}>
       <BlogList
         typeCard="vertical"
         search={true}
@@ -25,6 +25,6 @@ export const BlogPage: React.FC = () => {
         spaceRow={pn(35)}
         sortOrder="latest"
       />
-    </BlogPageBase>
+    </BlogBase>
   );
 };

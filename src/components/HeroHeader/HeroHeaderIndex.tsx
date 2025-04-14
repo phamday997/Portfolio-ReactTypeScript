@@ -37,7 +37,7 @@ export const HeroHeaderIndex: React.FC = () => {
                       to="about"
                       smooth={true}
                       duration={500}
-                      offset={-70} // Adjust for fixed headers
+                      offset={-150} // Adjust for fixed headers
                       className="anchor dp-btn-link-scroll"
                     >
                       About Me

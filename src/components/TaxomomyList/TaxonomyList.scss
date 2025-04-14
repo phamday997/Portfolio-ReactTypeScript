@@ -18,7 +18,9 @@
         font-weight: 400;
       }
     }
-    &.type-tag {
+  }
+  &.type-tag {
+    .taxonomy-list {
       display: flex;
       flex-wrap: wrap;
       .item-taxonomy {
@@ -41,5 +43,21 @@
         }
       }
     }
+  }
+}
+.taxonomy-list-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  @include mixins.big_screen {
+    gap: 30px;
+  }
+  @include mixins.desktop {
+    gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mixins.mobile {
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 }

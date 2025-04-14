@@ -1,0 +1,12 @@
+/* Variable & Mixins */
+@use "../../assets/sass/base/variables" as vars;
+@use "../../assets/sass/base/mixins" as mixins;
+
+.blog-categories {
+  .padding-bottom-page {
+    padding-bottom: 80px;
+    @include mixins.mobile {
+      padding-bottom: 60px;
+    }
+  }
+}

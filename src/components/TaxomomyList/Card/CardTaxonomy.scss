@@ -1,0 +1,80 @@
+/* Variable & Mixins */
+@use "../../../assets/sass/base/variables" as vars;
+@use "../../../assets/sass/base/mixins" as mixins;
+
+.card-taxonomy {
+  position: relative;
+  .link-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 5;
+  }
+  .group-text {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    left: 0;
+    color: vars.$color__light;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    z-index: 4;
+    opacity: 0;
+    @include mixins.translate(0, -50%);
+    @include mixins.transition(all 0.3s ease-out);
+    @include mixins.big_screen {
+      font-size: 22px;
+    }
+    @include mixins.mobile {
+      opacity: 1;
+      top: 50%;
+      font-size: 24px;
+    }
+    @include mixins.small_screen {
+      font-size: 22px;
+    }
+  }
+  .feature-img {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 68%;
+    overflow: hidden;
+    border-radius: 13px;
+    z-index: 1;
+    margin-bottom: 0;
+    background-color: vars.$color__dark;
+    @include mixins.mobile {
+      border-radius: 10px;
+    }
+    img {
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      @include mixins.transition(all 0.3s ease-out);
+      @include mixins.mobile {
+        opacity: 0.4;
+      }
+    }
+  }
+  &:hover {
+    .group-text {
+      top: 50%;
+      opacity: 1;
+    }
+    .feature-img {
+      img {
+        @include mixins.scale(1.1);
+        opacity: 0.4;
+      }
+    }
+  }
+}

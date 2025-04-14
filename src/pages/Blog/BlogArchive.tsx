@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPageBase } from "./BlogPageBase";
+import { BlogBase } from "./BlogBase";
 import { BlogList } from "../../components";
 import { pn, pnm1 } from "../../components/BlogList/type";
 import { DataBreadcrumb } from "../../components/HeroHeader/types";
@@ -8,23 +8,21 @@ import { getCapitalizeWords } from "../../helper";
 
 interface BlogArchivePageProps {
   typeTaxonomy: string;
-  taxonomyName: string;
+  taxonomyParam: string;
   dataBreadcrumb: DataBreadcrumb[];
 }
 
-export const BlogArchivePage: React.FC<BlogArchivePageProps> = ({
+export const BlogArchive: React.FC<BlogArchivePageProps> = ({
   typeTaxonomy,
-  taxonomyName,
+  taxonomyParam,
   dataBreadcrumb,
 }) => {
-  const [searchParams] = useSearchParams();
-  const taxonomyParam = searchParams.get(taxonomyName);
   const title = `${getCapitalizeWords(
     typeTaxonomy ?? ""
   )}: ${getCapitalizeWords(taxonomyParam ?? "")}`;
 
   return (
-    <BlogPageBase titlePage={title} dataBreadcrumb={dataBreadcrumb}>
+    <BlogBase titlePage={title} dataBreadcrumb={dataBreadcrumb}>
       <BlogList
         typeCard="vertical"
         sort={true}
@@ -38,6 +36,6 @@ export const BlogArchivePage: React.FC<BlogArchivePageProps> = ({
         spaceRow={pn(35)}
         sortOrder="latest"
       />
-    </BlogPageBase>
+    </BlogBase>
   );
 };
