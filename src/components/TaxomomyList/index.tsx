@@ -41,7 +41,7 @@ export const TaxonomyList = <T,>({
       {typeList !== "card" ? (
         <>
           {title && (
-            <AnimationPD animation="fadeIn" duration={1.2} delayBase={0}>
+            <AnimationPD animation="fadeIn" duration={1.2} delayBase={0.2}>
               <h2 className="title-taxonomy">{title}</h2>
             </AnimationPD>
           )}
@@ -55,7 +55,7 @@ export const TaxonomyList = <T,>({
                 <li className="item-taxonomy" key={index}>
                   <AnimationPD
                     animation="fadeInUp"
-                    delayBase={0.2}
+                    delayBase={0.3}
                     duration={1.2}
                     index={index}
                     totalItem={uniqueCategoryImagePairs.length}

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
+import { useBlogPosts } from "../../data/googleSheet/useBlogPosts";
 import { useDebouncedCallback } from "use-debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BlogPost } from "../../components/BlogList/type";
@@ -48,8 +48,6 @@ export const BlogDetails: React.FC = () => {
       url: "",
     },
   ];
-
-  console.table(dataPosts);
 
   useEffect(() => {
     loadPost();
@@ -109,7 +107,7 @@ export const BlogDetails: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </AnimationPD>
-          <div className="col-lg-4 col-md-5 col-sm-12 col-12 col-right">
+          <div className="col-lg-4 col-md-5 col-sm-12 col-12 col-right col-sidebar">
             <div className="col-right-wraper">
               <SidebarBlog excludeIds={excludeIds} />
               <div className="margin-top-action">

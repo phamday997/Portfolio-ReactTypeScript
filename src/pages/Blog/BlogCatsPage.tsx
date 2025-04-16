@@ -2,7 +2,7 @@ import React from "react";
 import { BlogBase } from "./BlogBase";
 import { TaxonomyList } from "../../components";
 import { BlogPost } from "../../components/BlogList/type";
-import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
+import { useBlogPosts } from "../../data/googleSheet/useBlogPosts";
 import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 
 export const BlogCatsPage: React.FC = () => {

@@ -10,7 +10,7 @@ import { LayoutOption, ShowItemPerPage, SortOption } from "../FilterSortLayout";
 import { SearchSort } from "../FilterSortLayout/SearchSort";
 import { PaginationPD } from "../PaginationPD";
 import { scroller } from "react-scroll";
-import { useBlogPosts } from "../../data/googleSheet/sheets/useBlogPosts";
+import { useBlogPosts } from "../../data/googleSheet/useBlogPosts";
 import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 
 export const BlogList: React.FC<BlogPostProps> = ({

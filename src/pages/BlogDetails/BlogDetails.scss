@@ -68,6 +68,15 @@
     }
   }
 }
+.col-sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 130px;
+  @include mixins.tablet {
+    position: static;
+    top: unset;
+  }
+}
 
 @include mixins.ThemeMode {
   .blog-details {

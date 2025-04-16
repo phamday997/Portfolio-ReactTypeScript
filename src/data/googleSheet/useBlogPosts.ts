@@ -1,11 +1,11 @@
 import { useCallback } from "react";
-import { useGoogleSheetData } from "../../../hooks";
-import { BlogPost } from "../../../components/BlogList/type";
+import { useGoogleSheetData } from "../../hooks";
+import { BlogPost } from "../../components/BlogList/type";
 
 export const useBlogPosts = (
   sheetId: string,
   apiKey: string,
-  range = "BlogPost!A2:I" // BlogPost is a Tab name of google sheet
+  range = "BlogPost!A2:J" // BlogPost is a Tab name of google sheet
 ) => {
   const mapRowToPost = useCallback(
     (row: string[]): BlogPost => ({
@@ -15,9 +15,10 @@ export const useBlogPosts = (
       excerpt: row[3],
       author: row[4],
       date: row[5],
-      category: row[6],
-      imageCategory: row[7],
-      image: row[8],
+      tag: row[6],
+      category: row[7],
+      imageCategory: row[8],
+      image: row[9],
     }),
     [] // deps empty because it do not have any var outside so just load once.
   );
