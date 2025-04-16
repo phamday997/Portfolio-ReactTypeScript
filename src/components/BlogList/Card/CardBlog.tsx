@@ -51,7 +51,6 @@ export const CardBlog: React.FC<CardBlogProps> = ({
               </div>
             </div>
           )}
-
           {showCate && <div className="cat">{dataPost.category}</div>}
           <div
             className="title"
@@ -60,6 +59,7 @@ export const CardBlog: React.FC<CardBlogProps> = ({
           {showExcerpt && dataPost.excerpt && (
             <div className="excerpt">{dataPost.excerpt}</div>
           )}
+          Tag:{dataPost.tag}
         </div>
       </div>
     </div>

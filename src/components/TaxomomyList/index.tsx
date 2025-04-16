@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { getCapitalizeWords, getPlainText } from "../../helper";
+import {
+  getArrayFromString,
+  getCapitalizeWords,
+  getPlainText,
+} from "../../helper";
 import { AnimationPD } from "../AnimationPD";
 import { scroller } from "react-scroll";
 import "./TaxonomyList.scss";
@@ -16,16 +20,22 @@ export const TaxonomyList = <T,>({
   field,
   imageField = "imageTaxonomy" as keyof T,
 }: TaxonomyListProps<T>) => {
-  const uniqueCategoryImagePairs: TaxonomyWithImage[] = Array.from(
-    new Map(
-      data.map((item: T) => [
-        String(item[field]),
-        {
-          name: String(item[field]),
+  const taxonomyImageMap = new Map<string, TaxonomyWithImage>();
+
+  data.forEach((item: T) => {
+    getArrayFromString(item[field], false).forEach((category) => {
+      const taxonomyStr = String(category);
+      if (!taxonomyImageMap.has(taxonomyStr)) {
+        taxonomyImageMap.set(taxonomyStr, {
+          name: taxonomyStr,
           image: item[imageField] ? String(item[imageField]) : undefined,
-        },
-      ])
-    ).values()
+        });
+      }
+    });
+  });
+
+  const uniqueCategoryImagePairs: TaxonomyWithImage[] = Array.from(
+    taxonomyImageMap.values()
   );
 
   const handleLinkClick = useCallback((): void => {

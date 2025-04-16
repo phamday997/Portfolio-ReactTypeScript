@@ -34,6 +34,14 @@ export const PublicRoutes: Array<PublicRouter> = [
   },
   {
     component: React.lazy(() =>
+      import("../pages/Blog/BlogTagPage").then((module) => ({
+        default: module.BlogTagPage,
+      }))
+    ),
+    path: "/blog/tag",
+  },
+  {
+    component: React.lazy(() =>
       import("../pages/BlogDetails").then((module) => ({
         default: module.BlogDetails,
       }))

@@ -3,6 +3,7 @@ import { getPlainText } from "../helper";
 type Extractor<T> = {
   title: (item: T) => string | TrustedHTML; // required for search + sort (az/za)
   category?: (item: T) => string; // optional, used for filtering
+  tag?: (item: T) => string;
   id: (item: T) => number; // required for sorting (oldest/latest)
 };
 
@@ -33,8 +34,15 @@ export const useFilteredSortedPaginatedItems = <T>(
     const category = extractor.category
       ? getPlainText(extractor.category(item) || "").toLowerCase()
       : "";
+    const tag = extractor.tag
+      ? getPlainText(extractor.tag(item) || "").toLowerCase()
+      : "";
 
-    return title.includes(lowerQuery) || category.includes(lowerQuery);
+    return (
+      title.includes(lowerQuery) ||
+      category.includes(lowerQuery) ||
+      tag.includes(lowerQuery)
+    );
   });
 
   const sorted = filtered.sort((a, b) => {

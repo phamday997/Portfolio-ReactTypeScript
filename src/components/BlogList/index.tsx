@@ -82,6 +82,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
         title: (item) => item.title,
         category: (item) => item.category,
         id: (item) => item.id,
+        tag: (item) => item.tag,
       }
     );
 
