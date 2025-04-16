@@ -19,6 +19,7 @@ export const BlogPage: React.FC = () => {
         showLayoutSeting={true}
         pagination={true}
         showExcerpt={true}
+        showTag={true}
         columList={3}
         postPerPage={pnm1(9)}
         spaceCol={pn(25)}

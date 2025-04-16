@@ -22,6 +22,7 @@ export interface BlogPostProps {
   showExcerpt?: boolean;
   showDate?: boolean;
   showCat?: boolean;
+  showTag?: boolean;
   taxonomy?: boolean;
   taxonomyParams?: string;
   excludeIds?: number[]; // use to exclude post current have id matches.

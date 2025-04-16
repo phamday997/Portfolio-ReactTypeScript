@@ -30,6 +30,7 @@ export const BlogArchive: React.FC<BlogArchivePageProps> = ({
         showLayoutSeting={true}
         pagination={true}
         showExcerpt={true}
+        showTag={true}
         columList={3}
         postPerPage={pnm1(9)}
         spaceCol={pn(25)}

@@ -23,12 +23,13 @@
     .taxonomy-list {
       display: flex;
       flex-wrap: wrap;
+      gap: 7px;
       .item-taxonomy {
-        margin: 0 7px 7px 0;
+        margin: 0;
         a {
           width: fit-content;
           display: block;
-          padding: 8px 25px 10px;
+          padding: 9px 22px 10px;
           font-size: 15px;
           border-radius: 100px;
           border: 1px solid vars.$color__gray-sev;

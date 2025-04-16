@@ -79,10 +79,25 @@
     }
   }
   .excerpt {
-    font-weight: 500;
+    font-weight: 400;
     margin-top: 6px;
     font-size: 15px;
     @include mixins.limit-line(3, 72);
+  }
+  .taxs-wrapper {
+    gap: 6px;
+    .label {
+      font-size: 12px;
+    }
+    .taxs-list {
+      gap: 5px;
+      .tax {
+        a {
+          font-size: 11px;
+          padding: 4px 12px 5px;
+        }
+      }
+    }
   }
   &:hover {
     .feature-img {

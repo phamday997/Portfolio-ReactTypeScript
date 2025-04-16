@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useBlogPosts } from "../../data/googleSheet/useBlogPosts";
 import { useDebouncedCallback } from "use-debounce";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,12 +15,9 @@ import {
   Loader,
   SidebarBlog,
   TaxonomyList,
+  TaxonomyListSingle,
 } from "../../components";
-import {
-  getArrayFromString,
-  getCapitalizeWords,
-  getPlainText,
-} from "../../helper";
+import { getPlainText } from "../../helper";
 import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 import "./BlogDetails.scss";
 
@@ -59,7 +56,6 @@ export const BlogDetails: React.FC = () => {
   }, [id, loadPost, dataPosts]);
 
   const excludeIds = useMemo(() => (post ? [post.id] : []), [post]);
-  const tagsList = useMemo(() => getArrayFromString(post?.tag, false), [post]);
 
   if (!post)
     return (
@@ -115,26 +111,11 @@ export const BlogDetails: React.FC = () => {
                 className="main-content"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-              {tagsList.length > 0 && (
-                <div className="tags-wrapper">
-                  <div className="label">
-                    <small>Tags:</small>
-                  </div>
-                  <ul className="tags-list">
-                    {tagsList.map((tag: string, index: number) => (
-                      <li className="tag" key={index}>
-                        <Link
-                          to={`/blog/tag?tag=${getPlainText(
-                            tag
-                          ).toLowerCase()}`}
-                        >
-                          {getCapitalizeWords(tag)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <TaxonomyListSingle
+                label="Tags:"
+                linkParams="/blog/tag?tag"
+                dataTax={post?.tag}
+              />
             </AnimationPD>
           </div>
           <div className="col-lg-4 col-md-5 col-sm-12 col-12 col-right col-sidebar">

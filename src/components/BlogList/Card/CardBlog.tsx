@@ -5,14 +5,16 @@ import { CardBlogProps } from "../type/CardBlogProps";
 import "./CardBlog.scss";
 import { useGlobalStateZustand } from "../../../hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { getPlainText } from "../../../helper";
+import { TaxonomyListSingle } from "../../TaxomomyList";
 
 export const CardBlog: React.FC<CardBlogProps> = ({
   layoutCard = "vertical",
   showExcerpt,
   showDate,
   showCate,
+  showTag,
   dataPost,
 }) => {
   const { activeIndex, setActiveIndex } = useGlobalStateZustand();
@@ -24,6 +26,7 @@ export const CardBlog: React.FC<CardBlogProps> = ({
       offset: -100,
     });
   };
+
   return (
     <div className={`card-blog-pd ${layoutCard}`}>
       <div className="blog-item-inner">
@@ -59,7 +62,14 @@ export const CardBlog: React.FC<CardBlogProps> = ({
           {showExcerpt && dataPost.excerpt && (
             <div className="excerpt">{dataPost.excerpt}</div>
           )}
-          Tag:{dataPost.tag}
+          {showTag && dataPost.tag && (
+            <TaxonomyListSingle
+              style={{ marginTop: "10px" }}
+              label="Tags:"
+              linkParams="/blog/tag?tag"
+              dataTax={dataPost.tag}
+            />
+          )}
         </div>
       </div>
     </div>

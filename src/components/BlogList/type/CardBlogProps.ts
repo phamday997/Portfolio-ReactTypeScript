@@ -5,5 +5,6 @@ export interface CardBlogProps {
   showExcerpt?: boolean;
   showDate?: boolean;
   showCate?: boolean;
+  showTag?: boolean;
   dataPost: BlogPost;
 }

@@ -22,6 +22,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
   showDate = false,
   showExcerpt = false,
   showCat = true,
+  showTag = false,
   taxonomyParams = "",
   excludeIds,
   typeCard = "vertical",
@@ -177,6 +178,7 @@ export const BlogList: React.FC<BlogPostProps> = ({
                     showCate={showCat}
                     showExcerpt={showExcerpt}
                     showDate={showDate}
+                    showTag={showTag}
                     layoutCard={layoutCard}
                     dataPost={post}
                   />
