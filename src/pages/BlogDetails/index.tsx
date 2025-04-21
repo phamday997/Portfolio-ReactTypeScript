@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   AnimationPD,
-  CommentForm,
   HeroHeaderNormal,
   Loader,
   SidebarBlog,
