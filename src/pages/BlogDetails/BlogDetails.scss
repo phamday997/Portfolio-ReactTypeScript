@@ -66,6 +66,10 @@
       margin-right: 6px;
       margin-top: -1px;
     }
+    .cat {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
@@ -84,6 +88,13 @@
   .blog-details {
     blockquote {
       background-color: vars.$color__background-second;
+    }
+    .infor-wraper {
+      .cat {
+        a {
+          color: vars.$text-color-dark;
+        }
+      }
     }
   }
 }

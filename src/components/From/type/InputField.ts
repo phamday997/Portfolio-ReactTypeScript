@@ -1,9 +1,9 @@
 import { FieldError, UseFormRegister } from "react-hook-form";
-import { FormProps } from "./Form";
+import { FormValues } from "./Form";
 
 export interface InputFieldProps {
   type: string;
   placeholder: string;
-  register: ReturnType<UseFormRegister<FormProps>>;
+  register: ReturnType<UseFormRegister<FormValues>>;
   error?: FieldError;
 }

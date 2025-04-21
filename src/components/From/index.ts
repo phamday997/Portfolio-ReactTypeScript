@@ -1,1 +1,2 @@
-export * from "./ContactFrom";
+export * from "./ContactForm";
+export * from "./CommentForm";

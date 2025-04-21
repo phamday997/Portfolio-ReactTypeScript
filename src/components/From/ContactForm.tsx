@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDebouncedCallback } from "use-debounce";
 import { InputField, TextAreaField } from "./Field";
-import { FormProps } from "./type";
+import { FormValueContact } from "./type";
 import { Button } from "../Button";
 
 const schema = yup
@@ -30,7 +30,7 @@ export const ContactForm: React.FC = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<FormProps>({
+  } = useForm<FormValueContact>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -41,7 +41,7 @@ export const ContactForm: React.FC = () => {
     setSuccessMessage(null);
   }, 6000);
 
-  const onSubmit = async (data: FormProps) => {
+  const onSubmit = async (data: FormValueContact) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setSuccessMessage("Message Sent Successfully!");
     reset();

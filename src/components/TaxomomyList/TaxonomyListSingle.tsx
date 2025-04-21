@@ -9,13 +9,15 @@ import { Link } from "react-router-dom";
 import "./TaxonomyListSingle.scss";
 
 interface TaxonomyListSingleProps {
-  label: string;
+  label?: string;
+  typeItem?: "tag" | "normal";
   dataTax: string | string[];
   linkParams: string;
   style?: CSSProperties;
 }
 export const TaxonomyListSingle: React.FC<TaxonomyListSingleProps> = ({
   label,
+  typeItem = "tag",
   dataTax,
   linkParams, // Noted: "/blog/taxonomy?cat or "/blog/taxonomy?tag" depend on your Router setup
   style,
@@ -32,8 +34,8 @@ export const TaxonomyListSingle: React.FC<TaxonomyListSingleProps> = ({
     <>
       {taxLists.length > 0 && (
         <div className="taxs-wrapper" style={style}>
-          <div className="label">{label}</div>
-          <ul className="taxs-list">
+          {label && <div className="label">{label}</div>}
+          <ul className={`taxs-list type-${typeItem}`}>
             {taxLists.map((tag: string, index: number) => (
               <li className="tax" key={index}>
                 <Link

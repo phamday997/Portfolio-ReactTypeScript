@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   AnimationPD,
+  CommentForm,
   HeroHeaderNormal,
   Loader,
   SidebarBlog,
@@ -95,7 +96,11 @@ export const BlogDetails: React.FC = () => {
                     <span className="icon-cat icon-infor">
                       <FontAwesomeIcon icon={faFolder} />
                     </span>
-                    <span>{post.category}</span>
+                    <TaxonomyListSingle
+                      typeItem="normal"
+                      linkParams="/blog/category?cat"
+                      dataTax={post?.category}
+                    />
                   </div>
                 )}
                 {post.author && (
@@ -115,7 +120,47 @@ export const BlogDetails: React.FC = () => {
                 label="Tags:"
                 linkParams="/blog/tag?tag"
                 dataTax={post?.tag}
+                style={{
+                  marginTop: "20px",
+                  marginBottom: "30px",
+                }}
               />
+
+              <div className="comments-section" style={{ marginTop: 40 }}>
+                <h3 style={{ marginBottom: 20 }}>Comments</h3>
+
+                {post.comments && post.comments.length > 0 ? (
+                  post.comments.map((comment, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        marginBottom: 20,
+                        paddingBottom: 10,
+                        borderBottom: "1px solid #eee",
+                      }}
+                    >
+                      <strong>{comment.fullName}</strong> ({comment.email}) on{" "}
+                      {comment.date}
+                      <p>{comment.message}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No comments yet. Be the first to comment!</p>
+                )}
+
+                <CommentForm
+                  sheetWebAppUrl={import.meta.env.VITE_SHEET_WEBAPP_URL}
+                  rowIndex={dataPosts.findIndex((p) => p.id === post.id) + 2}
+                  onCommentPosted={() => {
+                    const numericId = Number(id);
+                    const updatedPost = dataPosts.find(
+                      (p) => p.id === numericId
+                    );
+                    if (updatedPost) setPost({ ...updatedPost });
+                  }}
+                  replyTo={post.author}
+                />
+              </div>
             </AnimationPD>
           </div>
           <div className="col-lg-4 col-md-5 col-sm-12 col-12 col-right col-sidebar">
