@@ -9,12 +9,4 @@ export interface BlogPost {
   category: string;
   imageCategory: string;
   image: string;
-  comments?: CommentItem[]; // optional if some are empty
 }
-
-export type CommentItem = {
-  date: string;
-  fullName: string;
-  email: string;
-  message: string;
-};
