@@ -19,7 +19,7 @@ export const SidebarBlog: React.FC<{ excludeIds?: number[] }> = ({
         spaceCol={pn(20)}
         columList={1}
         sortOrder="latest"
-        postPerPage={pnm1(4)}
+        postPerPage={pnm1(3)}
       />
     </SidebarBase>
   );

@@ -20,6 +20,12 @@ import {
 import { getPlainText } from "../../helper";
 import { GOOGLE_SHEETS } from "../../data/config/googleSheet";
 import "./BlogDetails.scss";
+import Inst1 from "./images/instagram-0.jpg";
+import Inst2 from "./images/instagram-1.jpg";
+import Inst3 from "./images/instagram-2.jpg";
+import Inst4 from "./images/instagram-3.jpg";
+import Inst5 from "./images/instagram-4.jpg";
+import Inst6 from "./images/instagram-5.jpg";
 
 export const BlogDetails: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -47,6 +53,33 @@ export const BlogDetails: React.FC = () => {
     {
       label: `${post?.title}`,
       url: "",
+    },
+  ];
+
+  const instagrams = [
+    {
+      img: `${Inst1}`,
+      url: "https://www.instagram.com/p/CrksSS9PGzi/?utm_source=ig_web_copy_link",
+    },
+    {
+      img: `${Inst2}`,
+      url: "https://www.instagram.com/p/CrksWJ-vd-E/?utm_source=ig_web_copy_link",
+    },
+    {
+      img: `${Inst3}`,
+      url: "https://www.instagram.com/p/CrksX7rvHSw/?utm_source=ig_web_copy_link",
+    },
+    {
+      img: `${Inst4}`,
+      url: "https://www.instagram.com/p/CrksZtGPr_W/?utm_source=ig_web_copy_link",
+    },
+    {
+      img: `${Inst5}`,
+      url: "https://www.instagram.com/p/CrksbYJPJFy/?utm_source=ig_web_copy_link",
+    },
+    {
+      img: `${Inst6}`,
+      url: "https://www.instagram.com/p/CrksdP5PDaa/?utm_source=ig_web_copy_link",
     },
   ];
 
@@ -147,6 +180,37 @@ export const BlogDetails: React.FC = () => {
                   title="Tags"
                   field="tag"
                 />
+              </div>
+              <div className="margin-top-action">
+                <AnimationPD animation="fadeIn" duration={1.2} delayBase={0.4}>
+                  <h2 className="title-h2">Instagram</h2>
+                </AnimationPD>
+                <div className="img-link-list-wraper">
+                  <ul className="img-link-list">
+                    {instagrams.length > 0 &&
+                      instagrams.map((item, index: number) => (
+                        <AnimationPD
+                          key={index}
+                          animation="fadeInUp"
+                          duration={1.2}
+                          delayBase={0.4}
+                          index={index}
+                          totalItem={instagrams.length}
+                        >
+                          <li className="img-link-list--item">
+                            <a href={item.url} target="_blank">
+                              <img
+                                width="100%"
+                                height="auto"
+                                src={item.img}
+                                alt={item.url}
+                              />
+                            </a>
+                          </li>
+                        </AnimationPD>
+                      ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
