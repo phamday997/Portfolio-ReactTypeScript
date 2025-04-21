@@ -119,7 +119,7 @@
         font-size: 15px;
       }
       @include mixins.small_screen {
-        font-size: 14px;
+        font-size: 13px;
       }
     }
     .title {
@@ -135,7 +135,7 @@
         @include mixins.limit-line(1, 23);
       }
       @include mixins.small_screen {
-        font-size: 15px;
+        font-size: 14px;
       }
     }
     .excerpt {
@@ -172,6 +172,11 @@
     }
     .group-text {
       width: 72%;
+    }
+    .taxs-wrapper {
+      @include mixins.small_screen {
+        display: none;
+      }
     }
   }
 }
