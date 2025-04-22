@@ -41,12 +41,37 @@ export const ContactForm: React.FC = () => {
     setSuccessMessage(null);
   }, 6000);
 
+  // const onSubmit = async (data: FormValueContact) => {
+  //   await new Promise((resolve) => setTimeout(resolve, 1000));
+  //   setSuccessMessage("Message Sent Successfully!");
+  //   reset();
+  //   clearSuccessMessage();
+  //   console.log(data);
+  // };
+
   const onSubmit = async (data: FormValueContact) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSuccessMessage("Message Sent Successfully!");
-    reset();
-    clearSuccessMessage();
-    console.log(data);
+    const formData = new FormData();
+    formData.append("entry.127899348", data.fullName);
+    formData.append("entry.142360490", data.email);
+    formData.append("entry.268966842", data.message || "");
+
+    try {
+      await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSd2WMhz6e1u1UxuF_QcLlRRsNweC7oXA7ZnhcPYuIqaB5KtWw/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors", // necessary
+          body: formData,
+        }
+      );
+
+      setSuccessMessage("Message sent successfully!");
+      reset();
+      clearSuccessMessage();
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSuccessMessage("Something went wrong. Please try again.");
+    }
   };
 
   return (
