@@ -17,6 +17,8 @@ This project is built with **Vite**, **React**, and **TypeScript**, optimized fo
 
 In the project directory, you can run:
 
+### `yarn install`
+
 ### `yarn dev`
 
 Starts the development server with hot reloading.  
@@ -41,10 +43,12 @@ Builds and deploys the app to the `gh-pages` branch on GitHub.
 
 Environment settings are controlled using `.env` files:
 
-| File              | Purpose          | Key Example                                |
-| ----------------- | ---------------- | ------------------------------------------ |
-| `.env`            | Development      | `VITE_APP_BASE=/`                          |
-| `.env.production` | Production build | `VITE_APP_BASE=/Portfolio-ReactTypeScript` |
+| File   | Purpose            | Key Example                                              |
+| ------ | ------------------ | -------------------------------------------------------- |
+| `.env` | Development        | `VITE_APP_BASE=/`                                        |
+|        | Production build   | `VITE_APP_BASE=/Portfolio-ReactTypeScript`               |
+|        | Repository secrets | `VITE_GOOGLE_SHEET_POST_ID=your_local_post_sheet_id`     |
+|        | Repository secrets | `VITE_GOOGLE_SHEET_POST_API_KEY=your_local_post_api_key` |
 
 You can switch to a single `.env` and use logic if preferred.
 
